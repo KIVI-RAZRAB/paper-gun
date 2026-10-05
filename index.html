@@ -1,0 +1,2249 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0b0908">
+<title>Бумажное Оружие | Школа 43 Тюмень</title>
+<style>
+/* ============================================================
+   ROOT
+============================================================ */
+:root{
+  --bg:#0b0908;
+  --bg2:#131110;
+  --card:#1a1714;
+  --card2:#211d19;
+  --line:#2b2620;
+  --line-hi:#4a3d2a;
+  --amber:#ffb020;
+  --amber2:#ff7a00;
+  --amber3:#ffd27a;
+  --text:#f3ece2;
+  --muted:#948a7c;
+  --green:#4ade80;
+  --red:#f87171;
+
+  --ease:cubic-bezier(.22,1,.36,1);
+  --ease-back:cubic-bezier(.34,1.56,.64,1);
+  --t-fast:.15s;
+  --t:.25s;
+  --t-slow:.4s;
+
+  --header-h:56px;
+  --bottom-nav-h:64px;
+  --safe-bottom:env(safe-area-inset-bottom, 0px);
+  --safe-top:env(safe-area-inset-top, 0px);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--header-h) + 12px)}
+body{
+  font-family:'Segoe UI',system-ui,-apple-system,'Inter',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.55;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  min-height:100vh;
+  min-height:100dvh;
+  background-image:
+    radial-gradient(ellipse 900px 600px at 10% -10%, rgba(255,176,32,.055), transparent 60%),
+    radial-gradient(ellipse 900px 700px at 90% 110%, rgba(255,122,0,.045), transparent 60%);
+  background-attachment:fixed;
+  transition:padding-bottom var(--t) var(--ease);
+}
+body.is-mobile{padding-bottom:calc(var(--bottom-nav-h) + var(--safe-bottom))}
+body.no-scroll{overflow:hidden;position:fixed;width:100%}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+input,textarea,select{font-family:inherit}
+img,svg{display:block;max-width:100%}
+
+/* Scrollbar (desktop only) */
+@media(hover:hover){
+  ::-webkit-scrollbar{width:9px;height:9px}
+  ::-webkit-scrollbar-track{background:transparent}
+  ::-webkit-scrollbar-thumb{background:#3a3226;border-radius:9px;border:2px solid var(--bg)}
+  ::-webkit-scrollbar-thumb:hover{background:var(--amber2)}
+  *{scrollbar-width:thin;scrollbar-color:#3a3226 var(--bg)}
+}
+body.is-mobile *::-webkit-scrollbar{width:0;height:0}
+
+/* ============================================================
+   ICONS
+============================================================ */
+.ico{display:inline-flex;align-items:center;justify-content:center;line-height:0;flex-shrink:0}
+.ico svg{width:1em;height:1em;display:block}
+.ico.xl{font-size:46px}
+.ico.lg{font-size:26px}
+.ico.md{font-size:20px}
+.ico.sm{font-size:15px}
+.ico.xs{font-size:13px}
+
+/* ============================================================
+   HEADER
+============================================================ */
+header{
+  position:sticky;top:0;z-index:200;
+  background:rgba(11,9,8,.94);
+  border-bottom:1px solid transparent;
+  transition:background var(--t) var(--ease),border-color var(--t) var(--ease);
+  padding-top:var(--safe-top);
+}
+header.scrolled{
+  background:rgba(11,9,8,.99);
+  border-bottom-color:var(--line);
+  box-shadow:0 4px 20px rgba(0,0,0,.4);
+}
+.nav{
+  max-width:1280px;margin:0 auto;
+  padding:10px 22px;
+  display:flex;align-items:center;gap:18px;
+  min-height:var(--header-h);
+}
+.logo{display:flex;align-items:center;gap:11px;font-weight:800;font-size:15px;letter-spacing:.3px;flex-shrink:0}
+.logo .mark{
+  width:38px;height:38px;border-radius:11px;display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--amber),var(--amber2));
+  color:#1a1206;font-size:21px;
+  box-shadow:0 4px 16px rgba(255,140,0,.3);
+  transition:transform var(--t) var(--ease-back);
+}
+.logo:hover .mark{transform:rotate(-6deg) scale(1.04)}
+.logo .mark svg{width:21px;height:21px;stroke-width:2}
+.logo small{display:block;font-size:9px;color:var(--muted);font-weight:700;letter-spacing:1.8px;margin-top:1px}
+
+.nav-links{display:none;gap:2px;margin-left:auto}
+.nav-links a{
+  padding:9px 13px;border-radius:9px;font-size:13.5px;color:var(--muted);
+  font-weight:600;display:inline-flex;align-items:center;gap:7px;
+  transition:color var(--t-fast) ease,background var(--t-fast) ease;
+}
+.nav-links a:hover{color:var(--amber);background:rgba(255,176,32,.07)}
+.nav-links a .ico{font-size:15px}
+.nav-right{display:flex;gap:8px;align-items:center;margin-left:auto;flex-shrink:0}
+.user-chip{
+  display:flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;
+  background:rgba(255,176,32,.1);
+  border:1px solid rgba(255,176,32,.25);
+  font-size:12.5px;font-weight:700;
+}
+.user-chip .name{display:none}
+.user-chip .cls{display:none}
+.avatar{
+  width:26px;height:26px;border-radius:50%;display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--amber),var(--amber2));color:#1a1206;
+  font-size:11px;font-weight:800;
+}
+.avatar.adm{background:linear-gradient(135deg,#f87171,#dc2626);color:#fff;font-size:12px}
+.avatar.adm .ico{font-size:13px}
+
+/* ============================================================
+   BUTTONS
+============================================================ */
+.btn{
+  border-radius:11px;padding:11px 18px;
+  font-weight:700;font-size:14px;
+  background:linear-gradient(135deg,var(--amber),var(--amber2));
+  color:#1a1206;
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  transition:transform var(--t) var(--ease-back),box-shadow var(--t) var(--ease);
+  box-shadow:0 4px 14px rgba(255,140,0,.25);
+  min-height:44px;
+}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(255,140,0,.4)}
+.btn:active{transform:translateY(0) scale(.97)}
+.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--text);box-shadow:none}
+.btn.ghost:hover{border-color:var(--line-hi);color:var(--amber);background:rgba(255,176,32,.06)}
+.btn.sm{padding:8px 13px;font-size:12.5px;border-radius:9px;min-height:36px}
+.btn.danger{background:linear-gradient(135deg,#f87171,#dc2626);color:#fff;box-shadow:0 4px 14px rgba(248,113,113,.25)}
+.btn.green{background:linear-gradient(135deg,#4ade80,#16a34a);color:#052e16;box-shadow:0 4px 14px rgba(74,222,128,.25)}
+.btn.full{width:100%}
+.btn .ico{font-size:16px}
+
+/* ============================================================
+   LAYOUT
+============================================================ */
+.wrap{max-width:1280px;margin:0 auto;padding:0 18px;position:relative;z-index:1}
+section{padding:56px 0;position:relative}
+section:first-of-type{padding-top:36px}
+.sec-head{margin-bottom:28px}
+.sec-head .eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:10.5px;font-weight:800;letter-spacing:2px;
+  color:var(--amber);text-transform:uppercase;margin-bottom:12px;
+}
+.sec-head .eyebrow::before{content:'';width:20px;height:1px;background:var(--amber);opacity:.5}
+.sec-head h2{font-size:clamp(26px,6vw,42px);font-weight:900;letter-spacing:-1px;line-height:1.1}
+.sec-head h2 span{
+  background:linear-gradient(135deg,var(--amber),var(--amber3));
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.sec-head p{color:var(--muted);margin-top:10px;font-size:14.5px;max-width:600px}
+
+/* Reveal */
+.reveal{opacity:0;transform:translate3d(0,20px,0);transition:opacity .55s var(--ease),transform .55s var(--ease)}
+.reveal.revealed{opacity:1;transform:translate3d(0,0,0)}
+
+/* ============================================================
+   HERO
+============================================================ */
+.hero{padding:44px 0 40px;text-align:center}
+.hero h1{
+  font-size:clamp(32px,9vw,84px);font-weight:900;line-height:1.02;
+  letter-spacing:-1.5px;margin-bottom:20px;
+}
+.hero h1 em{
+  font-style:normal;
+  background:linear-gradient(120deg,var(--amber) 0%,var(--amber3) 50%,var(--amber2) 100%);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.hero p{max-width:640px;margin:0 auto 26px;color:var(--muted);font-size:15px;line-height:1.6}
+.hero-actions{display:flex;flex-direction:column;gap:10px;max-width:340px;margin:0 auto}
+.hero-actions .btn{width:100%}
+.badge-top{
+  display:inline-flex;align-items:center;gap:9px;
+  padding:7px 15px;border-radius:999px;
+  background:rgba(255,176,32,.09);
+  border:1px solid rgba(255,176,32,.22);
+  font-size:10.5px;font-weight:800;color:var(--amber);letter-spacing:1px;
+  margin-bottom:20px;
+}
+.pulse{width:7px;height:7px;border-radius:50%;background:var(--green);
+  box-shadow:0 0 0 0 rgba(74,222,128,.7);animation:pl 2s infinite}
+@keyframes pl{70%{box-shadow:0 0 0 9px rgba(74,222,128,0)}100%{box-shadow:0 0 0 0 rgba(74,222,128,0)}}
+
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:40px}
+.stat{
+  background:var(--card);
+  border:1px solid var(--line);border-radius:14px;padding:18px 14px;
+  transition:transform var(--t) var(--ease-back),border-color var(--t) ease;
+}
+.stat b{
+  display:block;font-size:26px;font-weight:900;letter-spacing:-.5px;line-height:1;
+  background:linear-gradient(135deg,var(--amber),var(--amber3));
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.stat span{font-size:11.5px;color:var(--muted);font-weight:600;display:block;margin-top:6px}
+
+/* ============================================================
+   PRODUCTS
+============================================================ */
+.grid{display:grid;grid-template-columns:1fr;gap:14px}
+.card{
+  background:var(--card);
+  border:1px solid var(--line);border-radius:16px;padding:20px;
+  display:flex;flex-direction:column;position:relative;
+  transition:transform var(--t) var(--ease-back),border-color var(--t) ease,box-shadow var(--t) ease;
+}
+.card:hover{transform:translateY(-4px);border-color:var(--line-hi);box-shadow:0 14px 34px rgba(0,0,0,.4)}
+.p-icon{
+  width:60px;height:60px;border-radius:16px;
+  display:grid;place-items:center;
+  background:linear-gradient(135deg,rgba(255,176,32,.13),rgba(255,122,0,.05));
+  border:1px solid rgba(255,176,32,.2);
+  color:var(--amber);font-size:28px;margin-bottom:14px;
+  transition:transform var(--t) var(--ease-back);
+}
+.p-icon svg{stroke-width:1.6}
+.card:hover .p-icon{transform:rotate(-6deg) scale(1.04)}
+.card h3{font-size:15.5px;font-weight:800;margin-bottom:6px;line-height:1.3;letter-spacing:-.2px;padding-right:60px}
+.card .desc{font-size:12.5px;color:var(--muted);flex:1;margin-bottom:14px;line-height:1.55}
+.card .row{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.price{font-size:20px;font-weight:900;letter-spacing:-.5px;color:var(--amber)}
+.tag{
+  position:absolute;top:14px;right:14px;font-size:9.5px;font-weight:800;letter-spacing:.8px;
+  padding:4px 9px;border-radius:7px;
+  background:rgba(255,176,32,.18);
+  color:var(--amber3);
+  border:1px solid rgba(255,176,32,.32);
+}
+
+/* ============================================================
+   CART
+============================================================ */
+.cart-box{
+  background:var(--card);
+  border:1px solid var(--line);border-radius:18px;padding:20px;
+  box-shadow:0 10px 26px rgba(0,0,0,.3);
+}
+.cart-item{
+  display:flex;align-items:center;gap:12px;padding:14px 0;
+  border-bottom:1px solid var(--line);
+}
+.cart-item:last-of-type{border-bottom:none}
+.cart-item .ce{
+  width:44px;height:44px;border-radius:12px;
+  background:linear-gradient(135deg,rgba(255,176,32,.13),rgba(255,122,0,.05));
+  border:1px solid rgba(255,176,32,.2);
+  color:var(--amber);font-size:22px;
+  display:grid;place-items:center;flex-shrink:0;
+}
+.cart-item .ce svg{stroke-width:1.6}
+.cart-item .ci{flex:1;min-width:0}
+.cart-item .ci b{display:block;font-size:13.5px;font-weight:700;line-height:1.3}
+.cart-item .ci span{font-size:11.5px;color:var(--muted)}
+.cart-item .line-total{
+  display:block;font-size:13.5px;font-weight:800;color:var(--amber);
+  margin-top:2px;
+}
+.qty{display:flex;align-items:center;gap:5px}
+.qty button{
+  width:32px;height:32px;border-radius:9px;
+  border:1px solid var(--line);background:transparent;
+  color:var(--text);font-size:15px;font-weight:800;
+  display:grid;place-items:center;
+  transition:all var(--t-fast) ease;
+}
+.qty button:active{transform:scale(.9)}
+.qty button .ico{font-size:12px}
+.qty b{min-width:20px;text-align:center;font-weight:800;font-size:14px}
+.total{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-top:18px;padding-top:18px;border-top:1px solid var(--line);
+  font-size:16px;font-weight:800;
+}
+.total b{color:var(--amber);font-size:22px;letter-spacing:-.5px}
+.empty{text-align:center;padding:36px 16px;color:var(--muted);font-size:14px}
+.empty .e{
+  display:inline-grid;place-items:center;
+  width:70px;height:70px;border-radius:20px;
+  background:rgba(255,176,32,.08);
+  border:1px solid rgba(255,176,32,.18);
+  margin-bottom:16px;font-size:32px;color:var(--amber);
+}
+.empty .e svg{stroke-width:1.5}
+.empty a{color:var(--amber);font-weight:700}
+
+/* ============================================================
+   FORMS
+============================================================ */
+.field{margin-bottom:14px}
+.field label{
+  display:block;font-size:11px;font-weight:800;color:var(--muted);
+  margin-bottom:7px;letter-spacing:1.1px;text-transform:uppercase;
+}
+.field input,.field textarea,.field select{
+  width:100%;padding:13px 14px;border-radius:12px;
+  border:1px solid var(--line);
+  background:var(--bg2);
+  color:var(--text);font-size:16px;
+  transition:border-color var(--t-fast) ease;
+  outline:none;
+  min-height:48px;
+}
+.field input:focus,.field textarea:focus,.field select:focus{
+  border-color:var(--amber);
+  box-shadow:0 0 0 3px rgba(255,176,32,.1);
+}
+.field textarea{resize:vertical;min-height:100px;line-height:1.55;font-size:15px}
+.field select{cursor:pointer;appearance:none;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23ffb020' stroke-width='2.5' stroke-linecap='round'><polyline points='6 9 12 15 18 9'/></svg>");
+  background-repeat:no-repeat;background-position:right 14px center;padding-right:40px}
+.field select option{background:var(--bg2)}
+.row2{display:grid;grid-template-columns:1fr;gap:12px}
+
+/* ============================================================
+   CHAT
+============================================================ */
+.chat{
+  background:var(--card);
+  border:1px solid var(--line);border-radius:18px;
+  overflow:hidden;display:flex;flex-direction:column;
+  height:min(70vh, 520px);
+  box-shadow:0 10px 26px rgba(0,0,0,.3);
+}
+.chat-head{
+  padding:14px 18px;border-bottom:1px solid var(--line);
+  display:flex;align-items:center;gap:11px;
+  background:rgba(255,176,32,.03);
+  flex-shrink:0;
+}
+.chat-head b{font-size:14.5px;font-weight:800}
+.chat-head small{
+  display:flex;align-items:center;gap:6px;
+  font-size:11px;color:var(--green);font-weight:700;
+}
+.chat-head small::before{
+  content:'';width:6px;height:6px;border-radius:50%;
+  background:var(--green);box-shadow:0 0 8px var(--green);
+}
+.chat-body{
+  flex:1;overflow-y:auto;padding:16px;
+  display:flex;flex-direction:column;gap:10px;
+  -webkit-overflow-scrolling:touch;
+}
+.msg{
+  max-width:85%;padding:11px 14px;border-radius:14px;
+  font-size:14px;line-height:1.45;word-break:break-word;
+  animation:msgIn .3s var(--ease) both;
+}
+@keyframes msgIn{from{opacity:0;transform:translate3d(0,8px,0)}to{opacity:1;transform:none}}
+.msg.me{
+  align-self:flex-end;
+  background:linear-gradient(135deg,var(--amber),var(--amber2));
+  color:#1a1206;border-bottom-right-radius:4px;
+  box-shadow:0 4px 14px rgba(255,140,0,.25);
+}
+.msg.them{
+  align-self:flex-start;
+  background:var(--bg2);
+  border:1px solid var(--line);
+  border-bottom-left-radius:4px;
+}
+.msg .meta{font-size:10px;opacity:.65;margin-top:5px;font-weight:700}
+.msg .adm-tag{
+  color:var(--amber);font-size:11px;font-weight:800;
+  display:inline-flex;align-items:center;gap:5px;margin-bottom:3px;
+}
+.chat-foot{
+  padding:10px;border-top:1px solid var(--line);
+  display:flex;gap:8px;background:var(--bg2);
+  flex-shrink:0;
+  padding-bottom:calc(10px + var(--safe-bottom));
+}
+.chat-foot input{
+  flex:1;padding:12px 14px;border-radius:12px;
+  border:1px solid var(--line);
+  background:var(--card);
+  color:var(--text);outline:none;font-size:16px;
+  transition:border-color var(--t-fast) ease;
+  min-height:44px;
+}
+.chat-foot input:focus{border-color:var(--amber)}
+.chat-foot .btn{padding:11px 14px;min-height:44px;min-width:44px}
+.chat-foot .btn span{display:none}
+.sysmsg{text-align:center;font-size:12px;color:var(--muted);padding:10px;font-style:italic}
+
+/* ============================================================
+   ADMIN MESSENGER
+============================================================ */
+.messenger{
+  display:grid;
+  grid-template-columns:1fr;
+  height:min(80vh, 640px);
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 10px 26px rgba(0,0,0,.3);
+  position:relative;
+}
+.contacts{
+  border-right:none;
+  background:var(--bg2);
+  overflow-y:auto;
+  display:flex;flex-direction:column;
+  -webkit-overflow-scrolling:touch;
+}
+.contacts-head{
+  padding:14px 18px 10px;
+  font-size:10.5px;color:var(--muted);letter-spacing:1.5px;
+  font-weight:800;border-bottom:1px solid var(--line);
+  display:flex;align-items:center;gap:8px;
+  background:var(--card);
+  position:sticky;top:0;z-index:2;
+}
+.contacts-head .ico{color:var(--amber);font-size:13px}
+.contacts-head .count{
+  margin-left:auto;font-size:10px;padding:2px 8px;
+  background:rgba(255,176,32,.14);border-radius:999px;color:var(--amber);
+  border:1px solid rgba(255,176,32,.25);
+}
+.contact{
+  padding:12px 16px;cursor:pointer;
+  border-bottom:1px solid var(--line);
+  display:flex;gap:12px;align-items:center;
+  transition:background var(--t-fast) ease;
+  position:relative;
+  min-height:60px;
+}
+.contact:active{background:rgba(255,176,32,.06)}
+.contact.on{background:rgba(255,176,32,.1)}
+.contact.on::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:linear-gradient(180deg,var(--amber),var(--amber2));
+}
+.contact .avatar{width:40px;height:40px;font-size:14px;flex-shrink:0}
+.contact .info{flex:1;min-width:0}
+.contact .info b{font-size:13.5px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:700}
+.contact .info small{font-size:11px;color:var(--amber);font-weight:700}
+.contact .info .prev{
+  font-size:12px;color:var(--muted);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  margin-top:3px;
+}
+.contact .unread{
+  min-width:20px;height:20px;border-radius:10px;padding:0 6px;
+  background:linear-gradient(135deg,var(--amber),var(--amber2));
+  color:#1a1206;font-size:10px;font-weight:900;
+  display:grid;place-items:center;
+}
+
+/* Mobile: hide chat view by default, show only when messenger has class */
+.chat-view{
+  display:none;
+  flex-direction:column;
+  min-width:0;
+  background:var(--card);
+  position:absolute;
+  inset:0;
+  z-index:5;
+  animation:slideInRight .3s var(--ease);
+}
+@keyframes slideInRight{from{transform:translateX(20px);opacity:0}to{transform:none;opacity:1}}
+.messenger.mobile-chat-open .chat-view{display:flex}
+
+.chat-view-head{
+  padding:12px 16px;border-bottom:1px solid var(--line);
+  display:flex;align-items:center;gap:11px;
+  background:rgba(255,176,32,.03);
+  flex-shrink:0;
+}
+.chat-view-head .avatar{width:38px;height:38px;font-size:14px}
+.chat-view-head .nm{font-size:14.5px;font-weight:800;line-height:1.2}
+.chat-view-head .cl{font-size:11.5px;color:var(--amber);font-weight:700;margin-top:1px}
+.chat-view-head .back-btn{
+  width:36px;height:36px;border-radius:10px;
+  display:grid;place-items:center;
+  color:var(--text);background:rgba(255,255,255,.03);
+  border:1px solid var(--line);
+  transition:all var(--t-fast) ease;
+}
+.chat-view-head .back-btn:active{transform:scale(.92)}
+.chat-view-head .actions{margin-left:auto;display:flex;gap:6px}
+.chat-view-head .btn.sm{padding:7px 10px}
+.chat-view-head .btn.sm span{display:none}
+.chat-view .chat-body{padding:16px;flex:1}
+.chat-view .msg.them b.sender{
+  color:var(--amber);font-size:10.5px;
+  display:inline-flex;align-items:center;gap:5px;
+  margin-bottom:3px;font-weight:800;
+}
+
+/* ============================================================
+   ADMIN ORDERS
+============================================================ */
+.order-card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-left:3px solid var(--amber);
+  border-radius:14px;padding:16px;margin-bottom:12px;
+}
+.order-card.done{border-left-color:var(--green);opacity:.78}
+.order-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.order-head b{font-size:14.5px;font-weight:800}
+.order-head .when{font-size:11px;color:var(--muted);margin-top:3px}
+.order-items{font-size:13px;color:var(--muted);margin-bottom:10px;line-height:1.65}
+.order-items span{color:var(--text);font-weight:600}
+.status{
+  font-size:10px;font-weight:800;padding:4px 9px;border-radius:7px;
+  letter-spacing:.7px;
+  background:rgba(255,176,32,.14);
+  color:var(--amber3);
+  border:1px solid rgba(255,176,32,.28);
+  display:inline-flex;align-items:center;gap:5px;
+  text-transform:uppercase;
+}
+.status .ico{font-size:11px}
+.status.ok{background:rgba(74,222,128,.14);color:var(--green);border-color:rgba(74,222,128,.3)}
+.order-actions{display:flex;gap:7px;margin-top:12px;flex-wrap:wrap}
+.order-actions .btn{flex:1;min-width:0;padding:9px 10px;font-size:12px}
+.order-actions .btn .ico{font-size:14px}
+
+/* ============================================================
+   TABS
+============================================================ */
+.tabs{
+  display:flex;gap:5px;
+  background:var(--card);
+  padding:5px;border-radius:12px;
+  border:1px solid var(--line);
+  margin-bottom:20px;
+  width:100%;
+}
+.tabs button{
+  flex:1;
+  padding:10px 14px;border-radius:9px;
+  background:transparent;color:var(--muted);
+  font-weight:700;font-size:13px;
+  display:inline-flex;align-items:center;justify-content:center;gap:7px;
+  transition:all var(--t) var(--ease-back);
+  min-height:42px;
+}
+.tabs button.on{
+  background:linear-gradient(135deg,var(--amber),var(--amber2));
+  color:#1a1206;
+  box-shadow:0 4px 14px rgba(255,140,0,.3);
+}
+.tabs button .ico{font-size:15px}
+
+/* ============================================================
+   MODAL — bottom sheet on mobile, centered on desktop
+============================================================ */
+.modal-bg{
+  position:fixed;inset:0;
+  background:rgba(0,0,0,.78);
+  z-index:1000;
+  display:none;
+  align-items:flex-end;
+  justify-content:center;
+  padding:0;
+  opacity:0;
+  transition:opacity var(--t) var(--ease);
+}
+.modal-bg.on{display:flex;opacity:1}
+.modal{
+  background:var(--card2);
+  border:1px solid var(--line);
+  border-top-left-radius:22px;
+  border-top-right-radius:22px;
+  border-bottom-left-radius:0;
+  border-bottom-right-radius:0;
+  padding:24px 20px calc(24px + var(--safe-bottom));
+  width:100%;
+  max-width:600px;
+  max-height:88vh;
+  overflow-y:auto;
+  box-shadow:0 -20px 60px rgba(0,0,0,.7);
+  transform:translateY(100%);
+  transition:transform var(--t-slow) var(--ease-back);
+  position:relative;
+}
+.modal-bg.on .modal{transform:translateY(0)}
+.modal::before{
+  content:'';position:absolute;top:8px;left:50%;transform:translateX(-50%);
+  width:40px;height:4px;border-radius:2px;background:var(--line-hi);
+}
+.modal h3{font-size:20px;font-weight:900;margin-bottom:6px;letter-spacing:-.3px;margin-top:8px}
+.modal .sub{color:var(--muted);font-size:13px;margin-bottom:18px}
+.hint{
+  font-size:11.5px;color:var(--muted);
+  background:rgba(255,176,32,.05);
+  border:1px solid rgba(255,176,32,.15);
+  border-radius:11px;padding:11px 13px;margin-top:14px;line-height:1.55;
+}
+.hint b{color:var(--amber)}
+
+/* ============================================================
+   REVIEWS
+============================================================ */
+.review{
+  background:var(--card);
+  border:1px solid var(--line);border-radius:16px;padding:18px;
+}
+.review .top{display:flex;align-items:center;gap:11px;margin-bottom:12px}
+.review .stars{color:var(--amber);font-size:13px;letter-spacing:1.5px}
+.review .txt{font-size:13.5px;color:#d8cfc2;line-height:1.6}
+.review .who{font-size:11px;color:var(--muted);margin-top:9px;font-weight:700;letter-spacing:.4px;text-transform:uppercase}
+
+/* ============================================================
+   GAME
+============================================================ */
+.game{
+  background:var(--card);
+  border:1px solid var(--line);border-radius:18px;
+  padding:20px;text-align:center;
+  box-shadow:0 10px 26px rgba(0,0,0,.3);
+}
+.arena{
+  position:relative;height:min(55vh, 340px);
+  background:var(--bg2);
+  border-radius:14px;border:1px solid var(--line);
+  margin:16px 0;overflow:hidden;cursor:crosshair;
+  background-image:
+    linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);
+  background-size:36px 36px;
+  touch-action:manipulation;
+}
+.target{
+  position:absolute;width:58px;height:58px;border-radius:50%;
+  display:grid;place-items:center;
+  background:radial-gradient(circle at 35% 30%,#ffd89a 12%,#ffb020 22%,#ff7a00 62%,#b45309);
+  border:2px solid #7c2d12;cursor:pointer;user-select:none;
+  color:#3b1a05;font-size:26px;
+  box-shadow:0 0 22px rgba(255,140,0,.5), inset 0 0 12px rgba(255,255,255,.25);
+  animation:targetPop .3s var(--ease-back);
+  transition:transform .12s ease,opacity .12s ease;
+}
+.target svg{stroke-width:1.8}
+@keyframes targetPop{from{transform:scale(0) rotate(-90deg);opacity:0}to{transform:scale(1) rotate(0);opacity:1}}
+.game-info{display:flex;justify-content:space-around;gap:16px;flex-wrap:wrap;font-size:11px;font-weight:700;letter-spacing:.5px;color:var(--muted);text-transform:uppercase}
+.game-info b{color:var(--amber);font-size:22px;display:block;letter-spacing:-.5px;margin-top:3px;font-weight:900}
+.game .btn{width:100%;margin-top:6px}
+
+/* ============================================================
+   INFO CARDS
+============================================================ */
+.info-grid{display:grid;grid-template-columns:1fr;gap:14px}
+.info{
+  background:var(--card);
+  border:1px solid var(--line);border-radius:16px;padding:20px;
+}
+.info .ic{
+  width:50px;height:50px;border-radius:14px;
+  display:grid;place-items:center;
+  background:rgba(255,176,32,.1);
+  border:1px solid rgba(255,176,32,.2);
+  color:var(--amber);font-size:24px;margin-bottom:14px;
+}
+.info .ic svg{stroke-width:1.7}
+.info h4{font-size:15px;font-weight:800;margin-bottom:7px}
+.info p{font-size:13px;color:var(--muted);line-height:1.6}
+
+/* ============================================================
+   FOOTER
+============================================================ */
+footer{
+  border-top:1px solid var(--line);
+  padding:34px 0;
+  text-align:center;
+  color:var(--muted);font-size:12.5px;
+  background:var(--bg2);
+}
+footer b{color:var(--amber);letter-spacing:1px}
+
+/* ============================================================
+   MOBILE BOTTOM NAVIGATION
+============================================================ */
+.mobile-nav{
+  display:none;
+  position:fixed;bottom:0;left:0;right:0;
+  background:rgba(20,17,16,.98);
+  border-top:1px solid var(--line);
+  z-index:300;
+  padding-bottom:var(--safe-bottom);
+  box-shadow:0 -4px 20px rgba(0,0,0,.4);
+}
+body.is-mobile .mobile-nav{display:flex}
+.mobile-nav .tab{
+  flex:1;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+  padding:8px 4px 10px;
+  color:var(--muted);
+  font-size:10px;font-weight:700;letter-spacing:.3px;
+  min-height:var(--bottom-nav-h);
+  transition:color var(--t-fast) ease;
+  position:relative;
+  background:none;
+  border:none;
+}
+.mobile-nav .tab .ico{font-size:22px;transition:transform var(--t) var(--ease-back)}
+.mobile-nav .tab.active{color:var(--amber)}
+.mobile-nav .tab.active .ico{transform:translateY(-2px) scale(1.08)}
+.mobile-nav .tab.active::before{
+  content:'';position:absolute;top:4px;left:50%;transform:translateX(-50%);
+  width:24px;height:2.5px;border-radius:2px;
+  background:linear-gradient(90deg,var(--amber),var(--amber2));
+  box-shadow:0 0 8px rgba(255,140,0,.6);
+}
+.mobile-nav .tab:active .ico{transform:scale(.92)}
+.mobile-nav .tab .badge{
+  position:absolute;top:4px;right:calc(50% - 22px);
+  min-width:18px;height:18px;border-radius:9px;padding:0 5px;
+  background:linear-gradient(135deg,var(--amber),var(--amber2));
+  color:#1a1206;font-size:10px;font-weight:900;
+  display:none;align-items:center;justify-content:center;
+  border:2px solid var(--bg2);
+}
+.mobile-nav .tab .badge.on{display:inline-flex}
+
+/* ============================================================
+   TOASTS
+============================================================ */
+#toasts{
+  position:fixed;bottom:calc(var(--bottom-nav-h) + 16px + var(--safe-bottom));
+  left:16px;right:16px;
+  z-index:2000;
+  display:flex;flex-direction:column;gap:10px;
+  pointer-events:none;
+  align-items:stretch;
+}
+.toast{
+  background:var(--card2);
+  border:1px solid var(--line);
+  border-left:3px solid var(--amber);
+  border-radius:12px;padding:12px 16px;
+  font-size:13px;font-weight:600;
+  box-shadow:0 12px 30px rgba(0,0,0,.55);
+  animation:toastIn .3s var(--ease-back);
+  display:flex;align-items:center;gap:10px;
+  pointer-events:auto;
+  position:relative;overflow:hidden;
+}
+.toast::after{
+  content:'';position:absolute;bottom:0;left:0;height:2px;
+  background:linear-gradient(90deg,var(--amber),var(--amber2));
+  width:100%;transform-origin:left;
+  animation:toastBar 3.2s linear forwards;
+}
+@keyframes toastBar{to{transform:scaleX(0)}}
+.toast .ico{font-size:18px;color:var(--amber);flex-shrink:0}
+.toast.ok{border-left-color:var(--green)}
+.toast.ok .ico{color:var(--green)}
+.toast.ok::after{background:linear-gradient(90deg,var(--green),#16a34a)}
+.toast.err{border-left-color:var(--red)}
+.toast.err .ico{color:var(--red)}
+.toast.err::after{background:linear-gradient(90deg,var(--red),#dc2626)}
+@keyframes toastIn{from{transform:translate3d(0,20px,0);opacity:0}to{transform:none;opacity:1}}
+.toast.out{animation:toastOut .3s var(--ease) forwards}
+@keyframes toastOut{to{transform:translate3d(0,20px,0);opacity:0}}
+
+.hidden{display:none!important}
+
+/* ============================================================
+   DESKTOP — от 900px
+============================================================ */
+@media (min-width:900px){
+  section{padding:90px 0}
+  .wrap{padding:0 22px}
+  .sec-head{margin-bottom:44px}
+  .sec-head p{font-size:15.5px}
+
+  .nav{padding:14px 22px;gap:22px}
+  .logo{font-size:16px;gap:12px}
+  .logo .mark{width:40px;height:40px;font-size:22px;border-radius:12px}
+  .logo .mark svg{width:22px;height:22px}
+  .logo small{font-size:9.5px}
+  .nav-links{display:flex}
+  .nav-right{margin-left:0}
+  .user-chip{padding:7px 14px;font-size:13px}
+  .user-chip .name{display:inline}
+  .user-chip .cls{display:inline}
+  .avatar{width:26px;height:26px;font-size:11px}
+
+  .hero{padding:100px 0 80px}
+  .hero h1{letter-spacing:-3.5px}
+  .hero p{font-size:17px}
+  .hero-actions{flex-direction:row;max-width:none;gap:14px}
+  .hero-actions .btn{width:auto}
+  .badge-top{padding:8px 18px;font-size:11.5px;letter-spacing:1.2px;margin-bottom:26px}
+  .stats{grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-top:70px}
+  .stat{padding:26px 18px;border-radius:16px}
+  .stat b{font-size:36px}
+  .stat span{font-size:12.5px;margin-top:8px}
+
+  .grid{grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
+  .card{padding:24px;border-radius:18px}
+  .card:hover{transform:translateY(-5px);box-shadow:0 18px 40px rgba(0,0,0,.45)}
+  .p-icon{width:68px;height:68px;border-radius:18px;font-size:32px;margin-bottom:18px}
+  .card h3{font-size:16px;padding-right:0}
+  .card .desc{font-size:13px;margin-bottom:18px}
+  .price{font-size:22px}
+  .tag{top:16px;right:16px;font-size:10px;padding:5px 10px;border-radius:8px}
+
+  .cart-box{padding:28px;border-radius:20px}
+  .cart-item{gap:16px;padding:16px 0}
+  .cart-item .ce{width:48px;height:48px;border-radius:13px;font-size:24px}
+  .cart-item .ci b{font-size:14.5px}
+  .cart-item .ci .line-total{display:none}
+  .qty button{width:30px;height:30px}
+  .total{font-size:18px;margin-top:22px;padding-top:22px}
+  .total b{font-size:28px}
+
+  .row2{grid-template-columns:1fr 1fr;gap:14px}
+  .field input,.field textarea,.field select{font-size:14.5px;padding:13px 16px}
+  .field textarea{font-size:14.5px}
+
+  .chat{height:480px;border-radius:20px}
+  .chat-head{padding:16px 22px}
+  .chat-body{padding:22px;gap:12px}
+  .msg{padding:12px 16px;border-radius:16px;font-size:14px}
+  .chat-foot{padding:14px;gap:10px;padding-bottom:14px}
+  .chat-foot .btn span{display:inline}
+
+  .messenger{
+    grid-template-columns:340px 1fr;
+    height:640px;
+    border-radius:20px;
+  }
+  .contacts{border-right:1px solid var(--line)}
+  .contact{padding:14px 18px}
+  .contact .avatar{width:42px;height:42px}
+  .contact .info b{font-size:14px}
+  .chat-view{
+    display:flex !important;
+    position:static;
+    animation:none;
+  }
+  .messenger.mobile-chat-open .chat-view{display:flex}
+  .chat-view-head{padding:14px 22px}
+  .chat-view-head .avatar{width:42px;height:42px}
+  .chat-view-head .nm{font-size:15px}
+  .chat-view-head .back-btn{display:none}
+  .chat-view-head .btn.sm span{display:inline}
+  .chat-view-head .btn.sm{padding:8px 14px}
+
+  .order-card{padding:20px;margin-bottom:16px}
+  .order-head b{font-size:15px}
+  .order-items{font-size:13.5px}
+  .order-actions{flex-wrap:nowrap}
+  .order-actions .btn{flex:0 0 auto;padding:8px 14px;font-size:12.5px}
+
+  .tabs{width:fit-content;margin-bottom:26px}
+  .tabs button{flex:0 0 auto;padding:10px 20px;font-size:13.5px}
+
+  .modal-bg{align-items:center;padding:20px}
+  .modal{
+    border-radius:22px;
+    padding:34px;
+    max-width:450px;
+    transform:scale(.94) translateY(16px);
+    box-shadow:0 30px 70px rgba(0,0,0,.7);
+  }
+  .modal-bg.on .modal{transform:scale(1) translateY(0)}
+  .modal::before{display:none}
+  .modal h3{font-size:24px;margin-top:0}
+  .modal .sub{font-size:13.5px;margin-bottom:24px}
+
+  .review{padding:22px}
+  .review .txt{font-size:14px}
+
+  .game{padding:28px;border-radius:20px}
+  .arena{height:340px;border-radius:16px;margin:20px 0;background-size:40px 40px}
+  .target{width:64px;height:64px;font-size:30px}
+  .game-info{gap:44px;font-size:13px}
+  .game-info b{font-size:26px}
+  .game .btn{width:auto;margin-top:0}
+
+  .info-grid{grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+  .info{padding:26px}
+  .info .ic{width:56px;height:56px;font-size:26px;margin-bottom:16px}
+  .info h4{font-size:15.5px}
+  .info p{font-size:13.5px}
+
+  #toasts{
+    bottom:24px;right:24px;left:auto;
+    align-items:flex-end;
+  }
+  .toast{max-width:340px;padding:14px 18px;font-size:13.5px}
+  @keyframes toastIn{from{transform:translate3d(110%,0,0);opacity:0}to{transform:none;opacity:1}}
+  @keyframes toastOut{to{transform:translate3d(110%,0,0);opacity:0}}
+}
+
+/* Hover-only effects (desktop) */
+@media (hover:none){
+  .card:hover{transform:none;box-shadow:none}
+  .card:hover .p-icon{transform:none}
+  .stat:hover{transform:none}
+  .info:hover{transform:none}
+  .review:hover{transform:none}
+  .btn:hover{transform:none;box-shadow:0 4px 14px rgba(255,140,0,.25)}
+  .logo:hover .mark{transform:none}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.01ms!important;
+    scroll-behavior:auto!important;
+  }
+}
+</style>
+</head>
+<body>
+
+<header id="header">
+  <div class="nav">
+    <a href="#" class="logo" onclick="event.preventDefault();scrollToSection('hero')">
+      <div class="mark" id="logoIcon"></div>
+      <div>БУМАЖНОЕ ОРУЖИЕ<small>ШКОЛА 43 · ТЮМЕНЬ</small></div>
+    </a>
+    <nav class="nav-links">
+      <a href="#catalog" id="navCatalog">Каталог</a>
+      <a href="#cart" id="navCart">Корзина <span id="cartBadge"></span></a>
+      <a href="#chat" id="navChat">Написать админу</a>
+      <a href="#game" id="navGame">Тир</a>
+      <a href="#reviews" id="navReviews">Отзывы</a>
+      <a href="#school" id="navSchool">О школе</a>
+    </nav>
+    <div class="nav-right" id="navRight"></div>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="hero">
+    <div class="wrap">
+      <div class="badge-top"><span class="pulse"></span> ШКОЛА №43 · ТЮМЕНЬ</div>
+      <h1>Бумажное оружие<br><em>ручной работы</em></h1>
+      <p>
+        Мы делаем самое опасное бумажное оружие в школе №43 города Тюмень.
+        Плотная бумага, армированный скотч, честная ручная сборка.
+      </p>
+      <div class="hero-actions">
+        <a href="#catalog" class="btn" id="heroBtn1"><span>Смотреть каталог</span></a>
+        <a href="#chat" class="btn ghost" id="heroBtn2"><span>Написать админу</span></a>
+      </div>
+      <div class="stats">
+        <div class="stat"><b id="s1">0</b><span>Моделей в каталоге</span></div>
+        <div class="stat"><b id="s2">0</b><span>Заказов выполнено</span></div>
+        <div class="stat"><b>43</b><span>Школа · Тюмень</span></div>
+        <div class="stat"><b>100%</b><span>Из бумаги</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="catalog">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="eyebrow">КАТАЛОГ</div>
+        <h2>Наши <span>изделия</span></h2>
+        <p>Всё делается вручную в школе №43. Добавляй в корзину и отправляй заказ админу.</p>
+      </div>
+      <div class="grid" id="products"></div>
+    </div>
+  </section>
+
+  <section id="cart">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="eyebrow">КОРЗИНА</div>
+        <h2>Твой <span>заказ</span></h2>
+        <p>Проверь заказ, добавь комментарий и отправь админу — он ответит в личном чате.</p>
+      </div>
+      <div class="cart-box reveal" id="cartBox"></div>
+    </div>
+  </section>
+
+  <section id="chat">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="eyebrow">ЛИЧНЫЙ ЧАТ</div>
+        <h2>Написать <span>админу</span></h2>
+        <p>Это только ваш диалог. Админ видит его отдельно от других учеников.</p>
+      </div>
+      <div class="reveal" id="chatWrap"></div>
+    </div>
+  </section>
+
+  <section id="adminPanel" class="hidden">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="eyebrow">АДМИН-ПАНЕЛЬ</div>
+        <h2>Управление <span>бизнесом</span></h2>
+        <p>Заказы и личные переписки с учениками школы №43.</p>
+      </div>
+      <div class="tabs reveal">
+        <button id="tabOrders" class="on" onclick="switchAdmin('orders')">Заказы</button>
+        <button id="tabMsgs" onclick="switchAdmin('msgs')">Чаты</button>
+      </div>
+      <div id="adminOrders" class="reveal"></div>
+      <div id="adminMsgs" class="hidden reveal"></div>
+    </div>
+  </section>
+
+  <section id="game">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="eyebrow">МИНИ-ИГРА</div>
+        <h2>Бумажный <span>тир</span></h2>
+        <p>Разомнись: попади по мишеням за 30 секунд.</p>
+      </div>
+      <div class="game reveal">
+        <div class="game-info">
+          <div>Очки<b id="gScore">0</b></div>
+          <div>Время<b id="gTime">30</b></div>
+          <div>Рекорд<b id="gBest">0</b></div>
+        </div>
+        <div class="arena" id="arena">
+          <div style="position:absolute;inset:0;display:grid;place-items:center;color:#5b5145;font-weight:700;text-align:center;padding:20px;font-size:14px" id="arenaHint">
+            Нажми «Старт» и стреляй по мишеням
+          </div>
+        </div>
+        <button class="btn" id="gameBtn" onclick="startGame()"><span>Старт</span></button>
+      </div>
+    </div>
+  </section>
+
+  <section id="reviews">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="eyebrow">ОТЗЫВЫ</div>
+        <h2>Что говорят <span>покупатели</span></h2>
+        <p>Реальные отзывы ребят из школы №43.</p>
+      </div>
+      <div class="grid reveal" id="reviewsList"></div>
+      <div class="cart-box reveal" style="margin-top:20px">
+        <h3 style="font-size:17px;margin-bottom:16px;font-weight:800">Оставить отзыв</h3>
+        <div class="row2">
+          <div class="field"><label>Оценка</label>
+            <select id="revStars">
+              <option value="5">★★★★★ — Отлично</option>
+              <option value="4">★★★★ — Хорошо</option>
+              <option value="3">★★★ — Нормально</option>
+              <option value="2">★★ — Так себе</option>
+              <option value="1">★ — Плохо</option>
+            </select>
+          </div>
+          <div class="field"><label>Комментарий</label>
+            <input id="revText" placeholder="Напиши, что понравилось...">
+          </div>
+        </div>
+        <button class="btn full" onclick="addReview()"><span>Отправить отзыв</span></button>
+      </div>
+    </div>
+  </section>
+
+  <section id="school">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="eyebrow">О НАС</div>
+        <h2>Школа <span>№43, Тюмень</span></h2>
+        <p>Место, где всё это и происходит.</p>
+      </div>
+      <div class="info-grid reveal" id="infoGrid"></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><b>БУМАЖНОЕ ОРУЖИЕ</b> · Школа №43, Тюмень</p>
+    <p style="margin-top:8px;font-size:12px">Всё изделие изготовлено из бумаги. Безопасно. Сделано с душой.</p>
+  </div>
+</footer>
+
+<!-- MOBILE BOTTOM NAV -->
+<nav class="mobile-nav" id="mobileNav">
+  <button class="tab active" data-target="hero" onclick="mobileNavGo('hero')">
+    <span class="ico"></span>
+    <span>Главная</span>
+  </button>
+  <button class="tab" data-target="catalog" onclick="mobileNavGo('catalog')">
+    <span class="ico"></span>
+    <span>Каталог</span>
+  </button>
+  <button class="tab" data-target="cart" onclick="mobileNavGo('cart')">
+    <span class="ico"></span>
+    <span>Корзина</span>
+    <span class="badge" id="mobileCartBadge"></span>
+  </button>
+  <button class="tab" data-target="chat" onclick="mobileNavGo('chat')">
+    <span class="ico"></span>
+    <span>Чат</span>
+  </button>
+  <button class="tab" data-target="profile" onclick="mobileNavGo('profile')">
+    <span class="ico"></span>
+    <span id="mobileProfileLabel">Профиль</span>
+  </button>
+</nav>
+
+<!-- MODAL -->
+<div class="modal-bg" id="modalBg">
+  <div class="modal">
+    <h3 id="mTitle">Вход</h3>
+    <p class="sub" id="mSub">Войди, чтобы делать заказы</p>
+
+    <div class="tabs" style="width:100%;margin-bottom:18px">
+      <button id="tabLogin" class="on" onclick="setAuthMode('login')">Вход</button>
+      <button id="tabReg" onclick="setAuthMode('reg')">Регистрация</button>
+    </div>
+
+    <div id="regFields" class="hidden">
+      <div class="field"><label>Имя</label><input id="rFirst" placeholder="Иван" autocomplete="off"></div>
+      <div class="field"><label>Фамилия</label><input id="rLast" placeholder="Петров" autocomplete="off"></div>
+      <div class="field"><label>Класс</label><input id="rClass" placeholder="6а" autocomplete="off"></div>
+    </div>
+
+    <div class="field"><label>Имя</label><input id="lFirst" placeholder="Иван" autocomplete="off"></div>
+    <div class="field"><label>Фамилия</label><input id="lLast" placeholder="Петров" autocomplete="off"></div>
+    <div class="field"><label>Пароль</label><input id="lPass" type="password" placeholder="••••••" autocomplete="off"></div>
+
+    <button class="btn full" style="margin-top:10px" id="authBtn" onclick="doAuth()"><span>Войти</span></button>
+    <button class="btn ghost full" style="margin-top:10px" onclick="closeModal()"><span>Отмена</span></button>
+    <div class="hint" id="authHint">
+      Регистрация: имя, фамилия, класс и пароль.<br>
+      Админ входит как <b>admin / admin</b> со своим паролем.
+    </div>
+  </div>
+</div>
+
+<!-- PROFILE SHEET (mobile) -->
+<div class="modal-bg" id="profileBg">
+  <div class="modal">
+    <h3 id="pName">Профиль</h3>
+    <p class="sub" id="pSub">Твой аккаунт</p>
+    <div id="pBody"></div>
+    <button class="btn ghost full" style="margin-top:12px" onclick="closeProfile()"><span>Закрыть</span></button>
+  </div>
+</div>
+
+<div id="toasts"></div>
+
+<script>
+/* ============================================================
+   ICONS
+============================================================ */
+const I = {
+  sword:'<path d="M14.5 17.5L3 6V3h3l11.5 11.5"/><path d="M13 19l6-6"/><path d="M16 16l4 4"/><path d="M19 21l2-2"/>',
+  katana:'<path d="M21 3.5C14 5 9 10 7 17"/><path d="M7 17L3 21"/><path d="M5 15l4 4"/>',
+  pistol:'<path d="M3 7h15v5h-5l-2 3H7l1-3H3z"/><path d="M9 15l-2 6h4l2-6"/>',
+  rifle:'<path d="M2 9h18v3h-5l-2 2H8l1-3H2z"/><path d="M8 14l-2 7h3l2-7"/><path d="M15 12l1 2h4v-2"/><path d="M19 12V9h3"/>',
+  dagger:'<path d="M12 2l2.5 3v9L12 17l-2.5-3V5z"/><path d="M6 14h12"/><path d="M10 17v4h4v-4"/>',
+  bow:'<path d="M6 2Q14 12 6 22"/><path d="M6 2v20"/><path d="M3 12h15"/><path d="M14 9l4 3-4 3"/>',
+  axe:'<path d="M6 3v18"/><path d="M6 5c6 0 10 3 10 7s-4 7-10 7z"/>',
+  shield:'<path d="M12 2l8 3v6c0 5-3 9-8 11-5-2-8-6-8-11V5z"/><path d="M12 5v14"/><path d="M4 8h16"/>',
+  scythe:'<path d="M4 22L15 5"/><path d="M15 5c4-2 7 1 6 5"/>',
+  swords:'<path d="M3 3L12 12"/><path d="M10 14L14 10"/><path d="M12 12L19 19"/><path d="M21 3L12 12"/><path d="M10 10L14 14"/><path d="M12 12L5 19"/>',
+  kunai:'<path d="M12 2l3 5-3 4-3-4z"/><path d="M12 11v7"/><circle cx="12" cy="20" r="2"/>',
+  helmet:'<path d="M12 2C7.6 2 4 5.6 4 10v7h3v3h10v-3h3v-7c0-4.4-3.6-8-8-8z"/><path d="M8 10h8"/><path d="M12 2v8"/>',
+  cart:'<circle cx="9" cy="20" r="1.5"/><circle cx="17" cy="20" r="1.5"/><path d="M2 3h3l2.5 12h11l2-8H6"/>',
+  chat:'<path d="M21 11.5a8.4 8.4 0 0 1-9 8.4L3 21l1.1-3.3A8.4 8.4 0 1 1 21 11.5z"/>',
+  crown:'<path d="M4 7l4 4 4-7 4 7 4-4-2 12H6z"/>',
+  lock:'<rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>',
+  box:'<path d="M3 7l9-4 9 4v10l-9 4-9-4z"/><path d="M3 7l9 4 9-4"/><path d="M12 11v10"/>',
+  check:'<path d="M4 12l5 5L20 6"/>',
+  star:'<path d="M12 2l3 6.5 7 .9-5 4.8 1.2 7L12 18l-6.2 3.2L7 14.2l-5-4.8 7-.9z"/>',
+  target:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/>',
+  user:'<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/>',
+  users:'<circle cx="9" cy="8" r="3.5"/><path d="M2 21c0-4 3.2-7 7-7s7 3 7 7"/><path d="M16 5.5a3.5 3.5 0 0 1 0 7"/><path d="M22 21c0-3.5-2.5-6-5.5-6.5"/>',
+  logout:'<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/>',
+  school:'<path d="M3 21h18"/><path d="M5 21V10l7-5 7 5v11"/><path d="M9 21v-6h6v6"/>',
+  paper:'<path d="M6 2h9l5 5v15H6z"/><path d="M15 2v5h5"/>',
+  bolt:'<path d="M13 2L4 14h6l-1 8 9-12h-6z"/>',
+  truck:'<path d="M3 6h11v10H3z"/><path d="M14 9h4l3 3v4h-7z"/><circle cx="7" cy="18" r="1.7"/><circle cx="17" cy="18" r="1.7"/>',
+  award:'<circle cx="12" cy="9" r="6"/><path d="M8.5 14L7 22l5-3 5 3-1.5-8"/>',
+  send:'<path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/>',
+  trash:'<path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M5 6l1 15h12l1-15"/>',
+  close:'<path d="M6 6l12 12"/><path d="M18 6L6 18"/>',
+  plus:'<path d="M12 5v14"/><path d="M5 12h14"/>',
+  minus:'<path d="M5 12h14"/>',
+  play:'<path d="M6 4l14 8-14 8z"/>',
+  clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+  undo:'<path d="M9 14L4 9l5-5"/><path d="M4 9h11a5 5 0 0 1 0 10h-3"/>',
+  flame:'<path d="M12 2c1 4 5 5 5 10a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-6 1-9z"/>',
+  comment:'<path d="M21 12a8 8 0 0 1-12 7l-5 2 2-5A8 8 0 1 1 21 12z"/><path d="M8 11h8"/><path d="M8 15h5"/>',
+  arrowLeft:'<path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/>',
+  home:'<path d="M3 11l9-8 9 8"/><path d="M5 9.5V21h14V9.5"/>',
+  menu:'<path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/>',
+  phone:'<rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/>',
+  monitor:'<rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/>'
+};
+function ico(name, cls){
+  return `<span class="ico ${cls||''}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${I[name]||''}</svg></span>`;
+}
+
+/* ============================================================
+   DEVICE DETECTION
+============================================================ */
+const Device = (function(){
+  function detect(){
+    const ua = navigator.userAgent || '';
+    const isMobileUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile/i.test(ua);
+    const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+    const isNarrow = window.matchMedia('(max-width:899px)').matches;
+    const isSmallScreen = window.innerWidth < 900;
+    // Tablet detection — treat iPad/small tablets as mobile
+    const isTablet = /iPad/i.test(ua) || (isTouch && window.innerWidth < 1100);
+    return {
+      isMobile: isMobileUA || isNarrow || isSmallScreen || isTablet,
+      isDesktop: !(isMobileUA || isNarrow || isSmallScreen || isTablet),
+      hasTouch: isTouch,
+      width: window.innerWidth,
+      height: window.innerHeight
+    };
+  }
+  let state = detect();
+  const listeners = [];
+  function apply(){
+    document.body.classList.toggle('is-mobile', state.isMobile);
+    document.body.classList.toggle('is-desktop', state.isDesktop);
+    document.body.classList.toggle('has-touch', state.hasTouch);
+    listeners.forEach(fn=>fn(state));
+  }
+  function refresh(){
+    const next = detect();
+    const changed = next.isMobile !== state.isMobile;
+    state = next;
+    if(changed) apply();
+    return changed;
+  }
+  apply();
+  window.addEventListener('resize', refresh, {passive:true});
+  window.addEventListener('orientationchange', ()=>setTimeout(refresh,100), {passive:true});
+  return {
+    get isMobile(){ return state.isMobile; },
+    get isDesktop(){ return state.isDesktop; },
+    get hasTouch(){ return state.hasTouch; },
+    onChange(fn){ listeners.push(fn); }
+  };
+})();
+
+/* ============================================================
+   STORAGE
+============================================================ */
+const K = {
+  users:'pw_users_v5', session:'pw_session_v5',
+  messages:'pw_messages_v5', orders:'pw_orders_v5',
+  reviews:'pw_reviews_v5', best:'pw_best_v5',
+  readState:'pw_read_v5'
+};
+const ADMIN_PASS = 'а!67огс891-';
+
+function load(k,d){ try{ const v = JSON.parse(localStorage.getItem(k)); return v===null?d:v; }catch(e){ return d; } }
+function save(k,v){ localStorage.setItem(k, JSON.stringify(v)); }
+
+(function initAdmin(){
+  let users = load(K.users, []);
+  if(!users.some(u=>u.isAdmin)){
+    users.push({id:'admin',firstName:'admin',lastName:'admin',cls:'—',password:ADMIN_PASS,isAdmin:true});
+    save(K.users, users);
+  }
+})();
+if(load(K.reviews,null)===null){
+  save(K.reviews, [
+    {id:1,name:'Кирилл, 6а',stars:5,text:'Заказал катану — сделали за день! Выглядит реально круто, все на перемене офигели.'},
+    {id:2,name:'Аня, 7б',stars:5,text:'Брала бумажный щит. Лёгкий, красивый и вообще не опасный. Спасибо!'},
+    {id:3,name:'Максим, 8в',stars:4,text:'Автомат хороший, только магазин иногда отваливается. Но за такие деньги — топ.'}
+  ]);
+}
+
+/* ============================================================
+   STATE
+============================================================ */
+let authMode = 'login';
+let cart = [];
+let adminView = 'orders';
+let adminChatUser = null;
+let currentSection = 'hero';
+
+/* ============================================================
+   DATA
+============================================================ */
+const PRODUCTS = [
+  {id:1,  name:'Бумажный меч «Клинок Школы»',price:150,icon:'sword', tag:'ХИТ',     desc:'Классика. 30 см, плотная бумага, армированный скотч.'},
+  {id:2,  name:'Бумажная катана «Тюмень»',    price:220,icon:'katana',tag:'ХИТ',     desc:'Длинный клинок. Идеальна для дуэлей на перемене.'},
+  {id:3,  name:'Бумажный пистолет «43»',      price:120,icon:'pistol',tag:'НОВИНКА', desc:'Из тетрадного листа. Стреляет бумажными пульками.'},
+  {id:4,  name:'Бумажный автомат «Перемена»', price:350,icon:'rifle', tag:'',        desc:'Полноразмерный, с магазином на 5 бумажных пуль.'},
+  {id:5,  name:'Бумажный кинжал «Стикер»',    price:90, icon:'dagger',tag:'',        desc:'Компактный — легко помещается в пенал.'},
+  {id:6,  name:'Бумажный лук «Осада»',        price:280,icon:'bow',   tag:'',        desc:'Стреляет бумажными стрелами на 5 метров.'},
+  {id:7,  name:'Бумажный топор «Директор»',   price:230,icon:'axe',   tag:'',        desc:'Внушительный размер, но абсолютно безопасный.'},
+  {id:8,  name:'Бумажный щит «Портфель»',     price:180,icon:'shield',tag:'',        desc:'Защита от бумажных атак. 40 см в диаметре.'},
+  {id:9,  name:'Бумажная коса «Экзамен»',     price:420,icon:'scythe',tag:'ЛИМИТ',   desc:'Лимитированная серия. Только для смелых.'},
+  {id:10, name:'Набор «Дуэль» (2 меча)',      price:260,icon:'swords',tag:'ВЫГОДА',  desc:'Два одинаковых меча — для честной дуэли с другом.'},
+  {id:11, name:'Бумажный метательный нож (3 шт)',price:140,icon:'kunai',tag:'',     desc:'Три ножа с утяжелённым кончиком. Летают ровно.'},
+  {id:12, name:'Бумажный шлем «Рыцарь 43»',   price:310,icon:'helmet',tag:'',       desc:'Полноценный шлем из картона. Подходит на любой размер.'}
+];
+
+const INFO_CARDS = [
+  {icon:'school',title:'Школа №43, Тюмень',text:'Именно здесь, на переменах и после уроков, рождается каждое изделие. Наша мастерская — это парта, ножницы и рулон плотной бумаги.'},
+  {icon:'paper', title:'Только бумага',     text:'Никакого металла, дерева и пластика. Плотная бумага, картон, скотч и клей. Абсолютно безопасно для школы.'},
+  {icon:'bolt',  title:'Быстрое изготовление',text:'Простой меч — за 1 перемену. Катана или автомат — 1–2 дня. Всё зависит от сложности модели.'},
+  {icon:'chat',  title:'Личный заказ',      text:'Хочешь что-то не из каталога? Напиши админу в личный чат — обсудим размер, цвет и форму.'},
+  {icon:'truck', title:'Доставка по школе', text:'Передаём заказ лично в руки прямо в школе №43. Договариваемся о встрече через личный чат с админом.'},
+  {icon:'award', title:'Гарантия качества', text:'Если изделие развалилось — переделаем бесплатно. Просто напиши админу в чат.'}
+];
+
+/* ============================================================
+   UTILS
+============================================================ */
+function esc(s){ return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function now(){
+  const d=new Date(); const p=n=>String(n).padStart(2,'0');
+  return p(d.getDate())+'.'+p(d.getMonth()+1)+'.'+d.getFullYear()+' '+p(d.getHours())+':'+p(d.getMinutes());
+}
+function getSession(){
+  const id = localStorage.getItem(K.session);
+  if(!id) return null;
+  return load(K.users,[]).find(u=>u.id===id) || null;
+}
+function setSession(id){ localStorage.setItem(K.session, id); }
+function clearSession(){ localStorage.removeItem(K.session); }
+function money(n){ return n.toLocaleString('ru-RU')+' ₽'; }
+function getMessages(){ return load(K.messages, []); }
+function saveMessages(m){ save(K.messages, m); }
+
+function toast(text, type){
+  const icons = {ok:'check', err:'close', '':'flame'};
+  const t = document.createElement('div');
+  t.className = 'toast ' + (type||'');
+  t.innerHTML = ico(icons[type||'']||'flame','md') + '<span>' + esc(text) + '</span>';
+  document.getElementById('toasts').appendChild(t);
+  setTimeout(()=>{
+    t.classList.add('out');
+    setTimeout(()=>t.remove(), 320);
+  }, 3200);
+}
+
+/* ============================================================
+   AUTH
+============================================================ */
+function openModal(mode){
+  authMode = mode||'login';
+  setAuthMode(authMode);
+  document.getElementById('modalBg').classList.add('on');
+  document.body.classList.add('no-scroll');
+  setTimeout(()=>document.getElementById('lFirst').focus(), 200);
+}
+function closeModal(){
+  document.getElementById('modalBg').classList.remove('on');
+  if(!document.getElementById('profileBg').classList.contains('on'))
+    document.body.classList.remove('no-scroll');
+}
+function setAuthMode(m){
+  authMode = m;
+  const isReg = m==='reg';
+  document.getElementById('tabLogin').classList.toggle('on',!isReg);
+  document.getElementById('tabReg').classList.toggle('on',isReg);
+  document.getElementById('regFields').classList.toggle('hidden',!isReg);
+  document.getElementById('mTitle').textContent = isReg?'Регистрация':'Вход';
+  document.getElementById('mSub').textContent = isReg?'Укажи имя, фамилию и класс (например 6а)':'Войди, чтобы делать заказы';
+  document.getElementById('authBtn').innerHTML = '<span>'+(isReg?'Зарегистрироваться':'Войти')+'</span>';
+  document.getElementById('authHint').innerHTML = isReg
+    ? 'Пароль придумай сам — он понадобится для входа. Класс указывай как в школе, например <b>6а</b>.'
+    : 'Админ входит как <b>admin / admin</b> со своим паролем.';
+}
+function doAuth(){
+  const first = document.getElementById('lFirst').value.trim();
+  const last  = document.getElementById('lLast').value.trim();
+  const pass  = document.getElementById('lPass').value;
+  if(!first||!last||!pass){ toast('Заполни имя, фамилию и пароль','err'); return; }
+
+  const users = load(K.users, []);
+
+  if(authMode==='reg'){
+    const cls = document.getElementById('rClass').value.trim();
+    if(!cls){ toast('Укажи класс, например 6а','err'); return; }
+    if(users.some(u=>u.firstName.toLowerCase()===first.toLowerCase() && u.lastName.toLowerCase()===last.toLowerCase())){
+      toast('Такой ученик уже зарегистрирован','err'); return;
+    }
+    const u = {id:'u'+Date.now()+Math.random().toString(36).slice(2,7), firstName:first, lastName:last, cls, password:pass, isAdmin:false};
+    users.push(u); save(K.users, users);
+    setSession(u.id);
+    toast('Добро пожаловать, '+first+'!','ok');
+    closeModal(); refreshAll();
+    return;
+  }
+
+  const u = users.find(x=>x.firstName.toLowerCase()===first.toLowerCase() && x.lastName.toLowerCase()===last.toLowerCase() && x.password===pass);
+  if(!u){ toast('Неверное имя, фамилия или пароль','err'); return; }
+  setSession(u.id);
+  toast(u.isAdmin?'Админ вошёл в систему':'С возвращением, '+u.firstName+'!','ok');
+  closeModal(); refreshAll();
+}
+function logout(){
+  clearSession(); cart=[]; adminChatUser=null;
+  toast('Ты вышел из аккаунта');
+  closeProfile();
+  refreshAll();
+}
+
+/* ============================================================
+   PROFILE SHEET (mobile)
+============================================================ */
+function openProfile(){
+  const u = getSession();
+  const bg = document.getElementById('profileBg');
+
+  if(!u){
+    openModal('login');
+    return;
+  }
+  document.getElementById('pName').textContent = u.isAdmin ? 'Админ' : (u.firstName + ' ' + u.lastName);
+  document.getElementById('pSub').textContent = u.isAdmin ? 'Панель управления' : ('Класс ' + u.cls);
+
+  let body = '';
+  if(u.isAdmin){
+    body = `<button class="btn full" onclick="closeProfile();scrollToSection('adminPanel')"><span>Открыть админ-панель</span></button>`;
+  } else {
+    body = `
+      <div style="background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:12px">
+        <div style="font-size:11px;color:var(--muted);letter-spacing:1px;font-weight:800;margin-bottom:4px">УЧЕНИК</div>
+        <div style="font-size:15px;font-weight:700">${esc(u.firstName)} ${esc(u.lastName)}</div>
+        <div style="font-size:12.5px;color:var(--amber);font-weight:700;margin-top:3px">Класс ${esc(u.cls)}</div>
+      </div>
+      <button class="btn full" onclick="closeProfile();scrollToSection('cart')"><span>Моя корзина</span></button>
+      <button class="btn ghost full" style="margin-top:8px" onclick="closeProfile();scrollToSection('chat')"><span>Мой чат с админом</span></button>
+    `;
+  }
+  body += `<button class="btn danger full" style="margin-top:12px" onclick="logout()"><span>Выйти из аккаунта</span></button>`;
+  document.getElementById('pBody').innerHTML = body;
+
+  bg.classList.add('on');
+  document.body.classList.add('no-scroll');
+}
+function closeProfile(){
+  document.getElementById('profileBg').classList.remove('on');
+  if(!document.getElementById('modalBg').classList.contains('on'))
+    document.body.classList.remove('no-scroll');
+}
+
+/* ============================================================
+   NAVIGATION
+============================================================ */
+function scrollToSection(id){
+  const el = document.getElementById(id);
+  if(!el) return;
+  const headerH = document.getElementById('header').offsetHeight;
+  const top = el.getBoundingClientRect().top + window.scrollY - headerH - 8;
+  window.scrollTo({top, behavior:'smooth'});
+  setActiveTab(id);
+}
+function setActiveTab(id){
+  document.querySelectorAll('.mobile-nav .tab').forEach(t=>{
+    t.classList.toggle('active', t.dataset.target === id);
+  });
+  currentSection = id;
+}
+function mobileNavGo(target){
+  if(target === 'profile'){ openProfile(); return; }
+  scrollToSection(target);
+}
+
+/* ============================================================
+   HEADER
+============================================================ */
+function renderNav(){
+  const u = getSession();
+  const box = document.getElementById('navRight');
+
+  if(!u){
+    box.innerHTML = `
+      <button class="btn ghost sm" onclick="openModal('login')"><span>Войти</span></button>
+      <button class="btn sm" onclick="openModal('reg')" id="headerRegBtn"><span>Регистрация</span></button>`;
+  } else if(u.isAdmin){
+    box.innerHTML = `
+      <div class="user-chip"><div class="avatar adm">${ico('crown','xs')}</div>
+        <span class="name">admin</span></div>
+      <button class="btn ghost sm" onclick="logout()">${ico('logout','sm')}<span>Выйти</span></button>`;
+  } else {
+    box.innerHTML = `
+      <div class="user-chip"><div class="avatar">${esc(u.firstName[0]||'?')}</div>
+        <span class="name">${esc(u.firstName)}</span>
+        <span class="cls">· ${esc(u.cls)}</span></div>
+      <button class="btn ghost sm" onclick="logout()">${ico('logout','sm')}<span>Выйти</span></button>`;
+  }
+
+  // Hide "Регистрация" button on very small screens if not logged in
+  if(!u && Device.isMobile){
+    const reg = document.getElementById('headerRegBtn');
+    if(reg && window.innerWidth < 380) reg.style.display = 'none';
+  }
+
+  const count = cart.reduce((s,i)=>s+i.qty,0);
+  const badge = document.getElementById('cartBadge');
+  if(badge) badge.textContent = count?'('+count+')':'';
+
+  const mobileBadge = document.getElementById('mobileCartBadge');
+  if(mobileBadge){
+    mobileBadge.textContent = count > 99 ? '99+' : count;
+    mobileBadge.classList.toggle('on', count > 0);
+  }
+
+  const mobileProfileLabel = document.getElementById('mobileProfileLabel');
+  if(mobileProfileLabel){
+    if(!u) mobileProfileLabel.textContent = 'Войти';
+    else if(u.isAdmin) mobileProfileLabel.textContent = 'Админ';
+    else mobileProfileLabel.textContent = u.firstName;
+  }
+
+  // Update mobile nav profile icon
+  const profileTab = document.querySelector('.mobile-nav .tab[data-target="profile"]');
+  if(profileTab){
+    const iconSpan = profileTab.querySelector('.ico');
+    if(iconSpan) iconSpan.innerHTML = u && u.isAdmin ? ico('crown') : ico('user');
+  }
+}
+
+/* ============================================================
+   CATALOG
+============================================================ */
+function renderProducts(){
+  document.getElementById('products').innerHTML = PRODUCTS.map(p=>`
+    <div class="card reveal">
+      ${p.tag?`<div class="tag">${esc(p.tag)}</div>`:''}
+      <div class="p-icon">${ico(p.icon)}</div>
+      <h3>${esc(p.name)}</h3>
+      <div class="desc">${esc(p.desc)}</div>
+      <div class="row">
+        <div class="price">${money(p.price)}</div>
+        <button class="btn sm" onclick="addToCart(${p.id})">${ico('plus','sm')}<span>В корзину</span></button>
+      </div>
+    </div>
+  `).join('');
+  observeReveals();
+}
+
+/* ============================================================
+   CART
+============================================================ */
+function addToCart(id){
+  const u = getSession();
+  if(!u || u.isAdmin){ toast('Сначала войди как ученик','err'); openModal('login'); return; }
+  const item = cart.find(i=>i.id===id);
+  if(item) item.qty++;
+  else cart.push({id, qty:1});
+  toast('Добавлено в корзину','ok');
+  refreshAll();
+}
+function changeQty(id, d){
+  const it = cart.find(i=>i.id===id);
+  if(!it) return;
+  it.qty += d;
+  if(it.qty<=0) cart = cart.filter(i=>i.id!==id);
+  refreshAll();
+}
+function removeItem(id){ cart = cart.filter(i=>i.id!==id); refreshAll(); }
+function cartTotal(){
+  return cart.reduce((s,i)=>{
+    const p = PRODUCTS.find(x=>x.id===i.id);
+    return s + (p?p.price*i.qty:0);
+  },0);
+}
+function renderCart(){
+  const box = document.getElementById('cartBox');
+  const u = getSession();
+
+  if(!u){
+    box.innerHTML = `<div class="empty"><span class="e">${ico('lock')}</span>
+      Войди в аккаунт, чтобы пользоваться корзиной.<br><br>
+      <button class="btn" onclick="openModal('login')"><span>Войти</span></button></div>`;
+    return;
+  }
+  if(u.isAdmin){
+    box.innerHTML = `<div class="empty"><span class="e">${ico('crown')}</span>
+      Ты вошёл как админ. Смотри панель администратора ниже.</div>`;
+    return;
+  }
+  if(cart.length===0){
+    box.innerHTML = `<div class="empty"><span class="e">${ico('cart')}</span>Корзина пуста.<br>
+      Добавь что-нибудь из <a href="#catalog" onclick="event.preventDefault();scrollToSection('catalog')">каталога</a>.</div>`;
+    return;
+  }
+
+  box.innerHTML = `
+    ${cart.map(i=>{
+      const p = PRODUCTS.find(x=>x.id===i.id);
+      if(!p) return '';
+      return `<div class="cart-item">
+        <div class="ce">${ico(p.icon)}</div>
+        <div class="ci">
+          <b>${esc(p.name)}</b>
+          <span>${money(p.price)} за штуку</span>
+          <span class="line-total">${money(p.price*i.qty)}</span>
+        </div>
+        <div class="qty">
+          <button onclick="changeQty(${p.id},-1)">${ico('minus','xs')}</button>
+          <b>${i.qty}</b>
+          <button onclick="changeQty(${p.id},1)">${ico('plus','xs')}</button>
+        </div>
+        <button class="btn ghost sm" onclick="removeItem(${p.id})" title="Удалить">${ico('close','xs')}</button>
+      </div>`;
+    }).join('')}
+
+    <div class="total"><span>Итого:</span><b>${money(cartTotal())}</b></div>
+
+    <div class="field" style="margin-top:20px">
+      <label>Комментарий к заказу</label>
+      <textarea id="orderComment" placeholder="Например: нужен красный меч, заберу после 6 урока..."></textarea>
+    </div>
+    <button class="btn green full" onclick="submitOrder()">${ico('box','md')}<span>Отправить заказ админу</span></button>
+  `;
+}
+
+function submitOrder(){
+  const u = getSession();
+  if(!u || u.isAdmin) return;
+  if(cart.length===0){ toast('Корзина пуста','err'); return; }
+
+  const comment = (document.getElementById('orderComment')?.value||'').trim();
+  const items = cart.map(i=>{
+    const p = PRODUCTS.find(x=>x.id===i.id);
+    return {name:p.name, price:p.price, qty:i.qty};
+  });
+  const total = cartTotal();
+
+  const orders = load(K.orders, []);
+  const order = {
+    id:'o'+Date.now(), userId:u.id,
+    userName:u.firstName+' '+u.lastName, cls:u.cls,
+    items, total, comment, time:now(), status:'new'
+  };
+  orders.unshift(order); save(K.orders, orders);
+
+  const messages = getMessages();
+  const text = 'ЗАКАЗ №' + order.id.slice(-5) + '\n' +
+    items.map(i=>'• '+i.name+' × '+i.qty+' = '+money(i.price*i.qty)).join('\n') +
+    '\n\nИтого: ' + money(total) +
+    (comment?'\n\nКомментарий: '+comment:'');
+  messages.push({id:'m'+Date.now(), threadId:u.id, from:'user', text, time:now()});
+  saveMessages(messages);
+
+  cart = [];
+  toast('Заказ отправлен админу!','ok');
+  refreshAll();
+  scrollToSection('chat');
+}
+
+/* ============================================================
+   CHAT (student)
+============================================================ */
+function renderChat(){
+  const wrap = document.getElementById('chatWrap');
+  const u = getSession();
+
+  if(!u){
+    wrap.innerHTML = `<div class="cart-box"><div class="empty"><span class="e">${ico('lock')}</span>
+      Войди в аккаунт, чтобы написать админу.<br><br>
+      <button class="btn" onclick="openModal('login')"><span>Войти</span></button></div></div>`;
+    return;
+  }
+  if(u.isAdmin){
+    wrap.innerHTML = `<div class="cart-box"><div class="empty"><span class="e">${ico('crown')}</span>
+      Ты админ. Все переписки — во вкладке «Чаты»
+      <a onclick="scrollToSection('adminPanel')" style="color:var(--amber);font-weight:700;cursor:pointer">панели администратора</a>.</div></div>`;
+    return;
+  }
+
+  const my = getMessages().filter(m=>m.threadId===u.id);
+
+  let body = '';
+  if(my.length===0){
+    body = `<div class="sysmsg">Это ваш личный чат с админом. Напишите первое сообщение</div>`;
+  } else {
+    my.forEach(m=>{
+      const isMe = m.from==='user';
+      body += `<div class="msg ${isMe?'me':'them'}">
+        ${!isMe?`<span class="adm-tag">${ico('crown','xs')} АДМИН</span><br>`:''}
+        ${esc(m.text).replace(/\n/g,'<br>')}
+        <div class="meta">${esc(m.time)}</div>
+      </div>`;
+    });
+  }
+
+  wrap.innerHTML = `
+    <div class="chat">
+      <div class="chat-head">
+        <div class="avatar adm" style="width:38px;height:38px">${ico('crown','sm')}</div>
+        <div><b>Админ · Школа 43</b><small>онлайн · личный чат</small></div>
+      </div>
+      <div class="chat-body" id="chatBody">${body}</div>
+      <div class="chat-foot">
+        <input id="chatInput" placeholder="Напиши свой заказ или вопрос..."
+               onkeydown="if(event.key==='Enter')sendMsg()">
+        <button class="btn" onclick="sendMsg()">${ico('send','md')}<span>Отпр.</span></button>
+      </div>
+    </div>`;
+  const cb = document.getElementById('chatBody');
+  if(cb) cb.scrollTop = cb.scrollHeight;
+}
+
+function sendMsg(){
+  const u = getSession();
+  if(!u || u.isAdmin) return;
+  const inp = document.getElementById('chatInput');
+  const text = inp.value.trim();
+  if(!text){ toast('Напиши сообщение','err'); return; }
+
+  const messages = getMessages();
+  messages.push({id:'m'+Date.now(), threadId:u.id, from:'user', text, time:now()});
+  saveMessages(messages);
+  inp.value = '';
+  toast('Сообщение отправлено','ok');
+  renderChat();
+  if(getSession()?.isAdmin) renderAdminMessages();
+}
+
+/* ============================================================
+   ADMIN PANEL
+============================================================ */
+function switchAdmin(v){
+  adminView = v;
+  document.getElementById('tabOrders').classList.toggle('on', v==='orders');
+  document.getElementById('tabMsgs').classList.toggle('on', v==='msgs');
+  document.getElementById('adminOrders').classList.toggle('hidden', v!=='orders');
+  document.getElementById('adminMsgs').classList.toggle('hidden', v!=='msgs');
+}
+function renderAdmin(){
+  const u = getSession();
+  const panel = document.getElementById('adminPanel');
+  if(!u || !u.isAdmin){ panel.classList.add('hidden'); return; }
+  panel.classList.remove('hidden');
+  renderAdminOrders();
+  renderAdminMessages();
+}
+
+function renderAdminOrders(){
+  const orders = load(K.orders, []);
+  const ob = document.getElementById('adminOrders');
+  if(orders.length===0){
+    ob.innerHTML = `<div class="cart-box"><div class="empty"><span class="e">${ico('box')}</span>Заказов пока нет.</div></div>`;
+    return;
+  }
+  ob.innerHTML = orders.map(o=>`
+    <div class="order-card ${o.status==='done'?'done':''}">
+      <div class="order-head">
+        <div>
+          <b>${esc(o.userName)}</b>
+          <span class="status" style="margin-left:8px">${esc(o.cls)}</span>
+          <div class="when">${esc(o.time)} · №${esc(o.id.slice(-5))}</div>
+        </div>
+        <span class="status ${o.status==='done'?'ok':''}">
+          ${o.status==='done'?ico('check','xs')+' ВЫПОЛНЕН':ico('clock','xs')+' НОВЫЙ'}
+        </span>
+      </div>
+      <div class="order-items">
+        ${o.items.map(i=>`<span>${esc(i.name)}</span> × ${i.qty} = ${money(i.price*i.qty)}`).join('<br>')}
+        ${o.comment?'<br><br>'+ico('comment','xs')+' <span>'+esc(o.comment)+'</span>':''}
+      </div>
+      <div class="total" style="margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-size:15px">
+        <span>Итого:</span><b>${money(o.total)}</b>
+      </div>
+      <div class="order-actions">
+        <button class="btn ghost sm" onclick="openAdminChatWith('${esc(o.userId)}')">${ico('chat','sm')}<span>Чат</span></button>
+        ${o.status!=='done'
+          ? `<button class="btn green sm" onclick="markDone('${o.id}')">${ico('check','sm')}<span>Выполнен</span></button>`
+          : `<button class="btn ghost sm" onclick="markNew('${o.id}')">${ico('undo','sm')}<span>Вернуть</span></button>`}
+        <button class="btn danger sm" onclick="delOrder('${o.id}')">${ico('trash','sm')}<span>Удалить</span></button>
+      </div>
+    </div>
+  `).join('');
+}
+function markDone(id){
+  const orders = load(K.orders, []);
+  const o = orders.find(x=>x.id===id);
+  if(o){ o.status='done'; save(K.orders, orders); toast('Заказ выполнен','ok'); renderAdminOrders(); }
+}
+function markNew(id){
+  const orders = load(K.orders, []);
+  const o = orders.find(x=>x.id===id);
+  if(o){ o.status='new'; save(K.orders, orders); renderAdminOrders(); }
+}
+function delOrder(id){
+  if(!confirm('Удалить этот заказ?')) return;
+  save(K.orders, load(K.orders,[]).filter(x=>x.id!==id));
+  toast('Заказ удалён'); renderAdminOrders();
+}
+function openAdminChatWith(userId){
+  adminChatUser = userId;
+  switchAdmin('msgs');
+  renderAdminMessages();
+  if(Device.isMobile){
+    document.querySelector('.messenger')?.classList.add('mobile-chat-open');
+  }
+  scrollToSection('adminPanel');
+}
+function closeMobileChat(){
+  document.querySelector('.messenger')?.classList.remove('mobile-chat-open');
+}
+
+function renderAdminMessages(){
+  const mb = document.getElementById('adminMsgs');
+  const messages = getMessages();
+  const users = load(K.users, []);
+  const readState = load(K.readState, {});
+
+  const threads = {};
+  messages.forEach(m=>{
+    if(!threads[m.threadId]) threads[m.threadId] = [];
+    threads[m.threadId].push(m);
+  });
+
+  const threadIds = Object.keys(threads).sort((a,b)=>{
+    const la = threads[a][threads[a].length-1].time;
+    const lb = threads[b][threads[b].length-1].time;
+    return lb.localeCompare(la);
+  });
+
+  if(threadIds.length===0){
+    mb.innerHTML = `<div class="cart-box"><div class="empty"><span class="e">${ico('chat')}</span>
+      Пока никто не написал. Как только ученик напишет — здесь появится его личный чат.</div></div>`;
+    return;
+  }
+
+  if(!adminChatUser || !threads[adminChatUser]) adminChatUser = threadIds[0];
+
+  threadIds.forEach(tid=>{
+    const lastRead = readState[tid] || 0;
+    threads[tid]._unread = threads[tid].filter(m => m.from==='user' && (m.id > lastRead)).length;
+  });
+  const totalUnread = threadIds.reduce((s,tid)=>s+threads[tid]._unread, 0);
+
+  const contactsHtml = threadIds.map(tid=>{
+    const u = users.find(x=>x.id===tid);
+    const name = u ? (u.firstName+' '+u.lastName) : 'Удалённый ученик';
+    const cls  = u ? u.cls : '—';
+    const last = threads[tid][threads[tid].length-1];
+    const preview = (last.from==='admin'?'Вы: ':'') + last.text.replace(/\n/g,' ');
+    const initial = u ? (u.firstName[0]||'?') : '?';
+    const unread = threads[tid]._unread;
+    return `<div class="contact ${tid===adminChatUser?'on':''}" onclick="selectAdminChat('${tid}')">
+      <div class="avatar">${esc(initial)}</div>
+      <div class="info">
+        <b>${esc(name)}</b>
+        <small>${esc(cls)}</small>
+        <div class="prev">${esc(preview.slice(0,42))}${preview.length>42?'…':''}</div>
+      </div>
+      ${unread>0?`<span class="unread">${unread}</span>`:''}
+    </div>`;
+  }).join('');
+
+  const curUser  = users.find(x=>x.id===adminChatUser);
+  const curName  = curUser ? (curUser.firstName+' '+curUser.lastName) : 'Удалённый ученик';
+  const curCls   = curUser ? curUser.cls : '—';
+  const curMsgs  = threads[adminChatUser] || [];
+
+  if(curMsgs.length>0){
+    readState[adminChatUser] = curMsgs[curMsgs.length-1].id;
+    save(K.readState, readState);
+  }
+
+  const msgsHtml = curMsgs.map(m=>{
+    const isAdmin = m.from==='admin';
+    return `<div class="msg ${isAdmin?'me':'them'}">
+      ${!isAdmin?`<b class="sender">${ico('user','xs')} ${esc(curName)} · ${esc(curCls)}</b><br>`:''}
+      ${esc(m.text).replace(/\n/g,'<br>')}
+      <div class="meta">${esc(m.time)}</div>
+    </div>`;
+  }).join('') || `<div class="sysmsg">Нет сообщений в этом чате</div>`;
+
+  const isMobileChatOpen = document.querySelector('.messenger')?.classList.contains('mobile-chat-open');
+
+  mb.innerHTML = `
+    <div class="messenger ${isMobileChatOpen?'mobile-chat-open':''}">
+      <div class="contacts">
+        <div class="contacts-head">${ico('users','sm')} ЧАТЫ ${totalUnread>0?`<span class="count">${totalUnread} новых</span>`:''}</div>
+        ${contactsHtml}
+      </div>
+      <div class="chat-view">
+        <div class="chat-view-head">
+          <button class="back-btn" onclick="closeMobileChat()" title="Назад">${ico('arrowLeft','sm')}</button>
+          <div class="avatar">${esc((curUser?.firstName||'?')[0])}</div>
+          <div>
+            <div class="nm">${esc(curName)}</div>
+            <div class="cl">Класс ${esc(curCls)}</div>
+          </div>
+          <div class="actions">
+            <button class="btn danger sm" onclick="delThread('${adminChatUser}')">
+              ${ico('trash','sm')}<span>Удалить</span>
+            </button>
+          </div>
+        </div>
+        <div class="chat-body" id="adminChatBody">${msgsHtml}</div>
+        <div class="chat-foot">
+          <input id="adminReplyInput" placeholder="Ответить ${esc(curName)}..."
+                 onkeydown="if(event.key==='Enter')adminSend()">
+          <button class="btn" onclick="adminSend()">${ico('send','md')}<span>Отпр.</span></button>
+        </div>
+      </div>
+    </div>`;
+
+  const cb = document.getElementById('adminChatBody');
+  if(cb) cb.scrollTop = cb.scrollHeight;
+
+  // On mobile: don't auto-open chat
+  const m = document.querySelector('.messenger');
+  if(m && isMobileChatOpen) m.classList.add('mobile-chat-open');
+}
+
+function selectAdminChat(id){
+  adminChatUser = id;
+  if(Device.isMobile){
+    document.querySelector('.messenger')?.classList.add('mobile-chat-open');
+  }
+  renderAdminMessages();
+}
+function adminSend(){
+  if(!adminChatUser) return;
+  const inp = document.getElementById('adminReplyInput');
+  const text = inp.value.trim();
+  if(!text){ toast('Напиши ответ','err'); return; }
+  const messages = getMessages();
+  messages.push({id:'m'+Date.now(), threadId:adminChatUser, from:'admin', text, time:now()});
+  saveMessages(messages);
+  inp.value = '';
+  toast('Ответ отправлен','ok');
+  renderAdminMessages();
+}
+function delThread(id){
+  if(!confirm('Удалить всю переписку с этим учеником?')) return;
+  saveMessages(getMessages().filter(m=>m.threadId!==id));
+  const readState = load(K.readState,{});
+  delete readState[id];
+  save(K.readState, readState);
+  toast('Переписка удалена');
+  if(adminChatUser===id) adminChatUser = null;
+  document.querySelector('.messenger')?.classList.remove('mobile-chat-open');
+  renderAdminMessages();
+}
+
+/* ============================================================
+   REVIEWS
+============================================================ */
+function renderReviews(){
+  const revs = load(K.reviews, []);
+  const list = document.getElementById('reviewsList');
+  if(revs.length===0){
+    list.innerHTML = `<div class="empty"><span class="e">${ico('chat')}</span>Отзывов пока нет. Будь первым!</div>`;
+    return;
+  }
+  list.innerHTML = revs.slice().reverse().map(r=>`
+    <div class="review reveal">
+      <div class="top">
+        <div class="avatar">${esc((r.name||'?')[0])}</div>
+        <div>
+          <div class="stars">${'★'.repeat(r.stars)}${'☆'.repeat(5-r.stars)}</div>
+          <div class="who">${esc(r.name)}</div>
+        </div>
+      </div>
+      <div class="txt">${esc(r.text)}</div>
+    </div>
+  `).join('');
+  observeReveals();
+}
+function addReview(){
+  const u = getSession();
+  if(!u){ toast('Войди, чтобы оставить отзыв','err'); openModal('login'); return; }
+  const text = document.getElementById('revText').value.trim();
+  const stars = parseInt(document.getElementById('revStars').value,10);
+  if(text.length<3){ toast('Напиши хотя бы пару слов','err'); return; }
+  const revs = load(K.reviews, []);
+  revs.push({id:Date.now(), name:u.isAdmin?'Админ':(u.firstName+', '+u.cls), stars, text});
+  save(K.reviews, revs);
+  document.getElementById('revText').value = '';
+  toast('Спасибо за отзыв!','ok');
+  renderReviews();
+}
+
+/* ============================================================
+   GAME
+============================================================ */
+let gameTimer=null, spawnTimer=null, score=0, timeLeft=30, playing=false;
+const GAME_ICONS = ['sword','dagger','kunai','axe','shield'];
+
+function startGame(){
+  if(playing) return;
+  playing = true; score = 0; timeLeft = 30;
+  document.getElementById('gScore').textContent = '0';
+  document.getElementById('gTime').textContent = '30';
+  document.getElementById('gameBtn').innerHTML = ico('clock','sm')+'<span>Играем...</span>';
+  const arena = document.getElementById('arena');
+  arena.innerHTML = '';
+  gameTimer = setInterval(()=>{
+    timeLeft--;
+    document.getElementById('gTime').textContent = timeLeft;
+    if(timeLeft<=0) stopGame();
+  }, 1000);
+  const interval = Device.isMobile ? 750 : 620;
+  spawnTimer = setInterval(spawnTarget, interval);
+  spawnTarget();
+}
+function spawnTarget(){
+  const arena = document.getElementById('arena');
+  if(!arena) return;
+  const t = document.createElement('div');
+  t.className = 'target';
+  const name = GAME_ICONS[Math.floor(Math.random()*GAME_ICONS.length)];
+  t.innerHTML = ico(name,'lg');
+  const size = t.offsetWidth || 58;
+  const maxX = Math.max(0, arena.clientWidth - size);
+  const maxY = Math.max(0, arena.clientHeight - size);
+  t.style.left = Math.random()*maxX + 'px';
+  t.style.top  = Math.random()*maxY + 'px';
+  const hit = (e)=>{
+    if(e.cancelable) e.preventDefault();
+    e.stopPropagation();
+    score += 10;
+    document.getElementById('gScore').textContent = score;
+    t.style.transform = 'scale(1.5)';
+    t.style.opacity = '0';
+    setTimeout(()=>t.remove(), 140);
+  };
+  t.addEventListener('click', hit);
+  t.addEventListener('touchstart', hit, {passive:false});
+  arena.appendChild(t);
+  setTimeout(()=>{ if(t.parentNode) t.remove(); }, 1700);
+}
+function stopGame(){
+  playing = false;
+  clearInterval(gameTimer); clearInterval(spawnTimer);
+  const arena = document.getElementById('arena');
+  arena.innerHTML = `<div style="position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:20px">
+      <div>
+        <div style="color:var(--amber);display:flex;justify-content:center;margin-bottom:10px">${ico('award','xl')}</div>
+        <div style="font-size:24px;font-weight:900;color:var(--amber)">${score} очков</div>
+        <div style="color:var(--muted);font-size:13px;margin-top:6px">Нажми «Старт», чтобы сыграть ещё</div>
+      </div>
+    </div>`;
+  document.getElementById('gameBtn').innerHTML = ico('play','sm')+'<span>Старт</span>';
+  const best = parseInt(localStorage.getItem(K.best)||'0', 10);
+  if(score>best){
+    localStorage.setItem(K.best, score);
+    toast('Новый рекорд: '+score+'!','ok');
+    renderBest();
+  }
+}
+function renderBest(){
+  document.getElementById('gBest').textContent = localStorage.getItem(K.best)||'0';
+}
+
+/* ============================================================
+   INFO
+============================================================ */
+function renderInfo(){
+  document.getElementById('infoGrid').innerHTML = INFO_CARDS.map(c=>`
+    <div class="info reveal">
+      <div class="ic">${ico(c.icon)}</div>
+      <h4>${esc(c.title)}</h4>
+      <p>${esc(c.text)}</p>
+    </div>
+  `).join('');
+  observeReveals();
+}
+
+/* ============================================================
+   STATS + REFRESH
+============================================================ */
+function renderStats(){
+  document.getElementById('s1').textContent = PRODUCTS.length;
+  document.getElementById('s2').textContent = load(K.orders,[]).length;
+}
+function refreshAll(){
+  renderNav();
+  renderCart();
+  renderChat();
+  renderAdmin();
+  renderStats();
+  observeReveals();
+}
+
+/* ============================================================
+   OBSERVERS
+============================================================ */
+let revealObserver = null;
+function observeReveals(){
+  if(!revealObserver){
+    revealObserver = new IntersectionObserver((entries)=>{
+      for(let i=0;i<entries.length;i++){
+        const e = entries[i];
+        if(e.isIntersecting){
+          e.target.classList.add('revealed');
+          revealObserver.unobserve(e.target);
+        }
+      }
+    }, {threshold:.08, rootMargin:'0px 0px -30px 0px'});
+  }
+  const list = document.querySelectorAll('.reveal:not(.revealed)');
+  for(let i=0;i<list.length;i++) revealObserver.observe(list[i]);
+}
+
+// Section tracking for mobile bottom nav
+const sectionIds = ['hero','catalog','cart','chat','adminPanel','game','reviews','school'];
+let sectionObserver = null;
+function observeSections(){
+  if(!sectionObserver){
+    sectionObserver = new IntersectionObserver((entries)=>{
+      let best = null;
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          if(!best || e.intersectionRatio > best.intersectionRatio) best = e;
+        }
+      });
+      if(best){
+        setActiveTab(best.target.id);
+      }
+    }, {threshold:[0.15, 0.3, 0.5], rootMargin:'-80px 0px -40% 0px'});
+  }
+  sectionIds.forEach(id=>{
+    const el = document.getElementById(id);
+    if(el && !el.dataset.observed){
+      sectionObserver.observe(el);
+      el.dataset.observed = '1';
+    }
+  });
+}
+
+// Header scroll
+const header = document.getElementById('header');
+let ticking = false;
+function onScroll(){
+  if(ticking) return;
+  ticking = true;
+  requestAnimationFrame(()=>{
+    header.classList.toggle('scrolled', window.scrollY > 20);
+    ticking = false;
+  });
+}
+window.addEventListener('scroll', onScroll, {passive:true});
+
+/* ============================================================
+   INIT
+============================================================ */
+function initIcons(){
+  document.getElementById('logoIcon').innerHTML = ico('sword');
+  document.getElementById('navCatalog').innerHTML = ico('box','sm')+' Каталог';
+  document.getElementById('navCart').innerHTML = ico('cart','sm')+' Корзина <span id="cartBadge"></span>';
+  document.getElementById('navChat').innerHTML = ico('chat','sm')+' Написать админу';
+  document.getElementById('navGame').innerHTML = ico('target','sm')+' Тир';
+  document.getElementById('navReviews').innerHTML = ico('star','sm')+' Отзывы';
+  document.getElementById('navSchool').innerHTML = ico('school','sm')+' О школе';
+  document.getElementById('heroBtn1').innerHTML = ico('sword','md')+'<span>Смотреть каталог</span>';
+  document.getElementById('heroBtn2').innerHTML = ico('chat','md')+'<span>Написать админу</span>';
+  document.getElementById('tabOrders').innerHTML = ico('box','sm')+' Заказы';
+  document.getElementById('tabMsgs').innerHTML = ico('chat','sm')+' Чаты';
+  document.getElementById('gameBtn').innerHTML = ico('play','sm')+'<span>Старт</span>';
+  document.getElementById('tabLogin').innerHTML = ico('user','sm')+' Вход';
+  document.getElementById('tabReg').innerHTML = ico('plus','sm')+' Регистрация';
+  document.getElementById('authBtn').innerHTML = '<span>Войти</span>';
+
+  // Mobile nav icons
+  const mobileTabs = document.querySelectorAll('.mobile-nav .tab');
+  const navIcons = ['home','box','cart','chat','user'];
+  mobileTabs.forEach((tab,i)=>{
+    const icoEl = tab.querySelector('.ico');
+    if(icoEl) icoEl.innerHTML = ico(navIcons[i] || 'menu');
+  });
+}
+
+initIcons();
+renderProducts();
+renderReviews();
+renderInfo();
+renderBest();
+refreshAll();
+observeSections();
+
+document.getElementById('modalBg').addEventListener('click', e=>{
+  if(e.target.id==='modalBg') closeModal();
+});
+document.getElementById('profileBg').addEventListener('click', e=>{
+  if(e.target.id==='profileBg') closeProfile();
+});
+document.addEventListener('keydown', e=>{
+  if(e.key==='Escape'){
+    closeModal();
+    closeProfile();
+  }
+});
+
+// Smooth scroll for hash links
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click', e=>{
+    const id = a.getAttribute('href').slice(1);
+    const el = document.getElementById(id);
+    if(el){
+      e.preventDefault();
+      scrollToSection(id);
+    }
+  });
+});
+
+// React to device change
+Device.onChange((state)=>{
+  // When switching desktop -> mobile, close profile sheet (it's mobile-only)
+  if(state.isDesktop){
+    document.querySelector('.messenger')?.classList.remove('mobile-chat-open');
+    closeProfile();
+  }
+  // Re-render admin messenger since layout changes
+  renderAdmin();
+  renderNav();
+});
+</script>
+</body>
+</html>
