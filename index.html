@@ -4,17 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=5">
 <meta name="theme-color" content="#00a860">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>Paper Arms — Школа №43 Тюмень</title>
 <style>
-:root{
-  --bg:#111413;--bg2:#181c1a;--card:#1c211e;--border:#2a302d;
-  --text:#e9ece9;--muted:#8a928d;--green:#00d47a;--green-d:#00a860;--green-l:#5ce8a4;
-  --safe-b:env(safe-area-inset-bottom,0px);
-  --safe-t:env(safe-area-inset-top,0px);
-  --nav-h:64px;
-}
+:root{--bg:#111413;--bg2:#181c1a;--card:#1c211e;--border:#2a302d;--text:#e9ece9;--muted:#8a928d;--green:#00d47a;--green-d:#00a860;--green-l:#5ce8a4;--red:#ff4d4d;--safe-b:env(safe-area-inset-bottom,0px);--safe-t:env(safe-area-inset-top,0px);--nav-h:64px}
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{background:var(--bg);color:var(--text);font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;min-height:100vh;overflow-x:hidden}
@@ -22,37 +14,22 @@ svg{display:block;flex-shrink:0}
 button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;touch-action:manipulation}
 input,textarea,select{font-family:inherit;font-size:16px}
 a{text-decoration:none;color:inherit}
-img,svg{max-width:100%}
-
-/* ========== WRAP ========== */
 .wrap{width:100%;max-width:1240px;margin:0 auto;padding:0 16px}
-
-/* ========== TOP BAR (mobile-first) ========== */
-.topbar{position:sticky;top:0;z-index:40;background:#111413f2;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:10px 0;padding-top:calc(10px + var(--safe-t))}
+.topbar{position:sticky;top:0;z-index:40;background:#111413f2;backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:10px 0;padding-top:calc(10px + var(--safe-t))}
 .tb-row{display:flex;justify-content:space-between;align-items:center;gap:12px}
 .logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:16px;color:#fff;min-width:0}
 .logo-mark{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#00a860,#00d47a);display:flex;align-items:center;justify-content:center;color:#fff;flex-shrink:0}
-.logo-txt{min-width:0}
-.logo-txt small{display:block;font-size:9px;color:var(--muted);letter-spacing:1.6px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.logo-txt small{display:block;font-size:9px;color:var(--muted);letter-spacing:1.6px;font-weight:600}
 .tb-actions{display:flex;gap:6px;align-items:center;flex-shrink:0}
-
-/* Мобильная кнопка "меню" */
 .burger{width:40px;height:40px;border-radius:10px;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted)}
-.burger:active{transform:scale(.94)}
-
-/* Топ-меню — только на ПК */
 nav.topmenu{display:none}
-
-/* ========== BUTTONS ========== */
 .btn{display:inline-flex;align-items:center;gap:7px;padding:12px 18px;border-radius:12px;border:1px solid var(--border);background:var(--bg2);color:var(--text);font-weight:600;font-size:14px;transition:.15s;min-height:44px;justify-content:center}
 .btn:active{transform:scale(.97)}
 .btn-p{background:var(--green-d);border-color:var(--green-d);color:#fff}
-.btn-p:active{background:var(--green)}
 .btn-sm{padding:9px 13px;font-size:12.5px;min-height:38px}
 .btn-block{width:100%;padding:15px;font-size:15px;font-weight:700}
 .badge{padding:5px 11px;border-radius:20px;font-size:11px;font-weight:700;background:#00d47a1e;color:var(--green);border:1px solid var(--green-d);display:inline-flex;align-items:center;gap:5px}
-
-/* ========== HERO ========== */
+.badge-red{background:#ff4d4d22;color:#ff8080;border-color:#ff4d4d}
 .hero{padding:28px 0 22px;text-align:center}
 .hero-badge{display:inline-flex;align-items:center;gap:7px;padding:8px 14px;background:#00d47a14;border:1px solid #00d47a44;border-radius:30px;color:var(--green-l);font-weight:600;font-size:12px;margin-bottom:16px}
 .hero h1{font-size:clamp(28px,8vw,52px);font-weight:800;line-height:1.08;letter-spacing:-1px;color:#fff;margin-bottom:14px}
@@ -60,77 +37,53 @@ nav.topmenu{display:none}
 .hero p{color:var(--muted);font-size:14.5px;max-width:540px;margin:0 auto 20px;line-height:1.55}
 .hero-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 .hero-btns .btn{flex:1;min-width:0}
-
-/* ========== STATS (mobile: 2x2) ========== */
 .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:28px 0}
-.stat{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px 12px;text-align:center;transition:.15s}
-.stat:active{transform:scale(.97)}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px 12px;text-align:center}
 .stat .ic{width:38px;height:38px;border-radius:10px;margin:0 auto 8px;background:#00d47a1a;color:var(--green);display:flex;align-items:center;justify-content:center}
-.stat .num{font-size:22px;font-weight:800;color:#fff;letter-spacing:-.5px}
+.stat .num{font-size:22px;font-weight:800;color:#fff}
 .stat .lbl{font-size:10px;color:var(--muted);margin-top:3px;letter-spacing:.8px;text-transform:uppercase;font-weight:600}
-
-/* ========== SECTION ========== */
 section{padding:26px 0}
 .sec-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:16px;gap:10px;flex-wrap:wrap}
-.sec-title{font-size:20px;font-weight:800;color:#fff;letter-spacing:-.4px;display:flex;align-items:center;gap:10px}
+.sec-title{font-size:20px;font-weight:800;color:#fff;display:flex;align-items:center;gap:10px}
 .sec-title .ic{width:34px;height:34px;border-radius:10px;background:#00d47a1a;color:var(--green);display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .sec-sub{color:var(--muted);font-size:12px;margin-top:3px}
-
-/* ========== FEATURED ========== */
 .featured{padding:22px 20px;border-radius:18px;margin:6px 0 26px;background:linear-gradient(135deg,#00a86026,#00d47a08);border:1px solid #00d47a3d;display:flex;flex-direction:column;gap:16px;position:relative;overflow:hidden}
 .featured .flabel{font-size:10.5px;font-weight:700;color:var(--green-l);letter-spacing:1.6px;text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:6px}
-.featured h2{font-size:22px;font-weight:800;color:#fff;margin-bottom:8px;letter-spacing:-.5px;line-height:1.15}
+.featured h2{font-size:22px;font-weight:800;color:#fff;margin-bottom:8px;line-height:1.15}
 .featured p{color:#aab2ae;font-size:13.5px;line-height:1.55;margin-bottom:14px}
 .featured .ficon{width:80px;height:80px;color:var(--green);align-self:center;position:absolute;top:20px;right:16px;opacity:.35}
 .featured .ftxt{position:relative;z-index:1;padding-right:80px}
-.featured .btn{position:relative;z-index:1}
-
-/* ========== FILTERS ========== */
 .filters{display:flex;flex-direction:column;gap:8px;margin-bottom:14px;padding:12px;background:var(--card);border:1px solid var(--border);border-radius:14px}
 .ff{position:relative;display:flex;align-items:center}
 .ff .ic{position:absolute;left:12px;color:var(--muted);pointer-events:none}
-.ff input,.ff select{width:100%;padding:12px 14px 12px 38px;border-radius:10px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:14px;outline:none;transition:.15s;-webkit-appearance:none;appearance:none}
-.ff select{padding-right:36px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%238a928d' stroke-width='2.2' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center}
+.ff input,.ff select{width:100%;padding:12px 14px 12px 38px;border-radius:10px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:14px;outline:none;-webkit-appearance:none;appearance:none}
 .ff input:focus,.ff select:focus{border-color:var(--green-d);box-shadow:0 0 0 3px #00d47a1e}
-
-/* ========== CHIPS — горизонтальный скролл на мобиле ========== */
-.chips{display:flex;gap:7px;margin-bottom:16px;overflow-x:auto;padding:2px 0;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.chips{display:flex;gap:7px;margin-bottom:16px;overflow-x:auto;padding:2px 0;scrollbar-width:none}
 .chips::-webkit-scrollbar{display:none}
-.chip{padding:8px 15px;border-radius:20px;border:1px solid var(--border);background:var(--card);color:var(--muted);font-size:12.5px;font-weight:600;transition:.15s;flex-shrink:0;min-height:36px;display:inline-flex;align-items:center}
+.chip{padding:8px 15px;border-radius:20px;border:1px solid var(--border);background:var(--card);color:var(--muted);font-size:12.5px;font-weight:600;flex-shrink:0;min-height:36px;display:inline-flex;align-items:center}
 .chip.active{background:var(--green-d);border-color:var(--green-d);color:#fff}
-.chip:active{transform:scale(.95)}
-
-/* ========== PRODUCT CARDS — mobile: 1 col big, затем 2/3/4 ========== */
 .grid{display:grid;grid-template-columns:1fr;gap:12px}
-.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px;transition:.2s;position:relative;overflow:hidden;display:flex;flex-direction:column}
-.card:active{transform:scale(.99)}
-.card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--green),transparent);opacity:0;transition:.2s}
-.card:hover::before{opacity:1}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px;display:flex;flex-direction:column}
 .card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
 .card-icon{width:52px;height:52px;border-radius:12px;background:#00d47a1a;display:flex;align-items:center;justify-content:center;color:var(--green);border:1px solid #00d47a2e}
 .card-icon svg{width:28px;height:28px}
-.tag{font-size:9.5px;font-weight:800;padding:3px 8px;border-radius:20px;background:#00d47a1e;color:var(--green);border:1px solid var(--green-d);text-transform:uppercase;letter-spacing:.4px}
+.tag{font-size:9.5px;font-weight:800;padding:3px 8px;border-radius:20px;background:#00d47a1e;color:var(--green);border:1px solid var(--green-d);text-transform:uppercase}
 .tag.hot{background:#ff5a5a22;color:#ff8080;border-color:#c94a4a}
 .card h3{font-size:15.5px;margin-bottom:4px;color:#fff;font-weight:700}
 .card .desc{font-size:12.5px;color:var(--muted);margin-bottom:9px;flex:1;min-height:32px;line-height:1.5}
 .card .meta{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--muted);margin-bottom:9px}
 .card .rating{display:inline-flex;align-items:center;gap:3px;color:var(--green)}
-.card .price{font-size:22px;font-weight:800;color:#fff;margin-bottom:10px;letter-spacing:-.4px}
+.card .price{font-size:22px;font-weight:800;color:#fff;margin-bottom:10px}
 .card .price small{font-size:12px;color:var(--muted);font-weight:600;margin-left:2px}
 .card .row{display:flex;gap:7px}
 .card .row .btn{flex:1;justify-content:center;min-height:44px}
-
-/* ========== NEWS ========== */
 .news-grid{display:grid;grid-template-columns:1fr;gap:12px}
-.news{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px 18px 18px 22px;position:relative;transition:.15s}
+.news{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px 18px 18px 22px;position:relative}
 .news::before{content:'';position:absolute;left:0;top:18px;bottom:18px;width:3px;border-radius:3px;background:var(--green-d)}
-.news:active{transform:scale(.99)}
-.news .date{font-size:10.5px;color:var(--muted);letter-spacing:.6px;text-transform:uppercase;margin-bottom:8px;font-weight:600;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.news .cat{font-size:9.5px;font-weight:800;padding:3px 8px;border-radius:20px;background:#00d47a1e;color:var(--green);border:1px solid var(--green-d);text-transform:none;letter-spacing:0}
+.news .date{font-size:10.5px;color:var(--muted);margin-bottom:8px;font-weight:600;display:flex;align-items:center;gap:8px;flex-wrap:wrap;text-transform:uppercase}
+.news .cat{font-size:9.5px;font-weight:800;padding:3px 8px;border-radius:20px;background:#00d47a1e;color:var(--green);border:1px solid var(--green-d);text-transform:none}
 .news h3{font-size:15.5px;margin-bottom:7px;color:#fff;font-weight:700}
 .news p{font-size:13px;color:var(--muted);line-height:1.55;margin-bottom:10px}
-
-/* ========== REVIEWS ========== */
 .reviews-grid{display:grid;grid-template-columns:1fr;gap:12px}
 .review{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px}
 .review .stars{display:flex;gap:2px;color:var(--green);margin-bottom:10px}
@@ -139,143 +92,117 @@ section{padding:26px 0}
 .review .av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--green-d),var(--green));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:13px}
 .review .nm{font-weight:700;font-size:13px;color:#fff}
 .review .rl{font-size:11px;color:var(--muted)}
-
-/* ========== RULES ========== */
 .rules{display:grid;grid-template-columns:1fr;gap:10px}
 .rule{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px}
 .rule-head{display:flex;align-items:center;gap:10px;margin-bottom:7px}
 .rule-num{width:26px;height:26px;border-radius:8px;background:var(--green-d);color:#fff;font-weight:800;font-size:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .rule h4{font-size:13.5px;color:#fff;font-weight:700}
 .rule p{font-size:12.5px;color:var(--muted);line-height:1.55}
-
-/* ========== FAQ ========== */
 .faq{display:grid;gap:8px}
 .faq-item{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden}
-.faq-q{padding:14px 16px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;font-weight:600;font-size:13.5px;color:#fff;user-select:none;min-height:50px}
+.faq-q{padding:14px 16px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;font-weight:600;font-size:13.5px;color:#fff;min-height:50px}
 .faq-q .arr{transition:.25s;color:var(--muted);flex-shrink:0}
 .faq-item.open .faq-q .arr{transform:rotate(180deg);color:var(--green)}
 .faq-a{max-height:0;overflow:hidden;padding:0 16px;color:var(--muted);font-size:13px;line-height:1.6;transition:max-height .3s,padding .3s}
 .faq-item.open .faq-a{max-height:400px;padding:0 16px 14px}
-
-/* ========== ABOUT ========== */
 .about-grid{display:grid;grid-template-columns:1fr;gap:12px}
 .about-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px}
 .about-card .ic{width:42px;height:42px;border-radius:10px;background:#00d47a1a;color:var(--green);display:flex;align-items:center;justify-content:center;margin-bottom:11px}
 .about-card h4{font-size:14.5px;color:#fff;margin-bottom:6px;font-weight:700}
 .about-card p{font-size:12.5px;color:var(--muted);line-height:1.55}
-
-/* ========== FOOTER ========== */
 footer{margin-top:36px;padding:30px 0 calc(30px + var(--nav-h) + var(--safe-b));border-top:1px solid var(--border);background:#0c0f0d}
 .foot-grid{display:grid;grid-template-columns:1fr;gap:22px;margin-bottom:20px}
 .foot-col h4{font-size:11.5px;color:#fff;margin-bottom:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px}
 .foot-col p{color:var(--muted);font-size:12.5px;line-height:1.6}
-.foot-col a{color:var(--muted);font-size:12.5px;padding:5px 0;cursor:pointer;transition:.15s;display:flex;align-items:center;gap:7px;width:fit-content}
-.foot-col a:active{color:var(--green)}
+.foot-col a{color:var(--muted);font-size:12.5px;padding:5px 0;cursor:pointer;display:flex;align-items:center;gap:7px;width:fit-content}
 .copy{text-align:center;color:#555;font-size:11.5px;padding-top:18px;border-top:1px solid #1a1d1b}
-
-/* ========== BOTTOM NAV (mobile only) ========== */
-.bottomnav{position:fixed;bottom:0;left:0;right:0;z-index:60;background:#0f1311f7;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid var(--border);display:grid;grid-template-columns:repeat(5,1fr);padding:6px 4px;padding-bottom:calc(6px + var(--safe-b))}
-.bnav-btn{display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 2px;color:var(--muted);font-size:10px;font-weight:600;transition:.15s;border-radius:10px;min-height:52px;justify-content:center;position:relative}
-.bnav-btn:active{background:var(--card)}
+.bottomnav{position:fixed;bottom:0;left:0;right:0;z-index:60;background:#0f1311f7;backdrop-filter:blur(16px);border-top:1px solid var(--border);display:grid;grid-template-columns:repeat(5,1fr);padding:6px 4px;padding-bottom:calc(6px + var(--safe-b))}
+.bnav-btn{display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 2px;color:var(--muted);font-size:10px;font-weight:600;border-radius:10px;min-height:52px;justify-content:center;position:relative}
 .bnav-btn.active{color:var(--green)}
 .bnav-btn .ic{position:relative}
-.bnav-btn .badge-dot{position:absolute;top:-4px;right:-8px;min-width:16px;height:16px;border-radius:8px;background:#ff4d4d;color:#fff;font-size:9.5px;font-weight:800;display:none;align-items:center;justify-content:center;padding:0 4px;border:2px solid #0f1311}
+.bnav-btn .badge-dot{position:absolute;top:-4px;right:-8px;min-width:16px;height:16px;border-radius:8px;background:var(--red);color:#fff;font-size:9.5px;font-weight:800;display:none;align-items:center;justify-content:center;padding:0 4px;border:2px solid #0f1311}
 .bnav-btn .badge-dot.show{display:flex}
-
-/* ========== OVERLAY / MODAL (mobile: bottom sheet) ========== */
 .ov{position:fixed;inset:0;background:#000c;display:none;z-index:200;padding:0;align-items:flex-end;justify-content:center}
-.ov.active{display:flex;animation:fade .2s ease}
-@keyframes fade{from{opacity:0}to{opacity:1}}
-.md{background:var(--bg2);padding:22px 20px;padding-bottom:calc(22px + var(--safe-b));width:100%;max-width:100%;max-height:92vh;overflow-y:auto;border-radius:22px 22px 0 0;border:1px solid var(--border);border-bottom:none;position:relative;animation:sheetUp .28s cubic-bezier(.2,.8,.2,1);-webkit-overflow-scrolling:touch}
-@keyframes sheetUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.ov.active{display:flex}
+.md{background:var(--bg2);padding:22px 20px;padding-bottom:calc(22px + var(--safe-b));width:100%;max-width:100%;max-height:92vh;overflow-y:auto;border-radius:22px 22px 0 0;border:1px solid var(--border);border-bottom:none;position:relative}
 .md::before{content:'';display:block;width:44px;height:4px;border-radius:2px;background:#333;margin:-6px auto 16px}
 .md h2{margin-bottom:6px;font-size:18px;color:#fff;font-weight:800;display:flex;align-items:center;gap:10px}
 .md h2 .ic{width:34px;height:34px;border-radius:10px;background:#00d47a1a;color:var(--green);display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .md .sub{color:var(--muted);font-size:13px;margin-bottom:18px;line-height:1.5}
 .md label{font-size:12px;color:var(--muted);margin-bottom:5px;display:block;font-weight:600}
-.md input,.md textarea,.md select{width:100%;padding:14px;margin-bottom:12px;border-radius:11px;border:1px solid var(--border);background:var(--bg);color:var(--text);outline:none;transition:.15s;-webkit-appearance:none;appearance:none}
+.md input,.md textarea,.md select{width:100%;padding:14px;margin-bottom:12px;border-radius:11px;border:1px solid var(--border);background:var(--bg);color:var(--text);outline:none;-webkit-appearance:none}
 .md textarea{resize:vertical;min-height:70px;font-size:15px}
 .md input:focus,.md textarea:focus,.md select:focus{border-color:var(--green-d);box-shadow:0 0 0 3px #00d47a1e}
 .md-close{position:absolute;top:14px;right:14px;padding:8px;border-radius:9px;color:var(--muted);display:flex;z-index:1}
-.md-close:active{background:var(--bg);color:var(--green)}
-.md.wide{max-width:100%}
-
 .icon-picker{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:14px}
-.icon-opt{aspect-ratio:1;border-radius:11px;border:1px solid var(--border);background:var(--bg);color:var(--muted);display:flex;align-items:center;justify-content:center;transition:.15s}
-.icon-opt:active{transform:scale(.94)}
+.icon-opt{aspect-ratio:1;border-radius:11px;border:1px solid var(--border);background:var(--bg);color:var(--muted);display:flex;align-items:center;justify-content:center}
 .icon-opt.sel{background:var(--green-d);border-color:var(--green-d);color:#fff}
-
 .success-box{text-align:center;padding:8px 0}
 .success-icon{width:72px;height:72px;border-radius:50%;background:#00d47a1f;border:2px solid var(--green-d);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;color:var(--green)}
 .success-box h3{font-size:19px;color:#fff;margin-bottom:8px;font-weight:800}
 .success-box p{color:var(--muted);font-size:13.5px;line-height:1.5;margin-bottom:5px}
 .success-box .hl{color:var(--green);font-weight:700;font-size:15px;padding:10px 15px;background:#00d47a14;border-radius:10px;display:inline-block;margin:8px 0;word-break:break-all}
-
 .tabs{display:flex;gap:5px;margin-bottom:14px;background:var(--bg);padding:4px;border-radius:10px}
-.tab{flex:1;padding:11px 8px;color:var(--muted);font-weight:600;font-size:12.5px;border-radius:7px;transition:.15s;display:flex;align-items:center;justify-content:center;gap:6px;min-height:40px}
+.tab{flex:1;padding:11px 8px;color:var(--muted);font-weight:600;font-size:12.5px;border-radius:7px;display:flex;align-items:center;justify-content:center;gap:6px;min-height:40px;position:relative}
 .tab.active{background:var(--green-d);color:#fff}
+.tab .cnt{position:absolute;top:2px;right:4px;min-width:16px;height:16px;border-radius:8px;background:var(--red);color:#fff;font-size:9.5px;font-weight:800;display:flex;align-items:center;justify-content:center;padding:0 4px}
+.tab.active .cnt{background:#fff;color:var(--green-d)}
 .admin-item{display:flex;align-items:center;gap:11px;padding:11px;background:var(--bg);border:1px solid var(--border);border-radius:10px;margin-bottom:7px;font-size:13px}
 .admin-item .em{width:32px;height:32px;border-radius:8px;background:#00d47a1a;color:var(--green);display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .admin-item .nm{flex:1;font-weight:600;color:#fff;font-size:13px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .admin-item .pr{color:var(--green);font-weight:700;font-size:12.5px}
-
-/* ========== TOAST ========== */
-.toast{position:fixed;bottom:calc(var(--nav-h) + var(--safe-b) + 14px);left:50%;transform:translateX(-50%);padding:13px 18px;background:var(--green-d);color:#fff;border-radius:12px;font-weight:600;box-shadow:0 12px 34px #00a86066;z-index:400;font-size:13.5px;max-width:calc(100vw - 32px);animation:tin .25s ease;display:flex;align-items:center;gap:9px}
-@keyframes tin{from{opacity:0;transform:translate(-50%,18px)}to{opacity:1;transform:translate(-50%,0)}}
-
+.order-item{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:10px;position:relative}
+.order-item.done{opacity:.5}
+.order-item.new{border-color:var(--green-d);box-shadow:0 0 0 1px #00d47a33}
+.order-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:10px}
+.order-title{font-size:14.5px;font-weight:700;color:#fff;display:flex;align-items:center;gap:8px}
+.order-time{font-size:11px;color:var(--muted);white-space:nowrap}
+.order-phone{display:flex;align-items:center;gap:9px;padding:11px 13px;background:#00d47a14;border:1px solid #00d47a3d;border-radius:10px;margin-bottom:9px;font-size:14.5px;font-weight:700;color:var(--green-l);text-decoration:none}
+.order-phone .lbl{font-size:10.5px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.8px}
+.order-price{font-size:15px;color:var(--green);font-weight:800}
+.order-actions{display:flex;gap:7px;margin-top:10px}
+.order-actions .btn{flex:1;min-height:38px;font-size:12.5px}
+.orders-empty{text-align:center;padding:40px 20px;color:var(--muted);font-size:13.5px}
+.orders-empty .ic{width:56px;height:56px;border-radius:14px;margin:0 auto 12px;background:var(--bg);color:#3a403c;border:1px solid var(--border);display:flex;align-items:center;justify-content:center}
+.toast{position:fixed;bottom:calc(var(--nav-h) + var(--safe-b) + 14px);left:50%;transform:translateX(-50%);padding:13px 18px;background:var(--green-d);color:#fff;border-radius:12px;font-weight:600;box-shadow:0 12px 34px #00a86066;z-index:400;font-size:13.5px;max-width:calc(100vw - 32px);display:flex;align-items:center;gap:9px}
 .empty{grid-column:1/-1;text-align:center;padding:50px 20px;color:var(--muted)}
 .empty .ic{width:60px;height:60px;border-radius:14px;margin:0 auto 14px;background:var(--card);color:#3a403c;border:1px solid var(--border);display:flex;align-items:center;justify-content:center}
-
-/* ========== CHAT ========== */
-.chat-panel{position:fixed;inset:0;background:var(--bg2);z-index:300;display:flex;flex-direction:column;opacity:0;pointer-events:none;transform:translateY(100%);transition:.3s cubic-bezier(.2,.8,.2,1);padding-top:var(--safe-t)}
+.chat-panel{position:fixed;inset:0;background:var(--bg2);z-index:300;display:flex;flex-direction:column;opacity:0;pointer-events:none;transform:translateY(100%);transition:.3s;padding-top:var(--safe-t)}
 .chat-panel.open{opacity:1;pointer-events:auto;transform:translateY(0)}
 .chat-side{display:none}
 .chat-main{flex:1;display:flex;flex-direction:column;min-height:0;overflow:hidden}
 .chat-head{padding:12px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;background:var(--bg2);flex-shrink:0}
-.chat-back{padding:8px;border-radius:9px;color:var(--muted);display:flex;transition:.15s;flex-shrink:0}
-.chat-back:active{background:var(--bg);color:var(--green)}
+.chat-back{padding:8px;border-radius:9px;color:var(--muted);display:flex;flex-shrink:0}
 .chat-head .av{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--green-d),var(--green));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:13px;flex-shrink:0}
 .chat-head .info{flex:1;min-width:0}
 .chat-head .info .nm{font-size:14px;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .chat-head .info .st{font-size:11px;color:var(--green);display:flex;align-items:center;gap:5px;margin-top:1px}
 .chat-head .info .st .dot{width:6px;height:6px;border-radius:50%;background:var(--green)}
 .chat-head .cls{padding:8px;border-radius:9px;color:var(--muted);display:flex}
-.chat-head .cls:active{background:var(--bg);color:var(--green)}
-
-.chat-body{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:9px;background:var(--bg2);-webkit-overflow-scrolling:touch}
-.chat-msg{max-width:85%;padding:10px 14px;border-radius:15px;font-size:14px;line-height:1.45;word-wrap:break-word;animation:msgIn .2s ease}
-@keyframes msgIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+.chat-body{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:9px;background:var(--bg2)}
+.chat-msg{max-width:85%;padding:10px 14px;border-radius:15px;font-size:14px;line-height:1.45;word-wrap:break-word}
 .chat-msg.user{align-self:flex-start;background:var(--card);color:var(--text);border-bottom-left-radius:4px}
 .chat-msg.admin{align-self:flex-end;color:#fff;background:linear-gradient(135deg,var(--green-d),var(--green));border-bottom-right-radius:4px}
 .chat-msg .tm{font-size:10px;opacity:.65;margin-top:3px;text-align:right}
-
 .chat-empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--muted);text-align:center;padding:24px;font-size:13px;gap:10px;line-height:1.5}
 .chat-empty .ic{width:56px;height:56px;border-radius:14px;background:var(--card);color:#3a403c;border:1px solid var(--border);display:flex;align-items:center;justify-content:center}
-
 .chat-input{padding:11px 12px;padding-bottom:calc(11px + var(--safe-b));border-top:1px solid var(--border);display:flex;gap:8px;align-items:center;background:var(--bg2);flex-shrink:0}
 .chat-input input{flex:1;padding:12px 14px;border-radius:12px;border:1px solid var(--border);background:var(--bg);color:var(--text);outline:none;font-size:15px}
-.chat-input input:focus{border-color:var(--green-d)}
 .chat-input button{width:44px;height:44px;border-radius:50%;background:var(--green-d);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.chat-input button:active{transform:scale(.94);background:var(--green)}
-
-/* Мобильный список диалогов админа */
 .chat-list-view{display:none;flex:1;overflow-y:auto;background:var(--bg2)}
 .chat-panel.admin.list-mode .chat-list-view{display:block}
 .chat-panel.admin.list-mode .chat-main{display:none}
-.chat-panel.admin:not(.list-mode) .chat-list-view{display:none}
 .chat-panel.admin.chat-open .chat-list-view{display:none}
 .chat-panel.admin.chat-open .chat-main{display:flex}
 .chat-list-head{padding:14px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;position:sticky;top:0;background:var(--bg2);z-index:1}
 .chat-list-head .ttl{font-size:15px;font-weight:800;color:#fff;flex:1}
-.chat-user{padding:14px 16px;border-bottom:1px solid var(--border);cursor:pointer;position:relative;transition:.15s;display:flex;align-items:center;gap:11px}
-.chat-user:active{background:var(--card)}
+.chat-user{padding:14px 16px;border-bottom:1px solid var(--border);cursor:pointer;position:relative;display:flex;align-items:center;gap:11px}
 .chat-user .uav{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--green-d),var(--green));color:#fff;font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .chat-user .ui{flex:1;min-width:0}
 .chat-user .nm{font-size:14.5px;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .chat-user .lst{font-size:12px;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .chat-user .un{min-width:22px;height:22px;border-radius:11px;background:var(--green-d);color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;padding:0 6px;flex-shrink:0}
-
-/* ========== TABLET ≥ 600px ========== */
+.chat-fab{display:none}
 @media(min-width:600px){
   .grid{grid-template-columns:repeat(2,1fr)}
   .news-grid{grid-template-columns:repeat(2,1fr)}
@@ -284,69 +211,41 @@ footer{margin-top:36px;padding:30px 0 calc(30px + var(--nav-h) + var(--safe-b));
   .about-grid{grid-template-columns:repeat(2,1fr)}
   .filters{flex-direction:row;flex-wrap:wrap}
   .filters .ff{flex:1;min-width:160px}
-  .filters .ff:last-child{max-width:180px}
   .foot-grid{grid-template-columns:1fr 1fr}
-  .featured .ficon{opacity:.6;width:120px;height:120px;right:24px;top:24px}
   .featured{padding:26px;flex-direction:row;align-items:center}
   .featured .ftxt{flex:1;padding-right:120px}
+  .featured .ficon{opacity:.6;width:120px;height:120px;right:24px;top:24px}
 }
-
-/* ========== DESKTOP ≥ 900px ========== */
 @media(min-width:900px){
   .wrap{padding:0 20px}
   .topbar{padding:12px 0}
   .burger{display:none}
   nav.topmenu{display:flex;gap:2px;flex-wrap:wrap}
-  nav.topmenu button{padding:9px 13px;border-radius:9px;color:var(--muted);font-weight:600;font-size:13.5px;display:flex;align-items:center;gap:6px;transition:.15s}
+  nav.topmenu button{padding:9px 13px;border-radius:9px;color:var(--muted);font-weight:600;font-size:13.5px;display:flex;align-items:center;gap:6px}
   nav.topmenu button:hover{background:var(--bg2);color:var(--green)}
-  .tb-actions .btn{min-height:auto}
-  .logo{font-size:19px}
-  .logo-mark{width:38px;height:38px}
   .bottomnav{display:none}
   footer{padding-bottom:30px}
   .toast{bottom:26px}
-
-  /* Модалки снова по центру */
   .ov{align-items:center;padding:20px}
-  .md{max-width:440px;border-radius:18px;border-bottom:1px solid var(--border);padding:28px;padding-bottom:28px;animation:modalIn .25s ease;max-height:90vh}
+  .md{max-width:440px;border-radius:18px;border-bottom:1px solid var(--border);padding:28px;max-height:90vh}
   .md::before{display:none}
-  @keyframes modalIn{from{opacity:0;transform:translateY(14px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
-  .md.wide{max-width:600px}
-  .md h2{font-size:20px;margin-bottom:6px}
-  .md h2 .ic{width:36px;height:36px}
-
-  /* Чат — панель как раньше */
-  .chat-panel{position:fixed;left:22px;bottom:88px;top:auto;right:auto;width:400px;height:520px;max-height:calc(100vh - 120px);border-radius:18px;border:1px solid var(--border);box-shadow:0 24px 70px #000000cc;overflow:hidden;flex-direction:row;opacity:0;pointer-events:none;transform:translateY(14px) scale(.96);transform-origin:bottom left;padding-top:0;transition:.25s}
-  .chat-panel.open{transform:translateY(0) scale(1)}
+  .md.wide{max-width:640px}
+  .chat-panel{position:fixed;left:22px;bottom:88px;top:auto;right:auto;width:400px;height:520px;max-height:calc(100vh - 120px);border-radius:18px;border:1px solid var(--border);box-shadow:0 24px 70px #000000cc;overflow:hidden;flex-direction:row;padding-top:0}
   .chat-panel .chat-side{display:none;width:145px;border-right:1px solid var(--border);background:var(--bg);flex-direction:column;overflow-y:auto;flex-shrink:0}
   .chat-panel.admin .chat-side{display:flex}
-  .chat-panel .chat-side-head{padding:12px;font-size:10px;font-weight:800;color:var(--muted);letter-spacing:1px;text-transform:uppercase;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--bg);z-index:1}
   .chat-side .chat-user{padding:11px 12px;display:block}
   .chat-side .chat-user .uav{display:none}
   .chat-side .chat-user .nm{font-size:12.5px;padding-right:20px}
   .chat-side .chat-user .lst{font-size:10.5px}
-  .chat-side .chat-user .un{position:absolute;top:12px;right:10px;min-width:17px;height:17px;font-size:10px}
-  .chat-side .chat-user.active{background:#00d47a14;border-left:3px solid var(--green);padding-left:9px}
   .chat-panel .chat-back{display:none}
   .chat-list-view{display:none!important}
   .chat-panel.admin.list-mode .chat-main{display:flex}
-  .chat-panel .chat-input{padding-bottom:11px}
-  .chat-fab{position:fixed;bottom:22px;left:22px;width:54px;height:54px;border-radius:50%;background:var(--green-d);color:#fff;box-shadow:0 10px 30px #00a86099;z-index:150;display:flex;align-items:center;justify-content:center;transition:.2s}
-  .chat-fab:hover{transform:scale(1.08);background:var(--green)}
-  .chat-fab .ico-chat,.chat-fab .ico-close{transition:.2s}
-  .chat-fab .ico-close{display:none}
-  .chat-fab.open .ico-chat{display:none}
-  .chat-fab.open .ico-close{display:block}
-  .chat-fab .badge-dot{position:absolute;top:-2px;right:-2px;min-width:20px;height:20px;border-radius:10px;background:#ff4d4d;color:#fff;font-size:10.5px;font-weight:800;display:none;align-items:center;justify-content:center;padding:0 5px;border:2px solid var(--bg)}
+  .chat-fab{position:fixed;bottom:22px;left:22px;width:54px;height:54px;border-radius:50%;background:var(--green-d);color:#fff;box-shadow:0 10px 30px #00a86099;z-index:150;display:flex;align-items:center;justify-content:center}
+  .chat-fab .badge-dot{position:absolute;top:-2px;right:-2px;min-width:20px;height:20px;border-radius:10px;background:var(--red);color:#fff;font-size:10.5px;font-weight:800;display:none;align-items:center;justify-content:center;padding:0 5px;border:2px solid var(--bg)}
   .chat-fab .badge-dot.show{display:flex}
-
   .hero{padding:70px 0 40px}
   .hero p{font-size:16px}
   .stats{grid-template-columns:repeat(4,1fr);gap:14px;margin:50px 0}
-  .stat{padding:22px 20px}
-  .stat .ic{width:44px;height:44px}
-  .stat .num{font-size:28px}
-  .stat .lbl{font-size:11px}
   .grid{grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
   .news-grid{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
   .reviews-grid{grid-template-columns:repeat(auto-fill,minmax(270px,1fr))}
@@ -355,693 +254,428 @@ footer{margin-top:36px;padding:30px 0 calc(30px + var(--nav-h) + var(--safe-b));
   .foot-grid{grid-template-columns:2fr 1fr 1fr 1fr;gap:26px}
   section{padding:40px 0}
   .sec-title{font-size:24px}
-  .sec-title .ic{width:36px;height:36px}
   .featured{padding:30px}
   .featured h2{font-size:28px}
-  .featured .ficon{opacity:1;width:110px;height:110px;right:20px;top:auto;position:static;align-self:center}
-  .featured{flex-direction:row}
+  .featured .ficon{opacity:1;width:110px;height:110px;position:static;align-self:center}
   .featured .ftxt{padding-right:0}
-  .featured p{max-width:500px}
-}
-
-@media(min-width:1100px){
-  .grid{grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
 }
 </style>
 </head>
 <body>
 
-<!-- ========= SVG ICON SPRITE ========= -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <defs>
-    <symbol id="i-sword" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 17.5L3 6V3h3l11.5 11.5"/><path d="M13 19l6-6 2 2-6 6z"/><path d="M16 16l4 4"/></symbol>
-    <symbol id="i-katana" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20L20 4"/><path d="M18 2l4 4-3 3-4-4z"/><path d="M6 18l-2 2 2 2 2-2"/></symbol>
-    <symbol id="i-pistol" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h11l6 3v3h-3l-1 6h-4l-1-6H7l-2-2H3z"/><circle cx="7" cy="11" r="1.3"/></symbol>
-    <symbol id="i-shuriken" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v8M12 22v-8M2 12h8M22 12h-8M5 5l6 6M19 19l-6-6M19 5l-6 6M5 19l6-6"/><circle cx="12" cy="12" r="2"/></symbol>
-    <symbol id="i-knife" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l6-6"/><path d="M10 14L20 4v4l-10 10z"/><circle cx="5" cy="19" r="1.5"/></symbol>
-    <symbol id="i-axe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4l6 6-4 4-6-6z"/><path d="M10 8L2 20l2 2 12-8"/></symbol>
-    <symbol id="i-bow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4c8 0 16 8 16 16"/><path d="M4 20L20 4"/><path d="M16 8l4-4M8 16l-4 4"/></symbol>
-    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v7c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V5z"/></symbol>
-    <symbol id="i-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></symbol>
-    <symbol id="i-bomb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="14" r="7"/><path d="M16 8l3-3M18 2v4M22 6h-4"/></symbol>
-    <symbol id="i-cart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M3 4h2l2.5 12h11L21 8H6"/></symbol>
-    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .4 2 .7 2.9a2 2 0 01-.5 2.1L8 10a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.5c.9.3 1.9.6 2.9.7a2 2 0 011.7 2z"/></symbol>
-    <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></symbol>
-    <symbol id="i-send" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></symbol>
-    <symbol id="i-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0116 0"/></symbol>
-    <symbol id="i-crown" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l4 5 5-7 5 7 4-5v11H3z"/></symbol>
-    <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></symbol>
-    <symbol id="i-sort" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M6 12h12M10 18h4"/></symbol>
-    <symbol id="i-coin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9 10h6M9 14h6"/></symbol>
-    <symbol id="i-news" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h13a3 3 0 013 3v11a2 2 0 01-2 2H5a1 1 0 01-1-1z"/><path d="M8 8h8M8 12h8M8 16h5"/></symbol>
-    <symbol id="i-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .9-5 4.9 1.2 7L12 18l-6.2 3.3L7 14.3l-5-4.9 7-.9z"/></symbol>
-    <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v.01M12 11v6"/></symbol>
-    <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-7-8-13a8 8 0 1116 0c0 6-8 13-8 13z"/><circle cx="12" cy="9" r="3"/></symbol>
-    <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
-    <symbol id="i-gift" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v8H4v-8M2 7h20v5H2zM12 22V7M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></symbol>
-    <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></symbol>
-    <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></symbol>
-    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></symbol>
-    <symbol id="i-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></symbol>
-    <symbol id="i-box" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8M12 13v8"/></symbol>
-    <symbol id="i-flame" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2s4 5 4 9a4 4 0 01-8 0c0-1 .5-2 1-3-2 1-5 3-5 7a8 8 0 1016 0c0-5-4-9-8-13z"/></symbol>
-    <symbol id="i-dice" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8" cy="8" r="1.2" fill="currentColor"/><circle cx="16" cy="8" r="1.2" fill="currentColor"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/><circle cx="8" cy="16" r="1.2" fill="currentColor"/><circle cx="16" cy="16" r="1.2" fill="currentColor"/></symbol>
-    <symbol id="i-arrow-r" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></symbol>
-    <symbol id="i-arrow-l" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 19l-7-7 7-7"/></symbol>
-    <symbol id="i-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></symbol>
-    <symbol id="i-q" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 015 0c0 1.5-2.5 2-2.5 3.5M12 17v.01"/></symbol>
-    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h18"/></symbol>
-    <symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l9-7 9 7v10a2 2 0 01-2 2h-4v-7h-6v7H5a2 2 0 01-2-2z"/></symbol>
-  </defs>
+<defs>
+<symbol id="i-pistol" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h11l6 3v3h-3l-1 6h-4l-1-6H7l-2-2H3z"/><circle cx="7" cy="11" r="1.3"/></symbol>
+<symbol id="i-revolver" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="11" r="4"/><path d="M14 11h7M10 7v-2M8 8L6 6M12 8l2-2M9 15l-1 5h3l1-5"/></symbol>
+<symbol id="i-machinegun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 10h14l3 2v2h-3l-1 3h-3l1-3H8l-2 4H4l2-4H2z"/><path d="M13 12l6-2v4"/></symbol>
+<symbol id="i-rifle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20M4 12v3h2v-3M16 12v-3h4l-1 3"/><path d="M10 12l-2 4h4l-1-4"/></symbol>
+<symbol id="i-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></symbol>
+<symbol id="i-bomb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="14" r="7"/><path d="M16 8l3-3M18 2v4M22 6h-4"/></symbol>
+<symbol id="i-cart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M3 4h2l2.5 12h11L21 8H6"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .4 2 .7 2.9a2 2 0 01-.5 2.1L8 10a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.5c.9.3 1.9.6 2.9.7a2 2 0 011.7 2z"/></symbol>
+<symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></symbol>
+<symbol id="i-send" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></symbol>
+<symbol id="i-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0116 0"/></symbol>
+<symbol id="i-crown" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l4 5 5-7 5 7 4-5v11H3z"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></symbol>
+<symbol id="i-sort" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M6 12h12M10 18h4"/></symbol>
+<symbol id="i-coin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9 10h6M9 14h6"/></symbol>
+<symbol id="i-news" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h13a3 3 0 013 3v11a2 2 0 01-2 2H5a1 1 0 01-1-1z"/><path d="M8 8h8M8 12h8M8 16h5"/></symbol>
+<symbol id="i-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .9-5 4.9 1.2 7L12 18l-6.2 3.3L7 14.3l-5-4.9 7-.9z"/></symbol>
+<symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v.01M12 11v6"/></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-7-8-13a8 8 0 1116 0c0 6-8 13-8 13z"/><circle cx="12" cy="9" r="3"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+<symbol id="i-gift" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v8H4v-8M2 7h20v5H2zM12 22V7M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></symbol>
+<symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></symbol>
+<symbol id="i-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></symbol>
+<symbol id="i-box" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8M12 13v8"/></symbol>
+<symbol id="i-flame" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2s4 5 4 9a4 4 0 01-8 0c0-1 .5-2 1-3-2 1-5 3-5 7a8 8 0 1016 0c0-5-4-9-8-13z"/></symbol>
+<symbol id="i-dice" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8" cy="8" r="1.2" fill="currentColor"/><circle cx="16" cy="8" r="1.2" fill="currentColor"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/><circle cx="8" cy="16" r="1.2" fill="currentColor"/><circle cx="16" cy="16" r="1.2" fill="currentColor"/></symbol>
+<symbol id="i-arrow-r" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></symbol>
+<symbol id="i-arrow-l" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 19l-7-7 7-7"/></symbol>
+<symbol id="i-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></symbol>
+<symbol id="i-q" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 015 0c0 1.5-2.5 2-2.5 3.5M12 17v.01"/></symbol>
+<symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h18"/></symbol>
+<symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l9-7 9 7v10a2 2 0 01-2 2h-4v-7h-6v7H5a2 2 0 01-2-2z"/></symbol>
+<symbol id="i-inbox" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.5 5h13a2 2 0 011.9 1.4L22 12v6a2 2 0 01-2 2H4a2 2 0 01-2-2v-6l1.6-5.6A2 2 0 015.5 5z"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v7c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V5z"/></symbol>
+<symbol id="i-call" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .4 2 .7 2.9a2 2 0 01-.5 2.1L8 10a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.5c.9.3 1.9.6 2.9.7a2 2 0 011.7 2z"/></symbol>
+</defs>
 </svg>
 
-<!-- ========= TOP BAR ========= -->
 <header class="topbar">
-  <div class="wrap tb-row">
-    <div class="logo" onclick="scrollTo({top:0,behavior:'smooth'})">
-      <div class="logo-mark"><svg width="20" height="20"><use href="#i-sword"/></svg></div>
-      <div class="logo-txt">Paper Arms<small>ШКОЛА №43 • ТЮМЕНЬ</small></div>
-    </div>
-    <nav class="topmenu">
-      <button onclick="go('catalog')"><svg width="15" height="15"><use href="#i-cart"/></svg>Каталог</button>
-      <button onclick="go('news')"><svg width="15" height="15"><use href="#i-news"/></svg>Новости</button>
-      <button onclick="go('reviews')"><svg width="15" height="15"><use href="#i-star"/></svg>Отзывы</button>
-      <button onclick="go('rules')"><svg width="15" height="15"><use href="#i-shield"/></svg>Правила</button>
-      <button onclick="go('about')"><svg width="15" height="15"><use href="#i-info"/></svg>О нас</button>
-    </nav>
-    <div class="tb-actions" id="nav"></div>
-    <button class="burger" onclick="openM('menuModal')" aria-label="Меню">
-      <svg width="20" height="20"><use href="#i-menu"/></svg>
-    </button>
-  </div>
+<div class="wrap tb-row">
+<div class="logo" onclick="scrollTo({top:0,behavior:'smooth'})">
+<div class="logo-mark"><svg width="20" height="20"><use href="#i-pistol"/></svg></div>
+<div class="logo-txt">Paper Arms<small>ШКОЛА №43 • ТЮМЕНЬ</small></div>
+</div>
+<nav class="topmenu">
+<button onclick="go('catalog')"><svg width="15" height="15"><use href="#i-cart"/></svg>Каталог</button>
+<button onclick="go('news')"><svg width="15" height="15"><use href="#i-news"/></svg>Новости</button>
+<button onclick="go('reviews')"><svg width="15" height="15"><use href="#i-star"/></svg>Отзывы</button>
+<button onclick="go('rules')"><svg width="15" height="15"><use href="#i-shield"/></svg>Правила</button>
+<button onclick="go('about')"><svg width="15" height="15"><use href="#i-info"/></svg>О нас</button>
+</nav>
+<div class="tb-actions" id="nav"></div>
+<button class="burger" onclick="openM('menuModal')"><svg width="20" height="20"><use href="#i-menu"/></svg></button>
+</div>
 </header>
 
 <main>
 <div class="wrap">
+<section class="hero">
+<div class="hero-badge"><svg width="13" height="13"><use href="#i-pin"/></svg>Только школа №43, Тюмень</div>
+<h1>Бумажные <span class="gr">пистолеты</span><br>и пулемёты</h1>
+<p>Пистолеты, автоматы, винтовки. Всё из бумаги. От 20₽. Доставка до парты.</p>
+<div class="hero-btns">
+<button class="btn btn-p" onclick="go('catalog')"><svg width="15" height="15"><use href="#i-cart"/></svg>В каталог</button>
+<button class="btn" onclick="go('news')"><svg width="15" height="15"><use href="#i-news"/></svg>Новости</button>
+</div>
+</section>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-badge">
-      <svg width="13" height="13"><use href="#i-pin"/></svg>
-      Только школа №43, Тюмень
-    </div>
-    <h1>Бумажное <span class="gr">оружие</span><br>ручной работы</h1>
-    <p>Мечи, катаны, пистолеты и сюрикены. Сделано учениками, доставка до парты.</p>
-    <div class="hero-btns">
-      <button class="btn btn-p" onclick="go('catalog')">
-        <svg width="15" height="15"><use href="#i-cart"/></svg>В каталог
-      </button>
-      <button class="btn" onclick="go('news')">
-        <svg width="15" height="15"><use href="#i-news"/></svg>Новости
-      </button>
-    </div>
-  </section>
+<div class="stats">
+<div class="stat"><div class="ic"><svg width="20" height="20"><use href="#i-box"/></svg></div><div class="num" id="stProducts">0</div><div class="lbl">Моделей</div></div>
+<div class="stat"><div class="ic"><svg width="20" height="20"><use href="#i-check"/></svg></div><div class="num" id="stOrders">0</div><div class="lbl">Заказов</div></div>
+<div class="stat"><div class="ic"><svg width="20" height="20"><use href="#i-star"/></svg></div><div class="num">4.9</div><div class="lbl">Рейтинг</div></div>
+<div class="stat"><div class="ic"><svg width="20" height="20"><use href="#i-shield"/></svg></div><div class="num">43</div><div class="lbl">Школа №</div></div>
+</div>
 
-  <!-- STATS -->
-  <div class="stats">
-    <div class="stat">
-      <div class="ic"><svg width="20" height="20"><use href="#i-box"/></svg></div>
-      <div class="num" id="stProducts">0</div>
-      <div class="lbl">Товаров</div>
-    </div>
-    <div class="stat">
-      <div class="ic"><svg width="20" height="20"><use href="#i-check"/></svg></div>
-      <div class="num">1 247</div>
-      <div class="lbl">Заказов</div>
-    </div>
-    <div class="stat">
-      <div class="ic"><svg width="20" height="20"><use href="#i-star"/></svg></div>
-      <div class="num">4.9</div>
-      <div class="lbl">Рейтинг</div>
-    </div>
-    <div class="stat">
-      <div class="ic"><svg width="20" height="20"><use href="#i-shield"/></svg></div>
-      <div class="num">43</div>
-      <div class="lbl">Школа №</div>
-    </div>
-  </div>
+<div class="featured">
+<div class="ftxt">
+<div class="flabel"><svg width="12" height="12"><use href="#i-flame"/></svg>Хит недели</div>
+<h2>АК-47 за 30₽</h2>
+<p>Классический автомат Калашникова из плотной бумаги. Прочный, узнаваемый силуэт.</p>
+<button class="btn btn-p" onclick="orderProduct(3)"><svg width="15" height="15"><use href="#i-cart"/></svg>Заказать за 30 ₽</button>
+</div>
+<div class="ficon"><svg width="100" height="100"><use href="#i-machinegun"/></svg></div>
+</div>
 
-  <!-- FEATURED -->
-  <div class="featured">
-    <div class="ftxt">
-      <div class="flabel">
-        <svg width="12" height="12"><use href="#i-flame"/></svg>Хит недели
-      </div>
-      <h2>Бумажная катана 40 см</h2>
-      <p>Длинный меч самурая. Прочный и лёгкий. Осталось 4 штуки!</p>
-      <button class="btn btn-p" onclick="orderProduct(5)">
-        <svg width="15" height="15"><use href="#i-cart"/></svg>Заказать за 280 ₽
-      </button>
-    </div>
-    <div class="ficon"><svg width="100" height="100"><use href="#i-katana"/></svg></div>
-  </div>
+<section id="catalog">
+<div class="sec-head">
+<div>
+<div class="sec-title"><div class="ic"><svg width="19" height="19"><use href="#i-cart"/></svg></div>Каталог</div>
+<div class="sec-sub">Пистолеты и пулемёты ручной работы</div>
+</div>
+<button class="btn btn-sm" onclick="randomPick()"><svg width="13" height="13"><use href="#i-dice"/></svg>Случайное</button>
+</div>
+<div class="filters">
+<div class="ff"><svg width="15" height="15" class="ic"><use href="#i-search"/></svg><input type="text" id="search" placeholder="Поиск..."></div>
+<div class="ff"><svg width="15" height="15" class="ic"><use href="#i-sort"/></svg><select id="sort"><option value="new">Сначала новые</option><option value="cheap">Дешёвые</option><option value="expensive">Дорогие</option><option value="name">По названию</option></select></div>
+<div class="ff"><svg width="15" height="15" class="ic"><use href="#i-coin"/></svg><input type="number" id="maxPrice" placeholder="Макс. цена" inputmode="numeric"></div>
+</div>
+<div class="chips" id="chips"></div>
+<div class="grid" id="products"></div>
+</section>
 
-  <!-- CATALOG -->
-  <section id="catalog">
-    <div class="sec-head">
-      <div>
-        <div class="sec-title">
-          <div class="ic"><svg width="19" height="19"><use href="#i-cart"/></svg></div>
-          Каталог
-        </div>
-        <div class="sec-sub">Сделано вручную учениками</div>
-      </div>
-      <button class="btn btn-sm" onclick="randomPick()">
-        <svg width="13" height="13"><use href="#i-dice"/></svg>Случайное
-      </button>
-    </div>
+<section id="news">
+<div class="sec-head"><div><div class="sec-title"><div class="ic"><svg width="19" height="19"><use href="#i-news"/></svg></div>Новости</div></div></div>
+<div class="news-grid" id="news-grid"></div>
+</section>
 
-    <div class="filters">
-      <div class="ff">
-        <svg width="15" height="15" class="ic"><use href="#i-search"/></svg>
-        <input type="text" id="search" placeholder="Поиск...">
-      </div>
-      <div class="ff">
-        <svg width="15" height="15" class="ic"><use href="#i-sort"/></svg>
-        <select id="sort">
-          <option value="new">Сначала новые</option>
-          <option value="cheap">Дешёвые</option>
-          <option value="expensive">Дорогие</option>
-          <option value="name">По названию</option>
-        </select>
-      </div>
-      <div class="ff">
-        <svg width="15" height="15" class="ic"><use href="#i-coin"/></svg>
-        <input type="number" id="maxPrice" placeholder="Макс. цена">
-      </div>
-    </div>
+<section id="reviews">
+<div class="sec-head"><div><div class="sec-title"><div class="ic"><svg width="19" height="19"><use href="#i-star"/></svg></div>Отзывы</div></div></div>
+<div class="reviews-grid" id="reviews-grid"></div>
+</section>
 
-    <div class="chips" id="chips"></div>
-    <div class="grid" id="products"></div>
-  </section>
+<section id="rules">
+<div class="sec-head"><div><div class="sec-title"><div class="ic"><svg width="19" height="19"><use href="#i-shield"/></svg></div>Правила</div></div></div>
+<div class="rules">
+<div class="rule"><div class="rule-head"><div class="rule-num">1</div><h4>Только школа №43</h4></div><p>Продажа и передача товара только на территории школы №43, г. Тюмень.</p></div>
+<div class="rule"><div class="rule-head"><div class="rule-num">2</div><h4>Безопасность</h4></div><p>Всё оружие бумажное. Не направляй на людей в лицо.</p></div>
+<div class="rule"><div class="rule-head"><div class="rule-num">3</div><h4>Оплата</h4></div><p>Наличными на перемене или переводом на карту продавца.</p></div>
+<div class="rule"><div class="rule-head"><div class="rule-num">4</div><h4>Возврат</h4></div><p>Если порвался при получении — заменим бесплатно в течение дня.</p></div>
+<div class="rule"><div class="rule-head"><div class="rule-num">5</div><h4>Уважение</h4></div><p>Не оскорбляй других. Нарушителей — в бан.</p></div>
+<div class="rule"><div class="rule-head"><div class="rule-num">6</div><h4>Учёба важнее</h4></div><p>Магазин — хобби. Уроки делать обязательно!</p></div>
+</div>
+</section>
 
-  <!-- NEWS -->
-  <section id="news">
-    <div class="sec-head">
-      <div>
-        <div class="sec-title">
-          <div class="ic"><svg width="19" height="19"><use href="#i-news"/></svg></div>
-          Новости
-        </div>
-        <div class="sec-sub">Акции и события школы</div>
-      </div>
-    </div>
-    <div class="news-grid" id="news-grid"></div>
-  </section>
+<section>
+<div class="sec-head"><div><div class="sec-title"><div class="ic"><svg width="19" height="19"><use href="#i-q"/></svg></div>Частые вопросы</div></div></div>
+<div class="faq" id="faq"></div>
+</section>
 
-  <!-- REVIEWS -->
-  <section id="reviews">
-    <div class="sec-head">
-      <div>
-        <div class="sec-title">
-          <div class="ic"><svg width="19" height="19"><use href="#i-star"/></svg></div>
-          Отзывы
-        </div>
-        <div class="sec-sub">Что говорят ученики</div>
-      </div>
-    </div>
-    <div class="reviews-grid" id="reviews-grid"></div>
-  </section>
-
-  <!-- RULES -->
-  <section id="rules">
-    <div class="sec-head">
-      <div>
-        <div class="sec-title">
-          <div class="ic"><svg width="19" height="19"><use href="#i-shield"/></svg></div>
-          Правила
-        </div>
-      </div>
-    </div>
-    <div class="rules">
-      <div class="rule">
-        <div class="rule-head"><div class="rule-num">1</div><h4>Только школа №43</h4></div>
-        <p>Продажа и передача товара только на территории школы №43, г. Тюмень.</p>
-      </div>
-      <div class="rule">
-        <div class="rule-head"><div class="rule-num">2</div><h4>Безопасность</h4></div>
-        <p>Не направляй на людей в лицо и не используй на уроках.</p>
-      </div>
-      <div class="rule">
-        <div class="rule-head"><div class="rule-num">3</div><h4>Оплата</h4></div>
-        <p>Наличными на перемене или переводом на карту продавца.</p>
-      </div>
-      <div class="rule">
-        <div class="rule-head"><div class="rule-num">4</div><h4>Возврат</h4></div>
-        <p>Если порвался при получении — заменим бесплатно в течение дня.</p>
-      </div>
-      <div class="rule">
-        <div class="rule-head"><div class="rule-num">5</div><h4>Уважение</h4></div>
-        <p>Не оскорбляй других. Нарушителей — в бан.</p>
-      </div>
-      <div class="rule">
-        <div class="rule-head"><div class="rule-num">6</div><h4>Учёба важнее</h4></div>
-        <p>Магазин — хобби. Уроки делать обязательно!</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section>
-    <div class="sec-head">
-      <div>
-        <div class="sec-title">
-          <div class="ic"><svg width="19" height="19"><use href="#i-q"/></svg></div>
-          Частые вопросы
-        </div>
-      </div>
-    </div>
-    <div class="faq" id="faq"></div>
-  </section>
-
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="sec-head">
-      <div>
-        <div class="sec-title">
-          <div class="ic"><svg width="19" height="19"><use href="#i-info"/></svg></div>
-          О магазине
-        </div>
-      </div>
-    </div>
-    <div class="about-grid">
-      <div class="about-card">
-        <div class="ic"><svg width="22" height="22"><use href="#i-pin"/></svg></div>
-        <h4>Где мы</h4>
-        <p>Школа №43, Тюмень. Большая перемена, у столовой на 2 этаже.</p>
-      </div>
-      <div class="about-card">
-        <div class="ic"><svg width="22" height="22"><use href="#i-clock"/></svg></div>
-        <h4>Время работы</h4>
-        <p>Перемены: 09:40–09:50, 11:30–11:50, 13:20–13:35.</p>
-      </div>
-      <div class="about-card">
-        <div class="ic"><svg width="22" height="22"><use href="#i-chat"/></svg></div>
-        <h4>Связь</h4>
-        <p>Оставь номер при заказе или напиши в чат.</p>
-      </div>
-      <div class="about-card">
-        <div class="ic"><svg width="22" height="22"><use href="#i-gift"/></svg></div>
-        <h4>Бонусы</h4>
-        <p>Купил 3 товара — 4-й со скидкой 30%!</p>
-      </div>
-    </div>
-  </section>
-
+<section id="about">
+<div class="sec-head"><div><div class="sec-title"><div class="ic"><svg width="19" height="19"><use href="#i-info"/></svg></div>О магазине</div></div></div>
+<div class="about-grid">
+<div class="about-card"><div class="ic"><svg width="22" height="22"><use href="#i-pin"/></svg></div><h4>Где мы</h4><p>Школа №43, Тюмень. Большая перемена, у столовой на 2 этаже.</p></div>
+<div class="about-card"><div class="ic"><svg width="22" height="22"><use href="#i-clock"/></svg></div><h4>Время работы</h4><p>Перемены: 09:40–09:50, 11:30–11:50, 13:20–13:35.</p></div>
+<div class="about-card"><div class="ic"><svg width="22" height="22"><use href="#i-chat"/></svg></div><h4>Связь</h4><p>Оставь номер при заказе — продавец позвонит.</p></div>
+<div class="about-card"><div class="ic"><svg width="22" height="22"><use href="#i-gift"/></svg></div><h4>Бонусы</h4><p>Купил 3 товара — 4-й со скидкой 30%!</p></div>
+</div>
+</section>
 </div>
 </main>
 
-<!-- FOOTER -->
 <footer>
-  <div class="wrap">
-    <div class="foot-grid">
-      <div class="foot-col">
-        <h4>Paper Arms</h4>
-        <p>Магазин бумажного оружия ручной работы. Только школа №43, Тюмень.</p>
-      </div>
-      <div class="foot-col">
-        <h4>Разделы</h4>
-        <a onclick="go('catalog')">Каталог</a>
-        <a onclick="go('news')">Новости</a>
-        <a onclick="go('reviews')">Отзывы</a>
-        <a onclick="go('rules')">Правила</a>
-      </div>
-      <div class="foot-col">
-        <h4>Помощь</h4>
-        <a onclick="openChat()">Чат с админом</a>
-        <a onclick="toast('Наличные или перевод')">Оплата</a>
-        <a onclick="toast('Доставка до парты')">Доставка</a>
-        <a onclick="toast('Возврат в течение дня')">Возврат</a>
-      </div>
-      <div class="foot-col">
-        <h4>Ещё</h4>
-        <a onclick="scrollTo({top:0,behavior:'smooth'})">Наверх</a>
-        <a onclick="go('faq')">FAQ</a>
-        <a onclick="go('about')">О нас</a>
-      </div>
-    </div>
-    <div class="copy">© 2025 Paper Arms • Школа №43, Тюмень</div>
-  </div>
+<div class="wrap">
+<div class="foot-grid">
+<div class="foot-col"><h4>Paper Arms</h4><p>Магазин бумажных пистолетов и пулемётов. Только школа №43, Тюмень.</p></div>
+<div class="foot-col"><h4>Разделы</h4><a onclick="go('catalog')">Каталог</a><a onclick="go('news')">Новости</a><a onclick="go('reviews')">Отзывы</a><a onclick="go('rules')">Правила</a></div>
+<div class="foot-col"><h4>Помощь</h4><a onclick="openChat()">Чат с админом</a><a onclick="toast('Наличные или перевод')">Оплата</a><a onclick="toast('Доставка до парты')">Доставка</a><a onclick="toast('Возврат в течение дня')">Возврат</a></div>
+<div class="foot-col"><h4>Ещё</h4><a onclick="scrollTo({top:0,behavior:'smooth'})">Наверх</a><a onclick="go('faq')">FAQ</a><a onclick="go('about')">О нас</a></div>
+</div>
+<div class="copy">© 2025 Paper Arms • Школа №43, Тюмень</div>
+</div>
 </footer>
 
-<!-- ========= BOTTOM NAV (mobile only) ========= -->
 <nav class="bottomnav">
-  <button class="bnav-btn" data-nav="home" onclick="scrollTo({top:0,behavior:'smooth'})">
-    <svg width="22" height="22"><use href="#i-home"/></svg>
-    Главная
-  </button>
-  <button class="bnav-btn" data-nav="catalog" onclick="go('catalog')">
-    <svg width="22" height="22"><use href="#i-cart"/></svg>
-    Каталог
-  </button>
-  <button class="bnav-btn" data-nav="news" onclick="go('news')">
-    <svg width="22" height="22"><use href="#i-news"/></svg>
-    Новости
-  </button>
-  <button class="bnav-btn" onclick="openChat()">
-    <span class="ic">
-      <svg width="22" height="22"><use href="#i-chat"/></svg>
-      <span class="badge-dot" id="chatBadgeMobile">0</span>
-    </span>
-    Чат
-  </button>
-  <button class="bnav-btn" onclick="openM('menuModal')">
-    <svg width="22" height="22"><use href="#i-menu"/></svg>
-    Ещё
-  </button>
+<button class="bnav-btn" data-nav="home" onclick="scrollTo({top:0,behavior:'smooth'})"><svg width="22" height="22"><use href="#i-home"/></svg>Главная</button>
+<button class="bnav-btn" data-nav="catalog" onclick="go('catalog')"><svg width="22" height="22"><use href="#i-cart"/></svg>Каталог</button>
+<button class="bnav-btn" data-nav="news" onclick="go('news')"><svg width="22" height="22"><use href="#i-news"/></svg>Новости</button>
+<button class="bnav-btn" onclick="openChat()"><span class="ic"><svg width="22" height="22"><use href="#i-chat"/></svg><span class="badge-dot" id="chatBadgeMobile">0</span></span>Чат</button>
+<button class="bnav-btn" onclick="openM('menuModal')"><svg width="22" height="22"><use href="#i-menu"/></svg>Ещё</button>
 </nav>
 
-<!-- CHAT FAB (desktop only, показан через CSS) -->
 <button class="chat-fab" id="chatFab" onclick="openChat()">
-  <svg class="ico-chat" width="22" height="22"><use href="#i-chat"/></svg>
-  <svg class="ico-close" width="22" height="22"><use href="#i-close"/></svg>
-  <span class="badge-dot" id="chatBadge">0</span>
+<svg class="ico-chat" width="22" height="22"><use href="#i-chat"/></svg>
+<span class="badge-dot" id="chatBadge">0</span>
 </button>
 
-<!-- CHAT PANEL -->
 <div class="chat-panel" id="chatPanel">
-  <aside class="chat-side" id="chatSide"></aside>
-  <div class="chat-list-view" id="chatListView">
-    <div class="chat-list-head">
-      <button class="chat-back" onclick="closeChat()"><svg width="20" height="20"><use href="#i-arrow-l"/></svg></button>
-      <div class="ttl">Диалоги</div>
-    </div>
-    <div id="chatUsers"></div>
-  </div>
-  <div class="chat-main">
-    <div class="chat-head" id="chatHead"></div>
-    <div class="chat-body" id="chatBody"></div>
-    <div class="chat-input" id="chatInputRow">
-      <input type="text" id="chatInput" placeholder="Сообщение..." autocomplete="off">
-      <button onclick="sendChat()" title="Отправить">
-        <svg width="18" height="18"><use href="#i-send"/></svg>
-      </button>
-    </div>
-  </div>
+<aside class="chat-side" id="chatSide"></aside>
+<div class="chat-list-view">
+<div class="chat-list-head"><button class="chat-back" onclick="closeChat()"><svg width="20" height="20"><use href="#i-arrow-l"/></svg></button><div class="ttl">Диалоги</div></div>
+<div id="chatUsers"></div>
+</div>
+<div class="chat-main">
+<div class="chat-head" id="chatHead"></div>
+<div class="chat-body" id="chatBody"></div>
+<div class="chat-input" id="chatInputRow"><input type="text" id="chatInput" placeholder="Сообщение..." autocomplete="off"><button onclick="sendChat()"><svg width="18" height="18"><use href="#i-send"/></svg></button></div>
+</div>
 </div>
 
-<!-- MENU MODAL (mobile) -->
-<div class="ov" id="menuModal">
-  <div class="md">
-    <button class="md-close" onclick="closeM('menuModal')"><svg width="18" height="18"><use href="#i-close"/></svg></button>
-    <h2><span class="ic"><svg width="18" height="18"><use href="#i-menu"/></svg></span>Меню</h2>
-    <div style="display:grid;gap:8px;margin-top:6px">
-      <button class="btn btn-block" style="justify-content:flex-start" onclick="closeM('menuModal');go('catalog')"><svg width="16" height="16"><use href="#i-cart"/></svg>Каталог</button>
-      <button class="btn btn-block" style="justify-content:flex-start" onclick="closeM('menuModal');go('news')"><svg width="16" height="16"><use href="#i-news"/></svg>Новости</button>
-      <button class="btn btn-block" style="justify-content:flex-start" onclick="closeM('menuModal');go('reviews')"><svg width="16" height="16"><use href="#i-star"/></svg>Отзывы</button>
-      <button class="btn btn-block" style="justify-content:flex-start" onclick="closeM('menuModal');go('rules')"><svg width="16" height="16"><use href="#i-shield"/></svg>Правила</button>
-      <button class="btn btn-block" style="justify-content:flex-start" onclick="closeM('menuModal');go('faq')"><svg width="16" height="16"><use href="#i-q"/></svg>Частые вопросы</button>
-      <button class="btn btn-block" style="justify-content:flex-start" onclick="closeM('menuModal');go('about')"><svg width="16" height="16"><use href="#i-info"/></svg>О нас</button>
-    </div>
-    <div id="menuAdmin" style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border)"></div>
-  </div>
+<div class="ov" id="menuModal"><div class="md">
+<button class="md-close" onclick="closeM('menuModal')"><svg width="18" height="18"><use href="#i-close"/></svg></button>
+<h2><span class="ic"><svg width="18" height="18"><use href="#i-menu"/></svg></span>Меню</h2>
+<div style="display:grid;gap:8px;margin-top:6px">
+<button class="btn btn-block" style="justify-content:flex-start" onclick="closeM('menuModal');go('catalog')"><svg width="16" height="16"><use href="#i-cart"/></svg>Каталог</button>
+<button class="btn btn-block" style="justify-content:flex-start" onclick="closeM('menuModal');go('news')"><svg width="16" height="16"><use href="#i-news"/></svg>Новости</button>
+<button class="btn btn-block" style="justify-content:flex-start" onclick="closeM('menuModal');go('reviews')"><svg width="16" height="16"><use href="#i-star"/></svg>Отзывы</button>
+<button class="btn btn-block" style="justify-content:flex-start" onclick="closeM('menuModal');go('rules')"><svg width="16" height="16"><use href="#i-shield"/></svg>Правила</button>
+<button class="btn btn-block" style="justify-content:flex-start" onclick="closeM('menuModal');go('faq')"><svg width="16" height="16"><use href="#i-q"/></svg>FAQ</button>
+<button class="btn btn-block" style="justify-content:flex-start" onclick="closeM('menuModal');go('about')"><svg width="16" height="16"><use href="#i-info"/></svg>О нас</button>
 </div>
+<div id="menuAdmin" style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border)"></div>
+</div></div>
 
-<!-- ORDER MODAL -->
-<div class="ov" id="orderModal">
-  <div class="md">
-    <button class="md-close" onclick="closeM('orderModal')"><svg width="18" height="18"><use href="#i-close"/></svg></button>
-    <h2><span class="ic"><svg width="18" height="18"><use href="#i-phone"/></svg></span>Оформление заказа</h2>
-    <p class="sub">Введите номер — продавец свяжется в течение дня.</p>
-    <label>Ваш номер телефона</label>
-    <input type="tel" id="phoneInput" placeholder="+7 999 123-45-67" autocomplete="off" inputmode="tel">
-    <button class="btn btn-p btn-block" onclick="submitOrder()">
-      Продолжить <svg width="15" height="15"><use href="#i-arrow-r"/></svg>
-    </button>
-  </div>
-</div>
+<div class="ov" id="orderModal"><div class="md">
+<button class="md-close" onclick="closeM('orderModal')"><svg width="18" height="18"><use href="#i-close"/></svg></button>
+<h2><span class="ic"><svg width="18" height="18"><use href="#i-phone"/></svg></span>Оформление заказа</h2>
+<p class="sub">Введите номер — продавец свяжется в течение дня.</p>
+<label>Ваш номер телефона</label>
+<input type="tel" id="phoneInput" placeholder="+7 999 123-45-67" autocomplete="off" inputmode="tel">
+<button class="btn btn-p btn-block" onclick="submitOrder()">Продолжить <svg width="15" height="15"><use href="#i-arrow-r"/></svg></button>
+</div></div>
 
-<!-- SUCCESS MODAL -->
-<div class="ov" id="successModal">
-  <div class="md">
-    <button class="md-close" onclick="closeM('successModal')"><svg width="18" height="18"><use href="#i-close"/></svg></button>
-    <div class="success-box">
-      <div class="success-icon"><svg width="36" height="36"><use href="#i-check"/></svg></div>
-      <h3>Заказ принят!</h3>
-      <p>Мы свяжемся с вами по номеру</p>
-      <div class="hl" id="successPhone">+7 XXX XXX-XX-XX</div>
-      <p>Вам позвонят в течение дня</p>
-    </div>
-    <button class="btn btn-p btn-block" style="margin-top:14px" onclick="closeM('successModal')">Понятно</button>
-  </div>
+<div class="ov" id="successModal"><div class="md">
+<button class="md-close" onclick="closeM('successModal')"><svg width="18" height="18"><use href="#i-close"/></svg></button>
+<div class="success-box">
+<div class="success-icon"><svg width="36" height="36"><use href="#i-check"/></svg></div>
+<h3>Заказ принят!</h3>
+<p>Мы свяжемся с вами по номеру</p>
+<div class="hl" id="successPhone">+7 XXX XXX-XX-XX</div>
+<p>Вам позвонят в течение дня</p>
 </div>
+<button class="btn btn-p btn-block" style="margin-top:14px" onclick="closeM('successModal')">Понятно</button>
+</div></div>
 
-<!-- CHAT NAME MODAL -->
-<div class="ov" id="nameModal">
-  <div class="md">
-    <button class="md-close" onclick="closeM('nameModal')"><svg width="18" height="18"><use href="#i-close"/></svg></button>
-    <h2><span class="ic"><svg width="18" height="18"><use href="#i-user"/></svg></span>Как вас зовут?</h2>
-    <p class="sub">Представьтесь, чтобы админ знал, с кем общается.</p>
-    <label>Ваше имя</label>
-    <input type="text" id="chatNameInput" placeholder="Например: Иван" autocomplete="off">
-    <button class="btn btn-p btn-block" onclick="submitChatName()">
-      Начать чат <svg width="15" height="15"><use href="#i-arrow-r"/></svg>
-    </button>
-  </div>
-</div>
+<div class="ov" id="nameModal"><div class="md">
+<button class="md-close" onclick="closeM('nameModal')"><svg width="18" height="18"><use href="#i-close"/></svg></button>
+<h2><span class="ic"><svg width="18" height="18"><use href="#i-user"/></svg></span>Как вас зовут?</h2>
+<p class="sub">Представьтесь, чтобы админ знал, с кем общается.</p>
+<label>Ваше имя</label>
+<input type="text" id="chatNameInput" placeholder="Например: Иван" autocomplete="off">
+<button class="btn btn-p btn-block" onclick="submitChatName()">Начать чат <svg width="15" height="15"><use href="#i-arrow-r"/></svg></button>
+</div></div>
 
-<!-- ADD PRODUCT MODAL -->
-<div class="ov" id="addModal">
-  <div class="md wide">
-    <button class="md-close" onclick="closeM('addModal')"><svg width="18" height="18"><use href="#i-close"/></svg></button>
-    <h2><span class="ic"><svg width="18" height="18"><use href="#i-plus"/></svg></span>Добавить оружие</h2>
-    <label>Название</label>
-    <input type="text" id="pName" placeholder="Бумажная катана">
-    <label>Иконка</label>
-    <div class="icon-picker" id="iconPicker"></div>
-    <label>Описание</label>
-    <textarea id="pDesc" rows="2" placeholder="Острое, крепкое"></textarea>
-    <label>Категория</label>
-    <select id="pCat">
-      <option>Мечи</option><option>Пистолеты</option>
-      <option>Метательное</option><option>Ножи</option><option>Другое</option>
-    </select>
-    <label>Цена (₽)</label>
-    <input type="number" id="pPrice" placeholder="150" min="1" inputmode="numeric">
-    <button class="btn btn-p btn-block" onclick="addProduct()">
-      <svg width="15" height="15"><use href="#i-check"/></svg>Добавить
-    </button>
-  </div>
-</div>
+<div class="ov" id="addModal"><div class="md wide">
+<button class="md-close" onclick="closeM('addModal')"><svg width="18" height="18"><use href="#i-close"/></svg></button>
+<h2><span class="ic"><svg width="18" height="18"><use href="#i-plus"/></svg></span>Добавить модель</h2>
+<label>Название</label><input type="text" id="pName" placeholder="Глок-18">
+<label>Иконка</label><div class="icon-picker" id="iconPicker"></div>
+<label>Описание</label><textarea id="pDesc" rows="2" placeholder="Бумажный пистолет"></textarea>
+<label>Категория</label><select id="pCat"><option>Пистолеты</option><option>Пулемёты</option></select>
+<label>Цена (₽)</label><input type="number" id="pPrice" placeholder="20" min="1" inputmode="numeric">
+<button class="btn btn-p btn-block" onclick="addProduct()"><svg width="15" height="15"><use href="#i-check"/></svg>Добавить</button>
+</div></div>
 
-<!-- ADD NEWS MODAL -->
-<div class="ov" id="newsModal">
-  <div class="md">
-    <button class="md-close" onclick="closeM('newsModal')"><svg width="18" height="18"><use href="#i-close"/></svg></button>
-    <h2><span class="ic"><svg width="18" height="18"><use href="#i-news"/></svg></span>Добавить новость</h2>
-    <label>Заголовок</label>
-    <input type="text" id="nTitle" placeholder="Новая партия мечей!">
-    <label>Текст</label>
-    <textarea id="nText" rows="3" placeholder="Сегодня привезли..."></textarea>
-    <label>Категория</label>
-    <select id="nCat">
-      <option>🔥 Акция</option><option>🆕 Новинка</option>
-      <option>📢 Объявление</option><option>🎉 Событие</option>
-    </select>
-    <button class="btn btn-p btn-block" onclick="addNews()">
-      <svg width="15" height="15"><use href="#i-check"/></svg>Опубликовать
-    </button>
-  </div>
-</div>
+<div class="ov" id="newsModal"><div class="md">
+<button class="md-close" onclick="closeM('newsModal')"><svg width="18" height="18"><use href="#i-close"/></svg></button>
+<h2><span class="ic"><svg width="18" height="18"><use href="#i-news"/></svg></span>Добавить новость</h2>
+<label>Заголовок</label><input type="text" id="nTitle" placeholder="Новая партия!">
+<label>Текст</label><textarea id="nText" rows="3" placeholder="Сегодня привезли..."></textarea>
+<label>Категория</label><select id="nCat"><option>🔥 Акция</option><option>🆕 Новинка</option><option>📢 Объявление</option><option>🎉 Событие</option></select>
+<button class="btn btn-p btn-block" onclick="addNews()"><svg width="15" height="15"><use href="#i-check"/></svg>Опубликовать</button>
+</div></div>
 
-<!-- ADMIN PANEL -->
-<div class="ov" id="adminModal">
-  <div class="md wide">
-    <button class="md-close" onclick="closeM('adminModal')"><svg width="18" height="18"><use href="#i-close"/></svg></button>
-    <h2><span class="ic"><svg width="18" height="18"><use href="#i-crown"/></svg></span>Панель админа</h2>
-    <div class="tabs">
-      <button class="tab active" onclick="switchTab(event,'tabProducts')">
-        <svg width="14" height="14"><use href="#i-box"/></svg>Товары
-      </button>
-      <button class="tab" onclick="switchTab(event,'tabNews')">
-        <svg width="14" height="14"><use href="#i-news"/></svg>Новости
-      </button>
-    </div>
-    <div id="tabProducts">
-      <button class="btn btn-p btn-block" style="margin-bottom:12px" onclick="openM('addModal')">
-        <svg width="14" height="14"><use href="#i-plus"/></svg>Добавить товар
-      </button>
-      <div id="adminProducts"></div>
-    </div>
-    <div id="tabNews" style="display:none">
-      <button class="btn btn-p btn-block" style="margin-bottom:12px" onclick="openM('newsModal')">
-        <svg width="14" height="14"><use href="#i-plus"/></svg>Добавить новость
-      </button>
-      <div id="adminNews"></div>
-    </div>
-  </div>
+<div class="ov" id="adminModal"><div class="md wide">
+<button class="md-close" onclick="closeM('adminModal')"><svg width="18" height="18"><use href="#i-close"/></svg></button>
+<h2><span class="ic"><svg width="18" height="18"><use href="#i-crown"/></svg></span>Панель админа</h2>
+<div class="tabs">
+<button class="tab active" onclick="switchTab(event,'tabOrders')"><svg width="14" height="14"><use href="#i-inbox"/></svg>Заказы<span class="cnt" id="tabOrdersCnt" style="display:none">0</span></button>
+<button class="tab" onclick="switchTab(event,'tabProducts')"><svg width="14" height="14"><use href="#i-box"/></svg>Товары</button>
+<button class="tab" onclick="switchTab(event,'tabNews')"><svg width="14" height="14"><use href="#i-news"/></svg>Новости</button>
 </div>
+<div id="tabOrders"><div id="adminOrders"></div></div>
+<div id="tabProducts" style="display:none">
+<button class="btn btn-p btn-block" style="margin-bottom:12px" onclick="openM('addModal')"><svg width="14" height="14"><use href="#i-plus"/></svg>Добавить модель</button>
+<div id="adminProducts"></div>
+</div>
+<div id="tabNews" style="display:none">
+<button class="btn btn-p btn-block" style="margin-bottom:12px" onclick="openM('newsModal')"><svg width="14" height="14"><use href="#i-plus"/></svg>Добавить новость</button>
+<div id="adminNews"></div>
+</div>
+</div></div>
 
 <script>
-/* =========================================================
-   DEVICE DETECTION
-========================================================= */
-(function detectDevice(){
-  const ua = navigator.userAgent || '';
-  const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
-  const isMobileUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile/i.test(ua);
-  const isSmallScreen = window.innerWidth < 900;
-  const isMobile = isMobileUA || (isTouch && isSmallScreen);
-
-  document.body.classList.add(isMobile ? 'is-mobile' : 'is-desktop');
-  document.documentElement.dataset.device = isMobile ? 'mobile' : 'desktop';
-
-  // Обновление при resize
-  let raf;
-  window.addEventListener('resize', () => {
-    if (raf) return;
-    raf = requestAnimationFrame(() => {
-      raf = null;
-      const nowMobile = window.innerWidth < 900;
-      document.body.classList.toggle('is-mobile', nowMobile);
-      document.body.classList.toggle('is-desktop', !nowMobile);
-      document.documentElement.dataset.device = nowMobile ? 'mobile' : 'desktop';
-    });
-  });
+/* ============ DEVICE ============ */
+(function(){
+  const ua=navigator.userAgent||'';const t=('ontouchstart'in window)||(navigator.maxTouchPoints>0);
+  const m=/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile/i.test(ua);
+  const s=window.innerWidth<900;const mob=m||(t&&s);
+  document.body.classList.add(mob?'is-mobile':'is-desktop');
+  let raf;window.addEventListener('resize',()=>{if(raf)return;raf=requestAnimationFrame(()=>{raf=null;const nm=window.innerWidth<900;document.body.classList.toggle('is-mobile',nm);document.body.classList.toggle('is-desktop',!nm);});});
 })();
+const IS_MOBILE=()=>document.body.classList.contains('is-mobile');
 
-const IS_MOBILE = () => document.body.classList.contains('is-mobile');
-
-/* =========================================================
-   HELPERS
-========================================================= */
-const $ = id => document.getElementById(id);
-const esc = s => String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const go = id => document.getElementById(id)?.scrollIntoView({behavior:'smooth',block:'start'});
-const DB = {
-  get(k,d){try{const v=JSON.parse(localStorage.getItem(k));return v===null?d:v}catch{return d}},
-  set(k,v){localStorage.setItem(k,JSON.stringify(v))}
-};
-const svg = (n,s) => `<svg width="${s}" height="${s}"><use href="#i-${n}"/></svg>`;
+/* ============ HELPERS ============ */
+const $=id=>document.getElementById(id);
+const esc=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const go=id=>document.getElementById(id)?.scrollIntoView({behavior:'smooth',block:'start'});
+const DB={get(k,d){try{const v=JSON.parse(localStorage.getItem(k));return v===null?d:v}catch{return d}},set(k,v){localStorage.setItem(k,JSON.stringify(v))}};
+const svg=(n,s)=>`<svg width="${s}" height="${s}"><use href="#i-${n}"/></svg>`;
+const ADMIN_KEY='!456иг8№=';
 
 function toast(msg){
   document.querySelector('.toast')?.remove();
-  const t = document.createElement('div');
-  t.className = 'toast';
-  t.innerHTML = svg('check',16) + esc(msg);
-  document.body.appendChild(t);
-  setTimeout(()=>t.remove(), 3000);
+  const t=document.createElement('div');t.className='toast';
+  t.innerHTML=svg('check',16)+esc(msg);document.body.appendChild(t);
+  setTimeout(()=>t.remove(),3000);
 }
-function openM(id){ $(id).classList.add('active'); document.body.style.overflow='hidden'; }
-function closeM(id){ $(id).classList.remove('active'); document.body.style.overflow=''; }
-document.querySelectorAll('.ov').forEach(o=>{
-  o.addEventListener('click', e=>{ if(e.target===o) closeM(o.id); });
-});
+function openM(id){$(id).classList.add('active');document.body.style.overflow='hidden';}
+function closeM(id){$(id).classList.remove('active');document.body.style.overflow='';}
+document.querySelectorAll('.ov').forEach(o=>{o.addEventListener('click',e=>{if(e.target===o)closeM(o.id);});});
 
-/* =========================================================
-   STATE
-========================================================= */
-let products = DB.get('pa_products', [
-  {id:1,name:'Бумажный меч',icon:'sword',desc:'Классический меч из листа А4',price:150,cat:'Мечи',sold:42,isNew:false},
-  {id:2,name:'Бумажный пистолет',icon:'pistol',desc:'Стреляет бумажными пульками на 3 метра',price:200,cat:'Пистолеты',sold:31,isNew:false},
-  {id:3,name:'Сюрикен',icon:'shuriken',desc:'Метательная звезда ниндзя',price:80,cat:'Метательное',sold:78,isNew:false},
-  {id:4,name:'Бумажный кинжал',icon:'knife',desc:'Компактный, помещается в рюкзак',price:100,cat:'Ножи',sold:24,isNew:false},
-  {id:5,name:'Бумажная катана',icon:'katana',desc:'Длинный меч самурая, 40 см',price:280,cat:'Мечи',sold:12,isNew:true},
-  {id:6,name:'Бумажный топор',icon:'axe',desc:'Тяжёлый двуручный',price:170,cat:'Мечи',sold:15,isNew:true},
-  {id:7,name:'Метательный нож',icon:'target',desc:'Летит точно в цель',price:90,cat:'Метательное',sold:53,isNew:false},
-  {id:8,name:'Мини-пистолет',icon:'bomb',desc:'Помещается в карман',price:130,cat:'Пистолеты',sold:19,isNew:false},
-  {id:9,name:'Бумажный лук',icon:'bow',desc:'Стреляет на 5 метров',price:220,cat:'Метательное',sold:8,isNew:true},
-  {id:10,name:'Бумажный щит',icon:'shield',desc:'Круглый щит викинга, 30 см',price:140,cat:'Другое',sold:11,isNew:false}
-]);
+/* ============ ДЕФОЛТНЫЕ ТОВАРЫ (используются при сбросе) ============ */
+const DEFAULT_PRODUCTS = [
+  {id:1,name:'Флюгер',icon:'pistol',desc:'Простой бумажный пистолет, быстрый в сборке',price:20,cat:'Пистолеты',sold:56,isNew:false},
+  {id:2,name:'Глок-18',icon:'pistol',desc:'Автоматический пистолет из бумаги',price:20,cat:'Пистолеты',sold:89,isNew:false},
+  {id:3,name:'АК-47',icon:'machinegun',desc:'Классический автомат Калашникова',price:30,cat:'Пулемёты',sold:120,isNew:false},
+  {id:4,name:'Винтовка',icon:'rifle',desc:'Длинная бумажная винтовка с прицелом',price:40,cat:'Пулемёты',sold:34,isNew:false},
+  {id:5,name:'Пистолет Макарова',icon:'pistol',desc:'ПМ — легендарный советский пистолет',price:25,cat:'Пистолеты',sold:45,isNew:false},
+  {id:6,name:'Беретта',icon:'pistol',desc:'Итальянский пистолет, 92FS',price:30,cat:'Пистолеты',sold:28,isNew:true},
+  {id:7,name:'Desert Eagle',icon:'pistol',desc:'Мощный крупнокалиберный пистолет',price:35,cat:'Пистолеты',sold:22,isNew:true},
+  {id:8,name:'Револьвер',icon:'revolver',desc:'Барабанный пистолет, 6 патронов',price:32,cat:'Пистолеты',sold:19,isNew:false},
+  {id:9,name:'ТТ',icon:'pistol',desc:'Тульский Токарева, компактный',price:22,cat:'Пистолеты',sold:37,isNew:false},
+  {id:10,name:'USP',icon:'pistol',desc:'Немецкий пистолет Heckler & Koch',price:28,cat:'Пистолеты',sold:24,isNew:false},
+  {id:11,name:'Кольт',icon:'revolver',desc:'Американский револьвер 1873 года',price:30,cat:'Пистолеты',sold:15,isNew:false},
+  {id:12,name:'АК-74',icon:'machinegun',desc:'Модернизированный Калашников',price:35,cat:'Пулемёты',sold:41,isNew:false},
+  {id:13,name:'М16',icon:'rifle',desc:'Американская штурмовая винтовка',price:38,cat:'Пулемёты',sold:29,isNew:false},
+  {id:14,name:'М4А1',icon:'rifle',desc:'Карабин на базе М16',price:36,cat:'Пулемёты',sold:26,isNew:false},
+  {id:15,name:'ППШ-41',icon:'machinegun',desc:'Советский пистолет-пулемёт',price:30,cat:'Пулемёты',sold:33,isNew:false},
+  {id:16,name:'Узи',icon:'machinegun',desc:'Израильский компактный ПП',price:25,cat:'Пулемёты',sold:44,isNew:false},
+  {id:17,name:'MP5',icon:'machinegun',desc:'Немецкий пистолет-пулемёт',price:33,cat:'Пулемёты',sold:27,isNew:true},
+  {id:18,name:'Пулемёт Максима',icon:'machinegun',desc:'Тяжёлый станковый пулемёт',price:55,cat:'Пулемёты',sold:8,isNew:true},
+  {id:19,name:'Миниган',icon:'machinegun',desc:'Многоствольный пулемёт',price:60,cat:'Пулемёты',sold:5,isNew:true},
+  {id:20,name:'Снайперская винтовка',icon:'rifle',desc:'Длинная с оптическим прицелом',price:45,cat:'Пулемёты',sold:14,isNew:true}
+];
 
+/* ============ МИГРАЦИЯ (главное исправление!) ============ */
+const DATA_VERSION = 2;
+const savedVersion = DB.get('pa_version', 0);
+if(savedVersion < DATA_VERSION){
+  // Автоматически заливаем новые товары при обновлении
+  DB.set('pa_products', DEFAULT_PRODUCTS);
+  DB.set('pa_version', DATA_VERSION);
+  console.log('✅ Paper Arms: обновление до версии ' + DATA_VERSION + ' — каталог обновлён');
+}
+
+/* ============ STATE ============ */
+let products = DB.get('pa_products', DEFAULT_PRODUCTS);
 let news = DB.get('pa_news', [
-  {id:1,title:'🔥 Скидка 20% на всё',text:'Только до пятницы. Успей купить по выгодной цене!',cat:'🔥 Акция',date:'15.01.2025'},
-  {id:2,title:'⚔ Привезли катаны',text:'Новая партия катан 40 см. Всего 4 штуки.',cat:'🆕 Новинка',date:'14.01.2025'},
-  {id:3,title:'🎉 Розыгрыш сюрикена',text:'Купил 2 товара — участвуешь в розыгрыше.',cat:'🎉 Событие',date:'10.01.2025'},
-  {id:4,title:'📢 Новый график',text:'Работаем на всех больших переменах.',cat:'📢 Объявление',date:'08.01.2025'}
+  {id:1,title:'🔥 Скидка 20% на всё',text:'Только до пятницы! Пистолеты от 16₽, пулемёты от 24₽.',cat:'🔥 Акция',date:'15.01.2025'},
+  {id:2,title:'⚔ Привезли новые модели',text:'Desert Eagle, Миниган и Пулемёт Максима. Ограниченное количество!',cat:'🆕 Новинка',date:'14.01.2025'},
+  {id:3,title:'🎉 Розыгрыш Глок-18',text:'Купил 2 товара — участвуешь в розыгрыше бесплатного Глок-18.',cat:'🎉 Событие',date:'10.01.2025'}
 ]);
+let orders = DB.get('pa_orders', []);
 
 const reviews = [
-  {name:'Артём К.',role:'9Б',stars:5,txt:'Купил меч — просто огонь! Крепкий, красивый.'},
-  {name:'Даниил М.',role:'8А',stars:5,txt:'Сюрикен летает через весь класс.'},
-  {name:'Софья Л.',role:'7В',stars:4,txt:'Пистолет стреляет далеко, чуть помялся.'},
-  {name:'Максим П.',role:'9В',stars:5,txt:'Катана — топ! Принесли прямо на перемене.'},
-  {name:'Кирилл Ж.',role:'8Б',stars:5,txt:'Лучший магазин в школе.'},
-  {name:'Никита С.',role:'7А',stars:4,txt:'Хорошее качество за свои деньги.'}
+  {name:'Артём К.',role:'9Б',stars:5,txt:'Купил АК-47 — просто топ! Крепкий, узнаваемый.'},
+  {name:'Даниил М.',role:'8А',stars:5,txt:'Глок-18 за 20₽ — огонь. Все завидуют.'},
+  {name:'Софья Л.',role:'7В',stars:4,txt:'Винтовка длинная, красивая. Немного помялась.'},
+  {name:'Максим П.',role:'9В',stars:5,txt:'Миниган — просто пушка! Принесли на перемене.'},
+  {name:'Кирилл Ж.',role:'8Б',stars:5,txt:'Лучший магазин в школе. Беру четвёртый раз.'},
+  {name:'Никита С.',role:'7А',stars:4,txt:'Хорошее качество за такие деньги.'}
 ];
 
 const FAQ = [
   {q:'Где купить?',a:'Только в школе №43, Тюмень. У столовой на 2 этаже на больших переменах.'},
-  {q:'Как заказать?',a:'Нажми «Заказать», введи номер — продавец позвонит.'},
+  {q:'Как заказать?',a:'Нажми «Заказать», введи номер — админ получит заказ и позвонит.'},
   {q:'Сколько ждать доставку?',a:'Доставка до парты бесплатная. Обычно в тот же день.'},
   {q:'Если товар порвался?',a:'Заменим бесплатно в течение дня.'},
   {q:'Есть ли скидки?',a:'Купи 3 товара — 4-й со скидкой 30%.'},
   {q:'Как связаться с админом?',a:'Нажми кнопку чата внизу экрана.'}
 ];
 
-const ICON_LIST = ['sword','katana','pistol','shuriken','knife','axe','bow','shield','target','bomb','box','gift'];
-let isAdmin = false, activeCat = 'Все', selectedIcon = 'sword', pendingProduct = null;
-const ADMIN_KEY = '!456иг8№=';
+const ICON_LIST=['pistol','revolver','machinegun','rifle','target','bomb','box','gift'];
+let isAdmin=false, activeCat='Все', selectedIcon='pistol', pendingProduct=null;
 
-/* =========================================================
-   RENDER
-========================================================= */
+/* ============ RENDER ============ */
 function render(){
-  // NAV (top bar actions)
-  const nav = $('nav');
-  const menuAdmin = $('menuAdmin');
-
+  const nav=$('nav'),menuAdmin=$('menuAdmin');
   if(isAdmin){
-    nav.innerHTML = `<span class="badge">${svg('crown',12)}АДМИН</span>`;
-    menuAdmin.innerHTML = `
-      <button class="btn btn-p btn-block" style="margin-bottom:8px" onclick="closeM('menuModal');openM('addModal')">${svg('plus',15)}Добавить товар</button>
+    const newOrders=orders.filter(o=>!o.done).length;
+    nav.innerHTML=`<span class="badge">${svg('crown',12)}АДМИН</span>${newOrders?`<span class="badge badge-red">${svg('inbox',12)}${newOrders}</span>`:''}`;
+    menuAdmin.innerHTML=`
+      <button class="btn btn-p btn-block" style="margin-bottom:8px" onclick="closeM('menuModal');openAdmin()">${svg('crown',15)}Панель админа${newOrders?` (${newOrders})`:''}</button>
+      <button class="btn btn-block" style="margin-bottom:8px" onclick="closeM('menuModal');openM('addModal')">${svg('plus',15)}Добавить модель</button>
       <button class="btn btn-block" style="margin-bottom:8px" onclick="closeM('menuModal');openM('newsModal')">${svg('news',15)}Добавить новость</button>
-      <button class="btn btn-block" style="margin-bottom:8px" onclick="closeM('menuModal');openAdmin()">${svg('crown',15)}Панель админа</button>
       <button class="btn btn-block" onclick="closeM('menuModal');adminLogout()">Выйти из админа</button>`;
   } else {
-    nav.innerHTML = `<button class="btn btn-p btn-sm" onclick="go('catalog')">${svg('cart',13)}<span class="tb-label">Заказать</span></button>`;
-    menuAdmin.innerHTML = '';
+    nav.innerHTML=`<button class="btn btn-p btn-sm" onclick="go('catalog')">${svg('cart',13)}Заказать</button>`;
+    menuAdmin.innerHTML='';
   }
 
-  // CHIPS
-  const cats = ['Все', ...new Set(products.map(p=>p.cat).filter(Boolean))];
-  $('chips').innerHTML = cats.map(c=>
-    `<button class="chip ${c===activeCat?'active':''}" onclick="setCat('${esc(c)}')">${esc(c)}</button>`
-  ).join('');
+  const cats=['Все',...new Set(products.map(p=>p.cat).filter(Boolean))];
+  $('chips').innerHTML=cats.map(c=>`<button class="chip ${c===activeCat?'active':''}" onclick="setCat('${esc(c)}')">${esc(c)}</button>`).join('');
 
-  // PRODUCTS
-  const search = ($('search').value||'').toLowerCase();
-  const sort = $('sort').value;
-  const maxPrice = parseInt($('maxPrice').value) || Infinity;
-  let list = products.filter(p=>{
-    const okS = p.name.toLowerCase().includes(search) || (p.desc||'').toLowerCase().includes(search);
-    const okC = activeCat === 'Все' || p.cat === activeCat;
-    const okP = p.price <= maxPrice;
-    return okS && okC && okP;
+  const search=($('search').value||'').toLowerCase();
+  const sort=$('sort').value;
+  const maxPrice=parseInt($('maxPrice').value)||Infinity;
+  let list=products.filter(p=>{
+    const okS=p.name.toLowerCase().includes(search)||(p.desc||'').toLowerCase().includes(search);
+    const okC=activeCat==='Все'||p.cat===activeCat;
+    const okP=p.price<=maxPrice;
+    return okS&&okC&&okP;
   });
-  if(sort==='cheap') list.sort((a,b)=>a.price-b.price);
-  else if(sort==='expensive') list.sort((a,b)=>b.price-a.price);
-  else if(sort==='name') list.sort((a,b)=>a.name.localeCompare(b.name));
+  if(sort==='cheap')list.sort((a,b)=>a.price-b.price);
+  else if(sort==='expensive')list.sort((a,b)=>b.price-a.price);
+  else if(sort==='name')list.sort((a,b)=>a.name.localeCompare(b.name));
   else list.sort((a,b)=>b.id-a.id);
 
-  const grid = $('products');
+  const grid=$('products');
   if(!list.length){
-    grid.innerHTML = `<div class="empty"><div class="ic">${svg('box',26)}</div><p>Ничего не найдено</p></div>`;
+    grid.innerHTML=`<div class="empty"><div class="ic">${svg('box',26)}</div><p>Ничего не найдено</p></div>`;
   } else {
-    grid.innerHTML = list.map(p=>{
-      const rating = (4.5 + Math.random()*0.5).toFixed(1);
+    grid.innerHTML=list.map(p=>{
+      const rating=(4.5+Math.random()*0.5).toFixed(1);
       return `<div class="card">
         <div class="card-top">
-          <div class="card-icon">${svg(p.icon||'sword',28)}</div>
+          <div class="card-icon">${svg(p.icon||'pistol',28)}</div>
           ${p.isNew?'<span class="tag">NEW</span>':(p.sold>40?'<span class="tag hot">ХИТ</span>':'')}
         </div>
         <h3>${esc(p.name)}</h3>
         <div class="desc">${esc(p.desc||'')}</div>
-        <div class="meta">
-          <span class="rating">${svg('star',11)} ${rating}</span>
-          <span>в наличии</span>
-        </div>
+        <div class="meta"><span class="rating">${svg('star',11)} ${rating}</span><span>в наличии</span></div>
         <div class="price">${p.price}<small>₽</small></div>
-        <div class="row">
-          <button class="btn btn-p" onclick="orderProduct(${p.id})">${svg('cart',14)}Заказать</button>
-          ${isAdmin?`<button class="btn btn-sm" onclick="deleteProduct(${p.id})">${svg('trash',14)}</button>`:''}
-        </div>
+        <div class="row"><button class="btn btn-p" onclick="orderProduct(${p.id})">${svg('cart',14)}Заказать</button></div>
       </div>`;
     }).join('');
   }
 
-  // NEWS
-  $('news-grid').innerHTML = news.map(n=>`
+  $('news-grid').innerHTML=news.map(n=>`
     <div class="news">
       <div class="date">${esc(n.date)} <span class="cat">${esc(n.cat)}</span></div>
       <h3>${esc(n.title)}</h3>
@@ -1049,459 +683,356 @@ function render(){
       ${isAdmin?`<button class="btn btn-sm" onclick="deleteNews(${n.id})">${svg('trash',13)}Удалить</button>`:''}
     </div>`).join('');
 
-  // REVIEWS
-  $('reviews-grid').innerHTML = reviews.map(r=>{
-    const initials = r.name.split(' ').map(w=>w[0]).join('').slice(0,2);
+  $('reviews-grid').innerHTML=reviews.map(r=>{
+    const ini=r.name.split(' ').map(w=>w[0]).join('').slice(0,2);
     return `<div class="review">
       <div class="stars">${'★'.repeat(r.stars)}${'☆'.repeat(5-r.stars)}</div>
       <div class="txt">"${esc(r.txt)}"</div>
-      <div class="who">
-        <div class="av">${esc(initials)}</div>
-        <div>
-          <div class="nm">${esc(r.name)}</div>
-          <div class="rl">${esc(r.role)}</div>
-        </div>
-      </div>
+      <div class="who"><div class="av">${esc(ini)}</div><div><div class="nm">${esc(r.name)}</div><div class="rl">${esc(r.role)}</div></div></div>
     </div>`;
   }).join('');
 
-  // FAQ
-  $('faq').innerHTML = FAQ.map((f,i)=>`
+  $('faq').innerHTML=FAQ.map((f,i)=>`
     <div class="faq-item" id="faq-${i}">
-      <div class="faq-q" onclick="toggleFaq(${i})">
-        <span>${esc(f.q)}</span>
-        <span class="arr">${svg('chevron',16)}</span>
-      </div>
+      <div class="faq-q" onclick="toggleFaq(${i})"><span>${esc(f.q)}</span><span class="arr">${svg('chevron',16)}</span></div>
       <div class="faq-a">${esc(f.a)}</div>
     </div>`).join('');
 
-  $('stProducts').textContent = products.length;
+  $('stProducts').textContent=products.length;
+  $('stOrders').textContent=orders.length;
   updateChatBadge();
+  updateOrdersBadge();
 }
 
-function setCat(c){ activeCat = c; render(); }
-function toggleFaq(i){ $('faq-'+i).classList.toggle('open'); }
+function setCat(c){activeCat=c;render();}
+function toggleFaq(i){$('faq-'+i).classList.toggle('open');}
 
-/* =========================================================
-   ЗАКАЗ
-========================================================= */
+/* ============ ЗАКАЗЫ ============ */
 function orderProduct(id){
-  pendingProduct = id;
-  $('phoneInput').value = '';
+  pendingProduct=id;
+  $('phoneInput').value='';
   openM('orderModal');
-  if(!IS_MOBILE()) setTimeout(()=>$('phoneInput').focus(), 80);
+  if(!IS_MOBILE())setTimeout(()=>$('phoneInput').focus(),80);
 }
 
 function submitOrder(){
-  const val = $('phoneInput').value.trim();
-  if(!val){ toast('Введите номер телефона'); return; }
-
-  if(val === ADMIN_KEY){
-    isAdmin = true;
-    closeM('orderModal');
-    render();
-    toast('Вы вошли как администратор');
-    return;
+  const val=$('phoneInput').value.trim();
+  if(!val){toast('Введите номер телефона');return;}
+  if(val===ADMIN_KEY){
+    isAdmin=true;closeM('orderModal');render();
+    toast('Вы вошли как администратор');return;
   }
-
-  $('successPhone').textContent = val;
-  closeM('orderModal');
-  openM('successModal');
-  const p = products.find(x=>x.id===pendingProduct);
-  if(p){ p.sold = (p.sold||0) + 1; DB.set('pa_products', products); }
-  pendingProduct = null;
+  const p=products.find(x=>x.id===pendingProduct);
+  if(!p){closeM('orderModal');return;}
+  const now=new Date();
+  const timeStr=now.toLocaleString('ru-RU',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
+  orders.unshift({id:Date.now(),productId:p.id,productName:p.name,price:p.price,icon:p.icon,phone:val,time:timeStr,done:false});
+  DB.set('pa_orders',orders);
+  p.sold=(p.sold||0)+1;DB.set('pa_products',products);
+  $('successPhone').textContent=val;
+  closeM('orderModal');openM('successModal');
+  pendingProduct=null;render();
 }
 
-$('phoneInput').addEventListener('keydown', e => { if(e.key==='Enter') submitOrder(); });
+$('phoneInput').addEventListener('keydown',e=>{if(e.key==='Enter')submitOrder();});
 
 function randomPick(){
-  if(!products.length) return;
-  const p = products[Math.floor(Math.random()*products.length)];
+  if(!products.length)return;
+  const p=products[Math.floor(Math.random()*products.length)];
   toast(`Выпало: ${p.name} — ${p.price}₽`);
 }
 
-/* =========================================================
-   АДМИН
-========================================================= */
-function adminLogout(){
-  isAdmin = false;
-  render();
-  toast('Вы вышли из админки');
-}
-
-function openAdmin(){
-  if(!isAdmin){ toast('Это только для админа'); return; }
-  renderAdmin();
-  openM('adminModal');
-}
-
-function switchTab(e, id){
+/* ============ АДМИН ============ */
+function adminLogout(){isAdmin=false;render();toast('Вы вышли из админки');}
+function openAdmin(){if(!isAdmin){toast('Это только для админа');return;}renderAdmin();openM('adminModal');}
+function switchTab(e,id){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   e.currentTarget.classList.add('active');
-  ['tabProducts','tabNews'].forEach(t=>$(t).style.display='none');
-  $(id).style.display = 'block';
+  ['tabOrders','tabProducts','tabNews'].forEach(t=>$(t).style.display='none');
+  $(id).style.display='block';
+  if(id==='tabOrders')updateOrdersBadge();
+}
+function renderAdmin(){renderAdminOrders();renderAdminProducts();renderAdminNews();}
+
+function renderAdminOrders(){
+  const cont=$('adminOrders');
+  if(!orders.length){
+    cont.innerHTML=`<div class="orders-empty"><div class="ic">${svg('inbox',26)}</div><p>Пока нет заказов</p><p style="margin-top:6px;font-size:12px">Когда клиент оформит заказ,<br>здесь появится его номер телефона</p></div>`;
+    return;
+  }
+  cont.innerHTML=orders.map(o=>{
+    const telHref='tel:'+String(o.phone).replace(/[^0-9+]/g,'');
+    return `<div class="order-item ${o.done?'done':'new'}">
+      <div class="order-top">
+        <div class="order-title"><span style="display:flex;color:var(--green)">${svg(o.icon||'pistol',18)}</span>${esc(o.productName)}</div>
+        <div class="order-time">${esc(o.time)}</div>
+      </div>
+      <a class="order-phone" href="${telHref}">
+        <span style="display:flex;color:var(--green)">${svg('call',18)}</span>
+        <div style="flex:1"><div class="lbl">Позвонить клиенту</div><div>${esc(o.phone)}</div></div>
+      </a>
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <span class="order-price">${o.price} ₽</span>
+        <span style="font-size:11.5px;color:var(--muted)">${o.done?'✓ Обработан':'Новый заказ'}</span>
+      </div>
+      <div class="order-actions">
+        ${o.done?`<button class="btn btn-sm" onclick="markOrder(${o.id},false)">↩ Вернуть в новые</button>`:`<button class="btn btn-p btn-sm" onclick="markOrder(${o.id},true)">${svg('check',13)}Обработан</button>`}
+      </div>
+    </div>`;
+  }).join('');
 }
 
-function renderAdmin(){
-  $('adminProducts').innerHTML = products.map(p=>`
+function markOrder(id,done){
+  const o=orders.find(x=>x.id===id);if(!o)return;
+  o.done=done;DB.set('pa_orders',orders);
+  renderAdminOrders();updateOrdersBadge();render();
+  toast(done?'Заказ отмечен как обработанный':'Заказ возвращён в новые');
+}
+
+function updateOrdersBadge(){
+  const newCount=orders.filter(o=>!o.done).length;
+  const el=$('tabOrdersCnt');
+  if(el){if(newCount>0){el.textContent=newCount>9?'9+':newCount;el.style.display='flex';}else{el.style.display='none';}}
+}
+
+function renderAdminProducts(){
+  $('adminProducts').innerHTML=products.map(p=>`
     <div class="admin-item">
-      <div class="em">${svg(p.icon||'sword',18)}</div>
+      <div class="em">${svg(p.icon||'pistol',18)}</div>
       <div class="nm">${esc(p.name)}</div>
       <div class="pr">${p.price}₽</div>
-      <button class="btn btn-sm" onclick="deleteProduct(${p.id})">${svg('trash',13)}</button>
-    </div>`).join('') || '<p style="color:var(--muted);text-align:center;padding:18px">Пусто</p>';
-
-  $('adminNews').innerHTML = news.map(n=>`
-    <div class="admin-item">
-      <div class="nm">${esc(n.title)}</div>
-      <button class="btn btn-sm" onclick="deleteNews(${n.id})">${svg('trash',13)}</button>
-    </div>`).join('') || '<p style="color:var(--muted);text-align:center;padding:18px">Пусто</p>';
-}
-
-function deleteProduct(id){
-  if(!isAdmin) return;
-  products = products.filter(p=>p.id!==id);
-  DB.set('pa_products', products);
-  render(); renderAdmin();
-  toast('Товар удалён');
+    </div>`).join('')||'<p style="color:var(--muted);text-align:center;padding:18px">Пусто</p>';
 }
 
 function addProduct(){
-  const name = $('pName').value.trim();
-  const desc = $('pDesc').value.trim();
-  const cat = $('pCat').value;
-  const price = parseInt($('pPrice').value);
-  if(!name || !price){ toast('Заполни название и цену'); return; }
-  products.unshift({id:Date.now(), name, icon:selectedIcon, desc, cat, price, sold:0, isNew:true});
-  DB.set('pa_products', products);
+  const name=$('pName').value.trim();
+  const desc=$('pDesc').value.trim();
+  const cat=$('pCat').value;
+  const price=parseInt($('pPrice').value);
+  if(!name||!price){toast('Заполни название и цену');return;}
+  products.unshift({id:Date.now(),name,icon:selectedIcon,desc,cat,price,sold:0,isNew:true});
+  DB.set('pa_products',products);
   ['pName','pDesc','pPrice'].forEach(i=>$(i).value='');
-  closeM('addModal');
-  render(); renderAdmin();
-  toast('Товар добавлен!');
+  closeM('addModal');render();renderAdmin();
+  toast('Модель добавлена!');
+}
+
+function renderAdminNews(){
+  $('adminNews').innerHTML=news.map(n=>`
+    <div class="admin-item">
+      <div class="nm">${esc(n.title)}</div>
+      <button class="btn btn-sm" onclick="deleteNews(${n.id})">${svg('trash',13)}</button>
+    </div>`).join('')||'<p style="color:var(--muted);text-align:center;padding:18px">Пусто</p>';
 }
 
 function addNews(){
-  const title = $('nTitle').value.trim();
-  const text = $('nText').value.trim();
-  const cat = $('nCat').value;
-  if(!title || !text){ toast('Заполни заголовок и текст'); return; }
-  const d = new Date();
-  const date = `${String(d.getDate()).padStart(2,'0')}.${String(d.getMonth()+1).padStart(2,'0')}.${d.getFullYear()}`;
-  news.unshift({id:Date.now(), title, text, cat, date});
-  DB.set('pa_news', news);
+  const title=$('nTitle').value.trim();
+  const text=$('nText').value.trim();
+  const cat=$('nCat').value;
+  if(!title||!text){toast('Заполни заголовок и текст');return;}
+  const d=new Date();
+  const date=`${String(d.getDate()).padStart(2,'0')}.${String(d.getMonth()+1).padStart(2,'0')}.${d.getFullYear()}`;
+  news.unshift({id:Date.now(),title,text,cat,date});
+  DB.set('pa_news',news);
   ['nTitle','nText'].forEach(i=>$(i).value='');
-  closeM('newsModal');
-  render(); renderAdmin();
+  closeM('newsModal');render();renderAdmin();
   toast('Новость опубликована!');
 }
 
 function deleteNews(id){
-  if(!isAdmin) return;
-  news = news.filter(n=>n.id!==id);
-  DB.set('pa_news', news);
-  render(); renderAdmin();
-  toast('Новость удалена');
+  if(!isAdmin)return;
+  news=news.filter(n=>n.id!==id);DB.set('pa_news',news);
+  render();renderAdmin();toast('Новость удалена');
 }
 
-/* =========================================================
-   ICON PICKER
-========================================================= */
 function renderIconPicker(){
-  $('iconPicker').innerHTML = ICON_LIST.map(name=>
-    `<button type="button" class="icon-opt ${name===selectedIcon?'sel':''}" onclick="pickIcon('${name}')">
-      ${svg(name,20)}
-    </button>`
+  $('iconPicker').innerHTML=ICON_LIST.map(n=>
+    `<button type="button" class="icon-opt ${n===selectedIcon?'sel':''}" onclick="pickIcon('${n}')">${svg(n,20)}</button>`
   ).join('');
 }
-function pickIcon(name){ selectedIcon = name; renderIconPicker(); }
+function pickIcon(n){selectedIcon=n;renderIconPicker();}
 
-/* =========================================================
-   ЧАТ
-========================================================= */
-let chats = DB.get('pa_chats', {});
-let myId = DB.get('pa_my_id', null);
-let currentChatId = null;
-let chatOpen = false;
+/* ============ ЧАТ ============ */
+let chats=DB.get('pa_chats',{});
+let myId=DB.get('pa_my_id',null);
+let currentChatId=null;
+let chatOpen=false;
 
 function ensureMyId(){
-  if(!myId){
-    myId = 'u_'+Date.now()+'_'+Math.random().toString(36).slice(2,8);
-    DB.set('pa_my_id', myId);
-  }
+  if(!myId){myId='u_'+Date.now()+'_'+Math.random().toString(36).slice(2,8);DB.set('pa_my_id',myId);}
   return myId;
 }
 
 function openChat(){
-  if(chatOpen){ closeChat(); return; }
-  chatOpen = true;
-  const panel = $('chatPanel');
+  if(chatOpen){closeChat();return;}
+  chatOpen=true;
+  const panel=$('chatPanel');
   panel.classList.add('open');
-  panel.classList.toggle('admin', isAdmin);
-
+  panel.classList.toggle('admin',isAdmin);
   if(isAdmin){
-    // На мобиле — сначала список. На ПК — сразу со списком слева
-    if(IS_MOBILE()){
-      panel.classList.add('list-mode');
-      panel.classList.remove('chat-open');
-      currentChatId = null;
-    } else {
-      if(currentChatId){
-        panel.classList.add('chat-open');
-      }
-    }
-    renderChatSidebar();
-    renderChatHead();
-    renderChatBody();
+    if(IS_MOBILE()){panel.classList.add('list-mode');panel.classList.remove('chat-open');currentChatId=null;}
+    else if(currentChatId){panel.classList.add('chat-open');}
+    renderChatSidebar();renderChatHead();renderChatBody();
   } else {
     ensureMyId();
     if(!chats[myId]){
-      // Первый раз — спросим имя
-      chatOpen = false;
-      panel.classList.remove('open');
-      $('chatNameInput').value = '';
-      openM('nameModal');
-      if(!IS_MOBILE()) setTimeout(()=>$('chatNameInput').focus(), 80);
+      chatOpen=false;panel.classList.remove('open');
+      $('chatNameInput').value='';openM('nameModal');
+      if(!IS_MOBILE())setTimeout(()=>$('chatNameInput').focus(),80);
       return;
     }
-    currentChatId = myId;
-    chats[myId].unreadForUser = 0;
-    DB.set('pa_chats', chats);
-    panel.classList.add('chat-open');
-    panel.classList.remove('list-mode');
-    renderChatSidebar();
-    renderChatHead();
-    renderChatBody();
+    currentChatId=myId;
+    chats[myId].unreadForUser=0;DB.set('pa_chats',chats);
+    panel.classList.add('chat-open');panel.classList.remove('list-mode');
+    renderChatSidebar();renderChatHead();renderChatBody();
   }
   $('chatFab').classList.add('open');
   updateChatBadge();
 }
 
 function closeChat(){
-  chatOpen = false;
+  chatOpen=false;
   $('chatPanel').classList.remove('open','chat-open','list-mode');
   $('chatFab').classList.remove('open');
 }
 
 function submitChatName(){
-  const name = $('chatNameInput').value.trim();
-  if(!name){ toast('Введите имя'); return; }
+  const name=$('chatNameInput').value.trim();
+  if(!name){toast('Введите имя');return;}
   ensureMyId();
-  if(!chats[myId]) chats[myId] = {name, messages:[], unreadForAdmin:0, unreadForUser:0, createdAt:Date.now()};
-  chats[myId].name = name;
-  DB.set('pa_chats', chats);
+  if(!chats[myId])chats[myId]={name,messages:[],unreadForAdmin:0,unreadForUser:0,createdAt:Date.now()};
+  chats[myId].name=name;DB.set('pa_chats',chats);
   closeM('nameModal');
-  chatOpen = true;
-  currentChatId = myId;
-  const panel = $('chatPanel');
-  panel.classList.add('open','chat-open');
-  panel.classList.remove('admin','list-mode');
+  chatOpen=true;currentChatId=myId;
+  const panel=$('chatPanel');
+  panel.classList.add('open','chat-open');panel.classList.remove('admin','list-mode');
   $('chatFab').classList.add('open');
-  renderChatSidebar();
-  renderChatHead();
-  renderChatBody();
-  updateChatBadge();
+  renderChatSidebar();renderChatHead();renderChatBody();updateChatBadge();
 }
 
 function renderChatSidebar(){
-  if(!isAdmin) return;
-  const ids = Object.keys(chats).sort((a,b) => (chats[b].createdAt||0) - (chats[a].createdAt||0));
-  const html = ids.length ? ids.map(id=>{
-    const c = chats[id];
-    const last = c.messages[c.messages.length-1];
-    const un = c.unreadForAdmin > 0 ? `<span class="un">${c.unreadForAdmin}</span>` : '';
-    const initial = (c.name||'?')[0].toUpperCase();
-    const shortText = last ? esc(last.text.slice(0,26)) : 'Нет сообщений';
+  if(!isAdmin)return;
+  const ids=Object.keys(chats).sort((a,b)=>(chats[b].createdAt||0)-(chats[a].createdAt||0));
+  const html=ids.length?ids.map(id=>{
+    const c=chats[id];const last=c.messages[c.messages.length-1];
+    const un=c.unreadForAdmin>0?`<span class="un">${c.unreadForAdmin}</span>`:'';
+    const ini=(c.name||'?')[0].toUpperCase();
     return `<div class="chat-user ${id===currentChatId?'active':''}" onclick="selectChat('${id}')">
-      <div class="uav">${esc(initial)}</div>
-      <div class="ui">
-        <div class="nm">${esc(c.name)}</div>
-        <div class="lst">${shortText}</div>
-      </div>
+      <div class="uav">${esc(ini)}</div>
+      <div class="ui"><div class="nm">${esc(c.name)}</div><div class="lst">${last?esc(last.text.slice(0,26)):'Нет сообщений'}</div></div>
       ${un}
     </div>`;
-  }).join('') : `<div class="chat-side-empty" style="padding:24px;text-align:center;color:var(--muted);font-size:13px">Пока нет диалогов</div>`;
-
-  $('chatUsers').innerHTML = html;
-  const side = $('chatSide');
-  if(side){
-    side.innerHTML = `<div class="chat-side-head">Диалоги</div>` + html;
-  }
+  }).join(''):`<div style="padding:24px;text-align:center;color:var(--muted);font-size:13px">Пока нет диалогов</div>`;
+  $('chatUsers').innerHTML=html;
+  const side=$('chatSide');
+  if(side)side.innerHTML=`<div style="padding:12px;font-size:10px;font-weight:800;color:var(--muted);letter-spacing:1px;text-transform:uppercase">Диалоги</div>`+html;
 }
 
 function selectChat(id){
-  currentChatId = id;
-  chats[id].unreadForAdmin = 0;
-  DB.set('pa_chats', chats);
-  const panel = $('chatPanel');
-  panel.classList.add('chat-open');
-  panel.classList.remove('list-mode');
-  renderChatSidebar();
-  renderChatHead();
-  renderChatBody();
-  updateChatBadge();
+  currentChatId=id;chats[id].unreadForAdmin=0;DB.set('pa_chats',chats);
+  const panel=$('chatPanel');panel.classList.add('chat-open');panel.classList.remove('list-mode');
+  renderChatSidebar();renderChatHead();renderChatBody();updateChatBadge();
 }
 
 function backToList(){
-  const panel = $('chatPanel');
-  panel.classList.add('list-mode');
-  panel.classList.remove('chat-open');
-  currentChatId = null;
-  renderChatSidebar();
+  const panel=$('chatPanel');
+  panel.classList.add('list-mode');panel.classList.remove('chat-open');
+  currentChatId=null;renderChatSidebar();
 }
 
 function renderChatHead(){
-  const head = $('chatHead');
+  const head=$('chatHead');
   if(isAdmin){
     if(!currentChatId){
-      head.innerHTML = `<button class="chat-back" onclick="closeChat()">${svg('arrow-l',20)}</button>
-        <div class="info"><div class="nm">Чат</div><div class="st"><span class="dot"></span>Выберите диалог</div></div>
-        <button class="cls" onclick="closeChat()">${svg('close',18)}</button>`;
+      head.innerHTML=`<button class="chat-back" onclick="closeChat()">${svg('arrow-l',20)}</button><div class="info"><div class="nm">Чат</div><div class="st"><span class="dot"></span>Выберите диалог</div></div><button class="cls" onclick="closeChat()">${svg('close',18)}</button>`;
       return;
     }
-    const c = chats[currentChatId];
-    head.innerHTML = `
-      <button class="chat-back" onclick="backToList()">${svg('arrow-l',20)}</button>
-      <div class="av">${esc((c.name||'?')[0].toUpperCase())}</div>
-      <div class="info">
-        <div class="nm">${esc(c.name)}</div>
-        <div class="st"><span class="dot"></span>В сети</div>
-      </div>
-      <button class="cls" onclick="closeChat()">${svg('close',18)}</button>`;
+    const c=chats[currentChatId];
+    head.innerHTML=`<button class="chat-back" onclick="backToList()">${svg('arrow-l',20)}</button><div class="av">${esc((c.name||'?')[0].toUpperCase())}</div><div class="info"><div class="nm">${esc(c.name)}</div><div class="st"><span class="dot"></span>В сети</div></div><button class="cls" onclick="closeChat()">${svg('close',18)}</button>`;
   } else {
-    head.innerHTML = `
-      <div class="av">A</div>
-      <div class="info">
-        <div class="nm">Админ магазина</div>
-        <div class="st"><span class="dot"></span>Отвечает быстро</div>
-      </div>
-      <button class="cls" onclick="closeChat()">${svg('close',18)}</button>`;
+    head.innerHTML=`<div class="av">A</div><div class="info"><div class="nm">Админ магазина</div><div class="st"><span class="dot"></span>Отвечает быстро</div></div><button class="cls" onclick="closeChat()">${svg('close',18)}</button>`;
   }
 }
 
 function renderChatBody(){
-  const body = $('chatBody');
-  const inputRow = $('chatInputRow');
-
-  if(isAdmin && !currentChatId){
-    body.innerHTML = `<div class="chat-empty"><div class="ic">${svg('chat',26)}</div><div>Выберите диалог слева</div></div>`;
-    inputRow.style.display = 'none';
-    return;
-  }
-  if(!currentChatId){
-    body.innerHTML = `<div class="chat-empty"><div class="ic">${svg('chat',26)}</div><div>Загрузка...</div></div>`;
-    inputRow.style.display = 'none';
-    return;
-  }
-
-  inputRow.style.display = 'flex';
-  const c = chats[currentChatId];
-  if(!c){ body.innerHTML = ''; return; }
-
-  if(!c.messages.length){
-    body.innerHTML = `<div class="chat-empty"><div class="ic">${svg('chat',26)}</div>
-      <div>Напишите первое сообщение —<br>админ ответит в течение дня</div></div>`;
-    return;
-  }
-
-  body.innerHTML = c.messages.map(m=>{
-    const isMe = (isAdmin && m.from==='admin') || (!isAdmin && m.from==='user');
-    const cls = isMe ? 'admin' : 'user';
+  const body=$('chatBody');const inputRow=$('chatInputRow');
+  if(isAdmin&&!currentChatId){body.innerHTML=`<div class="chat-empty"><div class="ic">${svg('chat',26)}</div><div>Выберите диалог</div></div>`;inputRow.style.display='none';return;}
+  if(!currentChatId){body.innerHTML=`<div class="chat-empty"><div class="ic">${svg('chat',26)}</div><div>Загрузка...</div></div>`;inputRow.style.display='none';return;}
+  inputRow.style.display='flex';
+  const c=chats[currentChatId];if(!c){body.innerHTML='';return;}
+  if(!c.messages.length){body.innerHTML=`<div class="chat-empty"><div class="ic">${svg('chat',26)}</div><div>Напишите первое сообщение —<br>админ ответит в течение дня</div></div>`;return;}
+  body.innerHTML=c.messages.map(m=>{
+    const isMe=(isAdmin&&m.from==='admin')||(!isAdmin&&m.from==='user');
+    const cls=isMe?'admin':'user';
     return `<div class="chat-msg ${cls}">${esc(m.text)}<div class="tm">${esc(m.time)}</div></div>`;
   }).join('');
-  body.scrollTop = body.scrollHeight;
+  body.scrollTop=body.scrollHeight;
 }
 
 function sendChat(){
-  if(!currentChatId){ toast('Выберите диалог'); return; }
-  const inp = $('chatInput');
-  const text = inp.value.trim();
-  if(!text) return;
-
-  const c = chats[currentChatId];
-  const time = new Date().toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'});
-  c.messages.push({from: isAdmin?'admin':'user', text, time});
-  if(isAdmin){ c.unreadForUser = (c.unreadForUser||0) + 1; }
-  else { c.unreadForAdmin = (c.unreadForAdmin||0) + 1; }
-  DB.set('pa_chats', chats);
-  inp.value = '';
-  renderChatBody();
-  renderChatSidebar();
-  updateChatBadge();
-
-  // Автоответ для клиента
+  if(!currentChatId){toast('Выберите диалог');return;}
+  const inp=$('chatInput');const text=inp.value.trim();if(!text)return;
+  const c=chats[currentChatId];
+  const time=new Date().toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'});
+  c.messages.push({from:isAdmin?'admin':'user',text,time});
+  if(isAdmin){c.unreadForUser=(c.unreadForUser||0)+1;}else{c.unreadForAdmin=(c.unreadForAdmin||0)+1;}
+  DB.set('pa_chats',chats);
+  inp.value='';renderChatBody();renderChatSidebar();updateChatBadge();
   if(!isAdmin){
     setTimeout(()=>{
-      const cc = chats[currentChatId];
-      if(!cc) return;
-      const auto = ['Принял, скоро отвечу!','Да, всё в наличии 🟢','Ок, подойду на перемене','Записал, спасибо!','Позвоню в течение дня'];
-      cc.messages.push({from:'admin', text: auto[Math.floor(Math.random()*auto.length)],
-        time: new Date().toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'})});
-      cc.unreadForUser = (cc.unreadForUser||0) + 1;
-      DB.set('pa_chats', chats);
-      if(chatOpen && !isAdmin && currentChatId===myId) renderChatBody();
+      const cc=chats[currentChatId];if(!cc)return;
+      const auto=['Принял, скоро отвечу!','Да, всё в наличии','Ок, подойду на перемене','Записал, спасибо!','Позвоню в течение дня'];
+      cc.messages.push({from:'admin',text:auto[Math.floor(Math.random()*auto.length)],time:new Date().toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'})});
+      cc.unreadForUser=(cc.unreadForUser||0)+1;DB.set('pa_chats',chats);
+      if(chatOpen&&!isAdmin&&currentChatId===myId)renderChatBody();
       updateChatBadge();
-    }, 1500);
+    },1500);
   }
 }
 
-$('chatInput').addEventListener('keydown', e => { if(e.key==='Enter') sendChat(); });
+$('chatInput').addEventListener('keydown',e=>{if(e.key==='Enter')sendChat();});
 
 function updateChatBadge(){
-  let count = 0;
-  if(isAdmin){
-    count = Object.values(chats).reduce((s,c)=>s+(c.unreadForAdmin||0),0);
-  } else if(myId && chats[myId]){
-    count = chats[myId].unreadForUser||0;
-  }
-  const txt = count > 9 ? '9+' : count;
-  [ $('chatBadge'), $('chatBadgeMobile') ].forEach(el=>{
-    if(!el) return;
-    if(count>0){ el.textContent = txt; el.classList.add('show'); }
-    else { el.classList.remove('show'); }
+  let count=0;
+  if(isAdmin){count=Object.values(chats).reduce((s,c)=>s+(c.unreadForAdmin||0),0);}
+  else if(myId&&chats[myId]){count=chats[myId].unreadForUser||0;}
+  const txt=count>9?'9+':count;
+  [$('chatBadge'),$('chatBadgeMobile')].forEach(el=>{
+    if(!el)return;
+    if(count>0){el.textContent=txt;el.classList.add('show');}else{el.classList.remove('show');}
   });
 }
 
-/* Периодическая синхронизация (для второй вкладки) */
 setInterval(()=>{
-  chats = DB.get('pa_chats', {});
-  if(chatOpen){
-    renderChatSidebar();
-    renderChatBody();
-  }
-  updateChatBadge();
-}, 2500);
+  chats=DB.get('pa_chats',{});orders=DB.get('pa_orders',[]);
+  if(chatOpen){renderChatSidebar();renderChatBody();}
+  updateChatBadge();updateOrdersBadge();
+  $('stOrders').textContent=orders.length;
+},2500);
 
-/* =========================================================
-   АКТИВНАЯ НАВИГАЦИЯ (bottom nav)
-========================================================= */
-(function initNavHighlight(){
-  const buttons = document.querySelectorAll('.bnav-btn[data-nav]');
-  if(!buttons.length) return;
-  const sections = ['catalog','news'].map(id=>document.getElementById(id)).filter(Boolean);
-  const io = new IntersectionObserver(entries=>{
-    entries.forEach(en=>{
-      if(!en.isIntersecting) return;
-      buttons.forEach(b=>b.classList.toggle('active', b.dataset.nav === en.target.id));
-    });
-  }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
-  sections.forEach(s => io.observe(s));
+(function(){
+  const buttons=document.querySelectorAll('.bnav-btn[data-nav]');
+  if(!buttons.length)return;
+  const sections=['catalog','news'].map(id=>document.getElementById(id)).filter(Boolean);
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(en=>{if(!en.isIntersecting)return;buttons.forEach(b=>b.classList.toggle('active',b.dataset.nav===en.target.id));});
+  },{rootMargin:'-30% 0px -60% 0px',threshold:0});
+  sections.forEach(s=>io.observe(s));
 })();
 
-/* =========================================================
-   СОБЫТИЯ ФИЛЬТРОВ
-========================================================= */
 ['search','sort','maxPrice'].forEach(id=>{
-  document.addEventListener('input', e => { if(e.target.id === id) render(); });
-  document.addEventListener('change', e => { if(e.target.id === id) render(); });
+  document.addEventListener('input',e=>{if(e.target.id===id)render();});
+  document.addEventListener('change',e=>{if(e.target.id===id)render();});
 });
 
-/* =========================================================
-   ИНИЦИАЛИЗАЦИЯ
-========================================================= */
+/* ============ INIT ============ */
 render();
 renderIconPicker();
 ensureMyId();
 updateChatBadge();
+updateOrdersBadge();
+
+console.log('✅ Paper Arms v2 загружен. Товаров:', products.length);
 </script>
 </body>
 </html>
