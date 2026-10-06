@@ -2,2248 +2,1506 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#0b0908">
-<title>Бумажное Оружие | Школа 43 Тюмень</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=5">
+<meta name="theme-color" content="#00a860">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Paper Arms — Школа №43 Тюмень</title>
 <style>
-/* ============================================================
-   ROOT
-============================================================ */
 :root{
-  --bg:#0b0908;
-  --bg2:#131110;
-  --card:#1a1714;
-  --card2:#211d19;
-  --line:#2b2620;
-  --line-hi:#4a3d2a;
-  --amber:#ffb020;
-  --amber2:#ff7a00;
-  --amber3:#ffd27a;
-  --text:#f3ece2;
-  --muted:#948a7c;
-  --green:#4ade80;
-  --red:#f87171;
+  --bg:#111413;--bg2:#181c1a;--card:#1c211e;--border:#2a302d;
+  --text:#e9ece9;--muted:#8a928d;--green:#00d47a;--green-d:#00a860;--green-l:#5ce8a4;
+  --safe-b:env(safe-area-inset-bottom,0px);
+  --safe-t:env(safe-area-inset-top,0px);
+  --nav-h:64px;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--text);font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;min-height:100vh;overflow-x:hidden}
+svg{display:block;flex-shrink:0}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;touch-action:manipulation}
+input,textarea,select{font-family:inherit;font-size:16px}
+a{text-decoration:none;color:inherit}
+img,svg{max-width:100%}
 
-  --ease:cubic-bezier(.22,1,.36,1);
-  --ease-back:cubic-bezier(.34,1.56,.64,1);
-  --t-fast:.15s;
-  --t:.25s;
-  --t-slow:.4s;
+/* ========== WRAP ========== */
+.wrap{width:100%;max-width:1240px;margin:0 auto;padding:0 16px}
 
-  --header-h:56px;
-  --bottom-nav-h:64px;
-  --safe-bottom:env(safe-area-inset-bottom, 0px);
-  --safe-top:env(safe-area-inset-top, 0px);
-}
-*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-html{scroll-behavior:smooth;scroll-padding-top:calc(var(--header-h) + 12px)}
-body{
-  font-family:'Segoe UI',system-ui,-apple-system,'Inter',sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  line-height:1.55;
-  overflow-x:hidden;
-  -webkit-font-smoothing:antialiased;
-  min-height:100vh;
-  min-height:100dvh;
-  background-image:
-    radial-gradient(ellipse 900px 600px at 10% -10%, rgba(255,176,32,.055), transparent 60%),
-    radial-gradient(ellipse 900px 700px at 90% 110%, rgba(255,122,0,.045), transparent 60%);
-  background-attachment:fixed;
-  transition:padding-bottom var(--t) var(--ease);
-}
-body.is-mobile{padding-bottom:calc(var(--bottom-nav-h) + var(--safe-bottom))}
-body.no-scroll{overflow:hidden;position:fixed;width:100%}
-a{color:inherit;text-decoration:none}
-button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
-input,textarea,select{font-family:inherit}
-img,svg{display:block;max-width:100%}
+/* ========== TOP BAR (mobile-first) ========== */
+.topbar{position:sticky;top:0;z-index:40;background:#111413f2;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:10px 0;padding-top:calc(10px + var(--safe-t))}
+.tb-row{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:16px;color:#fff;min-width:0}
+.logo-mark{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#00a860,#00d47a);display:flex;align-items:center;justify-content:center;color:#fff;flex-shrink:0}
+.logo-txt{min-width:0}
+.logo-txt small{display:block;font-size:9px;color:var(--muted);letter-spacing:1.6px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tb-actions{display:flex;gap:6px;align-items:center;flex-shrink:0}
 
-/* Scrollbar (desktop only) */
-@media(hover:hover){
-  ::-webkit-scrollbar{width:9px;height:9px}
-  ::-webkit-scrollbar-track{background:transparent}
-  ::-webkit-scrollbar-thumb{background:#3a3226;border-radius:9px;border:2px solid var(--bg)}
-  ::-webkit-scrollbar-thumb:hover{background:var(--amber2)}
-  *{scrollbar-width:thin;scrollbar-color:#3a3226 var(--bg)}
-}
-body.is-mobile *::-webkit-scrollbar{width:0;height:0}
+/* Мобильная кнопка "меню" */
+.burger{width:40px;height:40px;border-radius:10px;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted)}
+.burger:active{transform:scale(.94)}
 
-/* ============================================================
-   ICONS
-============================================================ */
-.ico{display:inline-flex;align-items:center;justify-content:center;line-height:0;flex-shrink:0}
-.ico svg{width:1em;height:1em;display:block}
-.ico.xl{font-size:46px}
-.ico.lg{font-size:26px}
-.ico.md{font-size:20px}
-.ico.sm{font-size:15px}
-.ico.xs{font-size:13px}
+/* Топ-меню — только на ПК */
+nav.topmenu{display:none}
 
-/* ============================================================
-   HEADER
-============================================================ */
-header{
-  position:sticky;top:0;z-index:200;
-  background:rgba(11,9,8,.94);
-  border-bottom:1px solid transparent;
-  transition:background var(--t) var(--ease),border-color var(--t) var(--ease);
-  padding-top:var(--safe-top);
-}
-header.scrolled{
-  background:rgba(11,9,8,.99);
-  border-bottom-color:var(--line);
-  box-shadow:0 4px 20px rgba(0,0,0,.4);
-}
-.nav{
-  max-width:1280px;margin:0 auto;
-  padding:10px 22px;
-  display:flex;align-items:center;gap:18px;
-  min-height:var(--header-h);
-}
-.logo{display:flex;align-items:center;gap:11px;font-weight:800;font-size:15px;letter-spacing:.3px;flex-shrink:0}
-.logo .mark{
-  width:38px;height:38px;border-radius:11px;display:grid;place-items:center;
-  background:linear-gradient(135deg,var(--amber),var(--amber2));
-  color:#1a1206;font-size:21px;
-  box-shadow:0 4px 16px rgba(255,140,0,.3);
-  transition:transform var(--t) var(--ease-back);
-}
-.logo:hover .mark{transform:rotate(-6deg) scale(1.04)}
-.logo .mark svg{width:21px;height:21px;stroke-width:2}
-.logo small{display:block;font-size:9px;color:var(--muted);font-weight:700;letter-spacing:1.8px;margin-top:1px}
+/* ========== BUTTONS ========== */
+.btn{display:inline-flex;align-items:center;gap:7px;padding:12px 18px;border-radius:12px;border:1px solid var(--border);background:var(--bg2);color:var(--text);font-weight:600;font-size:14px;transition:.15s;min-height:44px;justify-content:center}
+.btn:active{transform:scale(.97)}
+.btn-p{background:var(--green-d);border-color:var(--green-d);color:#fff}
+.btn-p:active{background:var(--green)}
+.btn-sm{padding:9px 13px;font-size:12.5px;min-height:38px}
+.btn-block{width:100%;padding:15px;font-size:15px;font-weight:700}
+.badge{padding:5px 11px;border-radius:20px;font-size:11px;font-weight:700;background:#00d47a1e;color:var(--green);border:1px solid var(--green-d);display:inline-flex;align-items:center;gap:5px}
 
-.nav-links{display:none;gap:2px;margin-left:auto}
-.nav-links a{
-  padding:9px 13px;border-radius:9px;font-size:13.5px;color:var(--muted);
-  font-weight:600;display:inline-flex;align-items:center;gap:7px;
-  transition:color var(--t-fast) ease,background var(--t-fast) ease;
-}
-.nav-links a:hover{color:var(--amber);background:rgba(255,176,32,.07)}
-.nav-links a .ico{font-size:15px}
-.nav-right{display:flex;gap:8px;align-items:center;margin-left:auto;flex-shrink:0}
-.user-chip{
-  display:flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;
-  background:rgba(255,176,32,.1);
-  border:1px solid rgba(255,176,32,.25);
-  font-size:12.5px;font-weight:700;
-}
-.user-chip .name{display:none}
-.user-chip .cls{display:none}
-.avatar{
-  width:26px;height:26px;border-radius:50%;display:grid;place-items:center;
-  background:linear-gradient(135deg,var(--amber),var(--amber2));color:#1a1206;
-  font-size:11px;font-weight:800;
-}
-.avatar.adm{background:linear-gradient(135deg,#f87171,#dc2626);color:#fff;font-size:12px}
-.avatar.adm .ico{font-size:13px}
+/* ========== HERO ========== */
+.hero{padding:28px 0 22px;text-align:center}
+.hero-badge{display:inline-flex;align-items:center;gap:7px;padding:8px 14px;background:#00d47a14;border:1px solid #00d47a44;border-radius:30px;color:var(--green-l);font-weight:600;font-size:12px;margin-bottom:16px}
+.hero h1{font-size:clamp(28px,8vw,52px);font-weight:800;line-height:1.08;letter-spacing:-1px;color:#fff;margin-bottom:14px}
+.hero h1 .gr{background:linear-gradient(90deg,#00a860,#00d47a,#5ce8a4);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:var(--muted);font-size:14.5px;max-width:540px;margin:0 auto 20px;line-height:1.55}
+.hero-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.hero-btns .btn{flex:1;min-width:0}
 
-/* ============================================================
-   BUTTONS
-============================================================ */
-.btn{
-  border-radius:11px;padding:11px 18px;
-  font-weight:700;font-size:14px;
-  background:linear-gradient(135deg,var(--amber),var(--amber2));
-  color:#1a1206;
-  display:inline-flex;align-items:center;justify-content:center;gap:8px;
-  transition:transform var(--t) var(--ease-back),box-shadow var(--t) var(--ease);
-  box-shadow:0 4px 14px rgba(255,140,0,.25);
-  min-height:44px;
-}
-.btn:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(255,140,0,.4)}
-.btn:active{transform:translateY(0) scale(.97)}
-.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--text);box-shadow:none}
-.btn.ghost:hover{border-color:var(--line-hi);color:var(--amber);background:rgba(255,176,32,.06)}
-.btn.sm{padding:8px 13px;font-size:12.5px;border-radius:9px;min-height:36px}
-.btn.danger{background:linear-gradient(135deg,#f87171,#dc2626);color:#fff;box-shadow:0 4px 14px rgba(248,113,113,.25)}
-.btn.green{background:linear-gradient(135deg,#4ade80,#16a34a);color:#052e16;box-shadow:0 4px 14px rgba(74,222,128,.25)}
-.btn.full{width:100%}
-.btn .ico{font-size:16px}
+/* ========== STATS (mobile: 2x2) ========== */
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:28px 0}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px 12px;text-align:center;transition:.15s}
+.stat:active{transform:scale(.97)}
+.stat .ic{width:38px;height:38px;border-radius:10px;margin:0 auto 8px;background:#00d47a1a;color:var(--green);display:flex;align-items:center;justify-content:center}
+.stat .num{font-size:22px;font-weight:800;color:#fff;letter-spacing:-.5px}
+.stat .lbl{font-size:10px;color:var(--muted);margin-top:3px;letter-spacing:.8px;text-transform:uppercase;font-weight:600}
 
-/* ============================================================
-   LAYOUT
-============================================================ */
-.wrap{max-width:1280px;margin:0 auto;padding:0 18px;position:relative;z-index:1}
-section{padding:56px 0;position:relative}
-section:first-of-type{padding-top:36px}
-.sec-head{margin-bottom:28px}
-.sec-head .eyebrow{
-  display:inline-flex;align-items:center;gap:8px;
-  font-size:10.5px;font-weight:800;letter-spacing:2px;
-  color:var(--amber);text-transform:uppercase;margin-bottom:12px;
-}
-.sec-head .eyebrow::before{content:'';width:20px;height:1px;background:var(--amber);opacity:.5}
-.sec-head h2{font-size:clamp(26px,6vw,42px);font-weight:900;letter-spacing:-1px;line-height:1.1}
-.sec-head h2 span{
-  background:linear-gradient(135deg,var(--amber),var(--amber3));
-  -webkit-background-clip:text;background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-.sec-head p{color:var(--muted);margin-top:10px;font-size:14.5px;max-width:600px}
+/* ========== SECTION ========== */
+section{padding:26px 0}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:16px;gap:10px;flex-wrap:wrap}
+.sec-title{font-size:20px;font-weight:800;color:#fff;letter-spacing:-.4px;display:flex;align-items:center;gap:10px}
+.sec-title .ic{width:34px;height:34px;border-radius:10px;background:#00d47a1a;color:var(--green);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-sub{color:var(--muted);font-size:12px;margin-top:3px}
 
-/* Reveal */
-.reveal{opacity:0;transform:translate3d(0,20px,0);transition:opacity .55s var(--ease),transform .55s var(--ease)}
-.reveal.revealed{opacity:1;transform:translate3d(0,0,0)}
+/* ========== FEATURED ========== */
+.featured{padding:22px 20px;border-radius:18px;margin:6px 0 26px;background:linear-gradient(135deg,#00a86026,#00d47a08);border:1px solid #00d47a3d;display:flex;flex-direction:column;gap:16px;position:relative;overflow:hidden}
+.featured .flabel{font-size:10.5px;font-weight:700;color:var(--green-l);letter-spacing:1.6px;text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.featured h2{font-size:22px;font-weight:800;color:#fff;margin-bottom:8px;letter-spacing:-.5px;line-height:1.15}
+.featured p{color:#aab2ae;font-size:13.5px;line-height:1.55;margin-bottom:14px}
+.featured .ficon{width:80px;height:80px;color:var(--green);align-self:center;position:absolute;top:20px;right:16px;opacity:.35}
+.featured .ftxt{position:relative;z-index:1;padding-right:80px}
+.featured .btn{position:relative;z-index:1}
 
-/* ============================================================
-   HERO
-============================================================ */
-.hero{padding:44px 0 40px;text-align:center}
-.hero h1{
-  font-size:clamp(32px,9vw,84px);font-weight:900;line-height:1.02;
-  letter-spacing:-1.5px;margin-bottom:20px;
-}
-.hero h1 em{
-  font-style:normal;
-  background:linear-gradient(120deg,var(--amber) 0%,var(--amber3) 50%,var(--amber2) 100%);
-  -webkit-background-clip:text;background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-.hero p{max-width:640px;margin:0 auto 26px;color:var(--muted);font-size:15px;line-height:1.6}
-.hero-actions{display:flex;flex-direction:column;gap:10px;max-width:340px;margin:0 auto}
-.hero-actions .btn{width:100%}
-.badge-top{
-  display:inline-flex;align-items:center;gap:9px;
-  padding:7px 15px;border-radius:999px;
-  background:rgba(255,176,32,.09);
-  border:1px solid rgba(255,176,32,.22);
-  font-size:10.5px;font-weight:800;color:var(--amber);letter-spacing:1px;
-  margin-bottom:20px;
-}
-.pulse{width:7px;height:7px;border-radius:50%;background:var(--green);
-  box-shadow:0 0 0 0 rgba(74,222,128,.7);animation:pl 2s infinite}
-@keyframes pl{70%{box-shadow:0 0 0 9px rgba(74,222,128,0)}100%{box-shadow:0 0 0 0 rgba(74,222,128,0)}}
+/* ========== FILTERS ========== */
+.filters{display:flex;flex-direction:column;gap:8px;margin-bottom:14px;padding:12px;background:var(--card);border:1px solid var(--border);border-radius:14px}
+.ff{position:relative;display:flex;align-items:center}
+.ff .ic{position:absolute;left:12px;color:var(--muted);pointer-events:none}
+.ff input,.ff select{width:100%;padding:12px 14px 12px 38px;border-radius:10px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:14px;outline:none;transition:.15s;-webkit-appearance:none;appearance:none}
+.ff select{padding-right:36px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%238a928d' stroke-width='2.2' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center}
+.ff input:focus,.ff select:focus{border-color:var(--green-d);box-shadow:0 0 0 3px #00d47a1e}
 
-.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:40px}
-.stat{
-  background:var(--card);
-  border:1px solid var(--line);border-radius:14px;padding:18px 14px;
-  transition:transform var(--t) var(--ease-back),border-color var(--t) ease;
-}
-.stat b{
-  display:block;font-size:26px;font-weight:900;letter-spacing:-.5px;line-height:1;
-  background:linear-gradient(135deg,var(--amber),var(--amber3));
-  -webkit-background-clip:text;background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-.stat span{font-size:11.5px;color:var(--muted);font-weight:600;display:block;margin-top:6px}
+/* ========== CHIPS — горизонтальный скролл на мобиле ========== */
+.chips{display:flex;gap:7px;margin-bottom:16px;overflow-x:auto;padding:2px 0;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.chips::-webkit-scrollbar{display:none}
+.chip{padding:8px 15px;border-radius:20px;border:1px solid var(--border);background:var(--card);color:var(--muted);font-size:12.5px;font-weight:600;transition:.15s;flex-shrink:0;min-height:36px;display:inline-flex;align-items:center}
+.chip.active{background:var(--green-d);border-color:var(--green-d);color:#fff}
+.chip:active{transform:scale(.95)}
 
-/* ============================================================
-   PRODUCTS
-============================================================ */
-.grid{display:grid;grid-template-columns:1fr;gap:14px}
-.card{
-  background:var(--card);
-  border:1px solid var(--line);border-radius:16px;padding:20px;
-  display:flex;flex-direction:column;position:relative;
-  transition:transform var(--t) var(--ease-back),border-color var(--t) ease,box-shadow var(--t) ease;
-}
-.card:hover{transform:translateY(-4px);border-color:var(--line-hi);box-shadow:0 14px 34px rgba(0,0,0,.4)}
-.p-icon{
-  width:60px;height:60px;border-radius:16px;
-  display:grid;place-items:center;
-  background:linear-gradient(135deg,rgba(255,176,32,.13),rgba(255,122,0,.05));
-  border:1px solid rgba(255,176,32,.2);
-  color:var(--amber);font-size:28px;margin-bottom:14px;
-  transition:transform var(--t) var(--ease-back);
-}
-.p-icon svg{stroke-width:1.6}
-.card:hover .p-icon{transform:rotate(-6deg) scale(1.04)}
-.card h3{font-size:15.5px;font-weight:800;margin-bottom:6px;line-height:1.3;letter-spacing:-.2px;padding-right:60px}
-.card .desc{font-size:12.5px;color:var(--muted);flex:1;margin-bottom:14px;line-height:1.55}
-.card .row{display:flex;align-items:center;justify-content:space-between;gap:10px}
-.price{font-size:20px;font-weight:900;letter-spacing:-.5px;color:var(--amber)}
-.tag{
-  position:absolute;top:14px;right:14px;font-size:9.5px;font-weight:800;letter-spacing:.8px;
-  padding:4px 9px;border-radius:7px;
-  background:rgba(255,176,32,.18);
-  color:var(--amber3);
-  border:1px solid rgba(255,176,32,.32);
-}
+/* ========== PRODUCT CARDS — mobile: 1 col big, затем 2/3/4 ========== */
+.grid{display:grid;grid-template-columns:1fr;gap:12px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px;transition:.2s;position:relative;overflow:hidden;display:flex;flex-direction:column}
+.card:active{transform:scale(.99)}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--green),transparent);opacity:0;transition:.2s}
+.card:hover::before{opacity:1}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
+.card-icon{width:52px;height:52px;border-radius:12px;background:#00d47a1a;display:flex;align-items:center;justify-content:center;color:var(--green);border:1px solid #00d47a2e}
+.card-icon svg{width:28px;height:28px}
+.tag{font-size:9.5px;font-weight:800;padding:3px 8px;border-radius:20px;background:#00d47a1e;color:var(--green);border:1px solid var(--green-d);text-transform:uppercase;letter-spacing:.4px}
+.tag.hot{background:#ff5a5a22;color:#ff8080;border-color:#c94a4a}
+.card h3{font-size:15.5px;margin-bottom:4px;color:#fff;font-weight:700}
+.card .desc{font-size:12.5px;color:var(--muted);margin-bottom:9px;flex:1;min-height:32px;line-height:1.5}
+.card .meta{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--muted);margin-bottom:9px}
+.card .rating{display:inline-flex;align-items:center;gap:3px;color:var(--green)}
+.card .price{font-size:22px;font-weight:800;color:#fff;margin-bottom:10px;letter-spacing:-.4px}
+.card .price small{font-size:12px;color:var(--muted);font-weight:600;margin-left:2px}
+.card .row{display:flex;gap:7px}
+.card .row .btn{flex:1;justify-content:center;min-height:44px}
 
-/* ============================================================
-   CART
-============================================================ */
-.cart-box{
-  background:var(--card);
-  border:1px solid var(--line);border-radius:18px;padding:20px;
-  box-shadow:0 10px 26px rgba(0,0,0,.3);
-}
-.cart-item{
-  display:flex;align-items:center;gap:12px;padding:14px 0;
-  border-bottom:1px solid var(--line);
-}
-.cart-item:last-of-type{border-bottom:none}
-.cart-item .ce{
-  width:44px;height:44px;border-radius:12px;
-  background:linear-gradient(135deg,rgba(255,176,32,.13),rgba(255,122,0,.05));
-  border:1px solid rgba(255,176,32,.2);
-  color:var(--amber);font-size:22px;
-  display:grid;place-items:center;flex-shrink:0;
-}
-.cart-item .ce svg{stroke-width:1.6}
-.cart-item .ci{flex:1;min-width:0}
-.cart-item .ci b{display:block;font-size:13.5px;font-weight:700;line-height:1.3}
-.cart-item .ci span{font-size:11.5px;color:var(--muted)}
-.cart-item .line-total{
-  display:block;font-size:13.5px;font-weight:800;color:var(--amber);
-  margin-top:2px;
-}
-.qty{display:flex;align-items:center;gap:5px}
-.qty button{
-  width:32px;height:32px;border-radius:9px;
-  border:1px solid var(--line);background:transparent;
-  color:var(--text);font-size:15px;font-weight:800;
-  display:grid;place-items:center;
-  transition:all var(--t-fast) ease;
-}
-.qty button:active{transform:scale(.9)}
-.qty button .ico{font-size:12px}
-.qty b{min-width:20px;text-align:center;font-weight:800;font-size:14px}
-.total{
-  display:flex;justify-content:space-between;align-items:center;
-  margin-top:18px;padding-top:18px;border-top:1px solid var(--line);
-  font-size:16px;font-weight:800;
-}
-.total b{color:var(--amber);font-size:22px;letter-spacing:-.5px}
-.empty{text-align:center;padding:36px 16px;color:var(--muted);font-size:14px}
-.empty .e{
-  display:inline-grid;place-items:center;
-  width:70px;height:70px;border-radius:20px;
-  background:rgba(255,176,32,.08);
-  border:1px solid rgba(255,176,32,.18);
-  margin-bottom:16px;font-size:32px;color:var(--amber);
-}
-.empty .e svg{stroke-width:1.5}
-.empty a{color:var(--amber);font-weight:700}
+/* ========== NEWS ========== */
+.news-grid{display:grid;grid-template-columns:1fr;gap:12px}
+.news{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px 18px 18px 22px;position:relative;transition:.15s}
+.news::before{content:'';position:absolute;left:0;top:18px;bottom:18px;width:3px;border-radius:3px;background:var(--green-d)}
+.news:active{transform:scale(.99)}
+.news .date{font-size:10.5px;color:var(--muted);letter-spacing:.6px;text-transform:uppercase;margin-bottom:8px;font-weight:600;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.news .cat{font-size:9.5px;font-weight:800;padding:3px 8px;border-radius:20px;background:#00d47a1e;color:var(--green);border:1px solid var(--green-d);text-transform:none;letter-spacing:0}
+.news h3{font-size:15.5px;margin-bottom:7px;color:#fff;font-weight:700}
+.news p{font-size:13px;color:var(--muted);line-height:1.55;margin-bottom:10px}
 
-/* ============================================================
-   FORMS
-============================================================ */
-.field{margin-bottom:14px}
-.field label{
-  display:block;font-size:11px;font-weight:800;color:var(--muted);
-  margin-bottom:7px;letter-spacing:1.1px;text-transform:uppercase;
-}
-.field input,.field textarea,.field select{
-  width:100%;padding:13px 14px;border-radius:12px;
-  border:1px solid var(--line);
-  background:var(--bg2);
-  color:var(--text);font-size:16px;
-  transition:border-color var(--t-fast) ease;
-  outline:none;
-  min-height:48px;
-}
-.field input:focus,.field textarea:focus,.field select:focus{
-  border-color:var(--amber);
-  box-shadow:0 0 0 3px rgba(255,176,32,.1);
-}
-.field textarea{resize:vertical;min-height:100px;line-height:1.55;font-size:15px}
-.field select{cursor:pointer;appearance:none;
-  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23ffb020' stroke-width='2.5' stroke-linecap='round'><polyline points='6 9 12 15 18 9'/></svg>");
-  background-repeat:no-repeat;background-position:right 14px center;padding-right:40px}
-.field select option{background:var(--bg2)}
-.row2{display:grid;grid-template-columns:1fr;gap:12px}
+/* ========== REVIEWS ========== */
+.reviews-grid{display:grid;grid-template-columns:1fr;gap:12px}
+.review{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px}
+.review .stars{display:flex;gap:2px;color:var(--green);margin-bottom:10px}
+.review .txt{font-size:13px;color:#c9cecb;line-height:1.55;margin-bottom:12px}
+.review .who{display:flex;align-items:center;gap:10px}
+.review .av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--green-d),var(--green));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:13px}
+.review .nm{font-weight:700;font-size:13px;color:#fff}
+.review .rl{font-size:11px;color:var(--muted)}
 
-/* ============================================================
-   CHAT
-============================================================ */
-.chat{
-  background:var(--card);
-  border:1px solid var(--line);border-radius:18px;
-  overflow:hidden;display:flex;flex-direction:column;
-  height:min(70vh, 520px);
-  box-shadow:0 10px 26px rgba(0,0,0,.3);
-}
-.chat-head{
-  padding:14px 18px;border-bottom:1px solid var(--line);
-  display:flex;align-items:center;gap:11px;
-  background:rgba(255,176,32,.03);
-  flex-shrink:0;
-}
-.chat-head b{font-size:14.5px;font-weight:800}
-.chat-head small{
-  display:flex;align-items:center;gap:6px;
-  font-size:11px;color:var(--green);font-weight:700;
-}
-.chat-head small::before{
-  content:'';width:6px;height:6px;border-radius:50%;
-  background:var(--green);box-shadow:0 0 8px var(--green);
-}
-.chat-body{
-  flex:1;overflow-y:auto;padding:16px;
-  display:flex;flex-direction:column;gap:10px;
-  -webkit-overflow-scrolling:touch;
-}
-.msg{
-  max-width:85%;padding:11px 14px;border-radius:14px;
-  font-size:14px;line-height:1.45;word-break:break-word;
-  animation:msgIn .3s var(--ease) both;
-}
-@keyframes msgIn{from{opacity:0;transform:translate3d(0,8px,0)}to{opacity:1;transform:none}}
-.msg.me{
-  align-self:flex-end;
-  background:linear-gradient(135deg,var(--amber),var(--amber2));
-  color:#1a1206;border-bottom-right-radius:4px;
-  box-shadow:0 4px 14px rgba(255,140,0,.25);
-}
-.msg.them{
-  align-self:flex-start;
-  background:var(--bg2);
-  border:1px solid var(--line);
-  border-bottom-left-radius:4px;
-}
-.msg .meta{font-size:10px;opacity:.65;margin-top:5px;font-weight:700}
-.msg .adm-tag{
-  color:var(--amber);font-size:11px;font-weight:800;
-  display:inline-flex;align-items:center;gap:5px;margin-bottom:3px;
-}
-.chat-foot{
-  padding:10px;border-top:1px solid var(--line);
-  display:flex;gap:8px;background:var(--bg2);
-  flex-shrink:0;
-  padding-bottom:calc(10px + var(--safe-bottom));
-}
-.chat-foot input{
-  flex:1;padding:12px 14px;border-radius:12px;
-  border:1px solid var(--line);
-  background:var(--card);
-  color:var(--text);outline:none;font-size:16px;
-  transition:border-color var(--t-fast) ease;
-  min-height:44px;
-}
-.chat-foot input:focus{border-color:var(--amber)}
-.chat-foot .btn{padding:11px 14px;min-height:44px;min-width:44px}
-.chat-foot .btn span{display:none}
-.sysmsg{text-align:center;font-size:12px;color:var(--muted);padding:10px;font-style:italic}
+/* ========== RULES ========== */
+.rules{display:grid;grid-template-columns:1fr;gap:10px}
+.rule{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px}
+.rule-head{display:flex;align-items:center;gap:10px;margin-bottom:7px}
+.rule-num{width:26px;height:26px;border-radius:8px;background:var(--green-d);color:#fff;font-weight:800;font-size:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.rule h4{font-size:13.5px;color:#fff;font-weight:700}
+.rule p{font-size:12.5px;color:var(--muted);line-height:1.55}
 
-/* ============================================================
-   ADMIN MESSENGER
-============================================================ */
-.messenger{
-  display:grid;
-  grid-template-columns:1fr;
-  height:min(80vh, 640px);
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:18px;
-  overflow:hidden;
-  box-shadow:0 10px 26px rgba(0,0,0,.3);
-  position:relative;
-}
-.contacts{
-  border-right:none;
-  background:var(--bg2);
-  overflow-y:auto;
-  display:flex;flex-direction:column;
-  -webkit-overflow-scrolling:touch;
-}
-.contacts-head{
-  padding:14px 18px 10px;
-  font-size:10.5px;color:var(--muted);letter-spacing:1.5px;
-  font-weight:800;border-bottom:1px solid var(--line);
-  display:flex;align-items:center;gap:8px;
-  background:var(--card);
-  position:sticky;top:0;z-index:2;
-}
-.contacts-head .ico{color:var(--amber);font-size:13px}
-.contacts-head .count{
-  margin-left:auto;font-size:10px;padding:2px 8px;
-  background:rgba(255,176,32,.14);border-radius:999px;color:var(--amber);
-  border:1px solid rgba(255,176,32,.25);
-}
-.contact{
-  padding:12px 16px;cursor:pointer;
-  border-bottom:1px solid var(--line);
-  display:flex;gap:12px;align-items:center;
-  transition:background var(--t-fast) ease;
-  position:relative;
-  min-height:60px;
-}
-.contact:active{background:rgba(255,176,32,.06)}
-.contact.on{background:rgba(255,176,32,.1)}
-.contact.on::before{
-  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
-  background:linear-gradient(180deg,var(--amber),var(--amber2));
-}
-.contact .avatar{width:40px;height:40px;font-size:14px;flex-shrink:0}
-.contact .info{flex:1;min-width:0}
-.contact .info b{font-size:13.5px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:700}
-.contact .info small{font-size:11px;color:var(--amber);font-weight:700}
-.contact .info .prev{
-  font-size:12px;color:var(--muted);
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-  margin-top:3px;
-}
-.contact .unread{
-  min-width:20px;height:20px;border-radius:10px;padding:0 6px;
-  background:linear-gradient(135deg,var(--amber),var(--amber2));
-  color:#1a1206;font-size:10px;font-weight:900;
-  display:grid;place-items:center;
+/* ========== FAQ ========== */
+.faq{display:grid;gap:8px}
+.faq-item{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.faq-q{padding:14px 16px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;font-weight:600;font-size:13.5px;color:#fff;user-select:none;min-height:50px}
+.faq-q .arr{transition:.25s;color:var(--muted);flex-shrink:0}
+.faq-item.open .faq-q .arr{transform:rotate(180deg);color:var(--green)}
+.faq-a{max-height:0;overflow:hidden;padding:0 16px;color:var(--muted);font-size:13px;line-height:1.6;transition:max-height .3s,padding .3s}
+.faq-item.open .faq-a{max-height:400px;padding:0 16px 14px}
+
+/* ========== ABOUT ========== */
+.about-grid{display:grid;grid-template-columns:1fr;gap:12px}
+.about-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px}
+.about-card .ic{width:42px;height:42px;border-radius:10px;background:#00d47a1a;color:var(--green);display:flex;align-items:center;justify-content:center;margin-bottom:11px}
+.about-card h4{font-size:14.5px;color:#fff;margin-bottom:6px;font-weight:700}
+.about-card p{font-size:12.5px;color:var(--muted);line-height:1.55}
+
+/* ========== FOOTER ========== */
+footer{margin-top:36px;padding:30px 0 calc(30px + var(--nav-h) + var(--safe-b));border-top:1px solid var(--border);background:#0c0f0d}
+.foot-grid{display:grid;grid-template-columns:1fr;gap:22px;margin-bottom:20px}
+.foot-col h4{font-size:11.5px;color:#fff;margin-bottom:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px}
+.foot-col p{color:var(--muted);font-size:12.5px;line-height:1.6}
+.foot-col a{color:var(--muted);font-size:12.5px;padding:5px 0;cursor:pointer;transition:.15s;display:flex;align-items:center;gap:7px;width:fit-content}
+.foot-col a:active{color:var(--green)}
+.copy{text-align:center;color:#555;font-size:11.5px;padding-top:18px;border-top:1px solid #1a1d1b}
+
+/* ========== BOTTOM NAV (mobile only) ========== */
+.bottomnav{position:fixed;bottom:0;left:0;right:0;z-index:60;background:#0f1311f7;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid var(--border);display:grid;grid-template-columns:repeat(5,1fr);padding:6px 4px;padding-bottom:calc(6px + var(--safe-b))}
+.bnav-btn{display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 2px;color:var(--muted);font-size:10px;font-weight:600;transition:.15s;border-radius:10px;min-height:52px;justify-content:center;position:relative}
+.bnav-btn:active{background:var(--card)}
+.bnav-btn.active{color:var(--green)}
+.bnav-btn .ic{position:relative}
+.bnav-btn .badge-dot{position:absolute;top:-4px;right:-8px;min-width:16px;height:16px;border-radius:8px;background:#ff4d4d;color:#fff;font-size:9.5px;font-weight:800;display:none;align-items:center;justify-content:center;padding:0 4px;border:2px solid #0f1311}
+.bnav-btn .badge-dot.show{display:flex}
+
+/* ========== OVERLAY / MODAL (mobile: bottom sheet) ========== */
+.ov{position:fixed;inset:0;background:#000c;display:none;z-index:200;padding:0;align-items:flex-end;justify-content:center}
+.ov.active{display:flex;animation:fade .2s ease}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.md{background:var(--bg2);padding:22px 20px;padding-bottom:calc(22px + var(--safe-b));width:100%;max-width:100%;max-height:92vh;overflow-y:auto;border-radius:22px 22px 0 0;border:1px solid var(--border);border-bottom:none;position:relative;animation:sheetUp .28s cubic-bezier(.2,.8,.2,1);-webkit-overflow-scrolling:touch}
+@keyframes sheetUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.md::before{content:'';display:block;width:44px;height:4px;border-radius:2px;background:#333;margin:-6px auto 16px}
+.md h2{margin-bottom:6px;font-size:18px;color:#fff;font-weight:800;display:flex;align-items:center;gap:10px}
+.md h2 .ic{width:34px;height:34px;border-radius:10px;background:#00d47a1a;color:var(--green);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.md .sub{color:var(--muted);font-size:13px;margin-bottom:18px;line-height:1.5}
+.md label{font-size:12px;color:var(--muted);margin-bottom:5px;display:block;font-weight:600}
+.md input,.md textarea,.md select{width:100%;padding:14px;margin-bottom:12px;border-radius:11px;border:1px solid var(--border);background:var(--bg);color:var(--text);outline:none;transition:.15s;-webkit-appearance:none;appearance:none}
+.md textarea{resize:vertical;min-height:70px;font-size:15px}
+.md input:focus,.md textarea:focus,.md select:focus{border-color:var(--green-d);box-shadow:0 0 0 3px #00d47a1e}
+.md-close{position:absolute;top:14px;right:14px;padding:8px;border-radius:9px;color:var(--muted);display:flex;z-index:1}
+.md-close:active{background:var(--bg);color:var(--green)}
+.md.wide{max-width:100%}
+
+.icon-picker{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:14px}
+.icon-opt{aspect-ratio:1;border-radius:11px;border:1px solid var(--border);background:var(--bg);color:var(--muted);display:flex;align-items:center;justify-content:center;transition:.15s}
+.icon-opt:active{transform:scale(.94)}
+.icon-opt.sel{background:var(--green-d);border-color:var(--green-d);color:#fff}
+
+.success-box{text-align:center;padding:8px 0}
+.success-icon{width:72px;height:72px;border-radius:50%;background:#00d47a1f;border:2px solid var(--green-d);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;color:var(--green)}
+.success-box h3{font-size:19px;color:#fff;margin-bottom:8px;font-weight:800}
+.success-box p{color:var(--muted);font-size:13.5px;line-height:1.5;margin-bottom:5px}
+.success-box .hl{color:var(--green);font-weight:700;font-size:15px;padding:10px 15px;background:#00d47a14;border-radius:10px;display:inline-block;margin:8px 0;word-break:break-all}
+
+.tabs{display:flex;gap:5px;margin-bottom:14px;background:var(--bg);padding:4px;border-radius:10px}
+.tab{flex:1;padding:11px 8px;color:var(--muted);font-weight:600;font-size:12.5px;border-radius:7px;transition:.15s;display:flex;align-items:center;justify-content:center;gap:6px;min-height:40px}
+.tab.active{background:var(--green-d);color:#fff}
+.admin-item{display:flex;align-items:center;gap:11px;padding:11px;background:var(--bg);border:1px solid var(--border);border-radius:10px;margin-bottom:7px;font-size:13px}
+.admin-item .em{width:32px;height:32px;border-radius:8px;background:#00d47a1a;color:var(--green);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.admin-item .nm{flex:1;font-weight:600;color:#fff;font-size:13px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.admin-item .pr{color:var(--green);font-weight:700;font-size:12.5px}
+
+/* ========== TOAST ========== */
+.toast{position:fixed;bottom:calc(var(--nav-h) + var(--safe-b) + 14px);left:50%;transform:translateX(-50%);padding:13px 18px;background:var(--green-d);color:#fff;border-radius:12px;font-weight:600;box-shadow:0 12px 34px #00a86066;z-index:400;font-size:13.5px;max-width:calc(100vw - 32px);animation:tin .25s ease;display:flex;align-items:center;gap:9px}
+@keyframes tin{from{opacity:0;transform:translate(-50%,18px)}to{opacity:1;transform:translate(-50%,0)}}
+
+.empty{grid-column:1/-1;text-align:center;padding:50px 20px;color:var(--muted)}
+.empty .ic{width:60px;height:60px;border-radius:14px;margin:0 auto 14px;background:var(--card);color:#3a403c;border:1px solid var(--border);display:flex;align-items:center;justify-content:center}
+
+/* ========== CHAT ========== */
+.chat-panel{position:fixed;inset:0;background:var(--bg2);z-index:300;display:flex;flex-direction:column;opacity:0;pointer-events:none;transform:translateY(100%);transition:.3s cubic-bezier(.2,.8,.2,1);padding-top:var(--safe-t)}
+.chat-panel.open{opacity:1;pointer-events:auto;transform:translateY(0)}
+.chat-side{display:none}
+.chat-main{flex:1;display:flex;flex-direction:column;min-height:0;overflow:hidden}
+.chat-head{padding:12px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;background:var(--bg2);flex-shrink:0}
+.chat-back{padding:8px;border-radius:9px;color:var(--muted);display:flex;transition:.15s;flex-shrink:0}
+.chat-back:active{background:var(--bg);color:var(--green)}
+.chat-head .av{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--green-d),var(--green));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:13px;flex-shrink:0}
+.chat-head .info{flex:1;min-width:0}
+.chat-head .info .nm{font-size:14px;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chat-head .info .st{font-size:11px;color:var(--green);display:flex;align-items:center;gap:5px;margin-top:1px}
+.chat-head .info .st .dot{width:6px;height:6px;border-radius:50%;background:var(--green)}
+.chat-head .cls{padding:8px;border-radius:9px;color:var(--muted);display:flex}
+.chat-head .cls:active{background:var(--bg);color:var(--green)}
+
+.chat-body{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:9px;background:var(--bg2);-webkit-overflow-scrolling:touch}
+.chat-msg{max-width:85%;padding:10px 14px;border-radius:15px;font-size:14px;line-height:1.45;word-wrap:break-word;animation:msgIn .2s ease}
+@keyframes msgIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+.chat-msg.user{align-self:flex-start;background:var(--card);color:var(--text);border-bottom-left-radius:4px}
+.chat-msg.admin{align-self:flex-end;color:#fff;background:linear-gradient(135deg,var(--green-d),var(--green));border-bottom-right-radius:4px}
+.chat-msg .tm{font-size:10px;opacity:.65;margin-top:3px;text-align:right}
+
+.chat-empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--muted);text-align:center;padding:24px;font-size:13px;gap:10px;line-height:1.5}
+.chat-empty .ic{width:56px;height:56px;border-radius:14px;background:var(--card);color:#3a403c;border:1px solid var(--border);display:flex;align-items:center;justify-content:center}
+
+.chat-input{padding:11px 12px;padding-bottom:calc(11px + var(--safe-b));border-top:1px solid var(--border);display:flex;gap:8px;align-items:center;background:var(--bg2);flex-shrink:0}
+.chat-input input{flex:1;padding:12px 14px;border-radius:12px;border:1px solid var(--border);background:var(--bg);color:var(--text);outline:none;font-size:15px}
+.chat-input input:focus{border-color:var(--green-d)}
+.chat-input button{width:44px;height:44px;border-radius:50%;background:var(--green-d);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.chat-input button:active{transform:scale(.94);background:var(--green)}
+
+/* Мобильный список диалогов админа */
+.chat-list-view{display:none;flex:1;overflow-y:auto;background:var(--bg2)}
+.chat-panel.admin.list-mode .chat-list-view{display:block}
+.chat-panel.admin.list-mode .chat-main{display:none}
+.chat-panel.admin:not(.list-mode) .chat-list-view{display:none}
+.chat-panel.admin.chat-open .chat-list-view{display:none}
+.chat-panel.admin.chat-open .chat-main{display:flex}
+.chat-list-head{padding:14px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;position:sticky;top:0;background:var(--bg2);z-index:1}
+.chat-list-head .ttl{font-size:15px;font-weight:800;color:#fff;flex:1}
+.chat-user{padding:14px 16px;border-bottom:1px solid var(--border);cursor:pointer;position:relative;transition:.15s;display:flex;align-items:center;gap:11px}
+.chat-user:active{background:var(--card)}
+.chat-user .uav{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--green-d),var(--green));color:#fff;font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.chat-user .ui{flex:1;min-width:0}
+.chat-user .nm{font-size:14.5px;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chat-user .lst{font-size:12px;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chat-user .un{min-width:22px;height:22px;border-radius:11px;background:var(--green-d);color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;padding:0 6px;flex-shrink:0}
+
+/* ========== TABLET ≥ 600px ========== */
+@media(min-width:600px){
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .news-grid{grid-template-columns:repeat(2,1fr)}
+  .reviews-grid{grid-template-columns:repeat(2,1fr)}
+  .rules{grid-template-columns:repeat(2,1fr)}
+  .about-grid{grid-template-columns:repeat(2,1fr)}
+  .filters{flex-direction:row;flex-wrap:wrap}
+  .filters .ff{flex:1;min-width:160px}
+  .filters .ff:last-child{max-width:180px}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .featured .ficon{opacity:.6;width:120px;height:120px;right:24px;top:24px}
+  .featured{padding:26px;flex-direction:row;align-items:center}
+  .featured .ftxt{flex:1;padding-right:120px}
 }
 
-/* Mobile: hide chat view by default, show only when messenger has class */
-.chat-view{
-  display:none;
-  flex-direction:column;
-  min-width:0;
-  background:var(--card);
-  position:absolute;
-  inset:0;
-  z-index:5;
-  animation:slideInRight .3s var(--ease);
-}
-@keyframes slideInRight{from{transform:translateX(20px);opacity:0}to{transform:none;opacity:1}}
-.messenger.mobile-chat-open .chat-view{display:flex}
+/* ========== DESKTOP ≥ 900px ========== */
+@media(min-width:900px){
+  .wrap{padding:0 20px}
+  .topbar{padding:12px 0}
+  .burger{display:none}
+  nav.topmenu{display:flex;gap:2px;flex-wrap:wrap}
+  nav.topmenu button{padding:9px 13px;border-radius:9px;color:var(--muted);font-weight:600;font-size:13.5px;display:flex;align-items:center;gap:6px;transition:.15s}
+  nav.topmenu button:hover{background:var(--bg2);color:var(--green)}
+  .tb-actions .btn{min-height:auto}
+  .logo{font-size:19px}
+  .logo-mark{width:38px;height:38px}
+  .bottomnav{display:none}
+  footer{padding-bottom:30px}
+  .toast{bottom:26px}
 
-.chat-view-head{
-  padding:12px 16px;border-bottom:1px solid var(--line);
-  display:flex;align-items:center;gap:11px;
-  background:rgba(255,176,32,.03);
-  flex-shrink:0;
-}
-.chat-view-head .avatar{width:38px;height:38px;font-size:14px}
-.chat-view-head .nm{font-size:14.5px;font-weight:800;line-height:1.2}
-.chat-view-head .cl{font-size:11.5px;color:var(--amber);font-weight:700;margin-top:1px}
-.chat-view-head .back-btn{
-  width:36px;height:36px;border-radius:10px;
-  display:grid;place-items:center;
-  color:var(--text);background:rgba(255,255,255,.03);
-  border:1px solid var(--line);
-  transition:all var(--t-fast) ease;
-}
-.chat-view-head .back-btn:active{transform:scale(.92)}
-.chat-view-head .actions{margin-left:auto;display:flex;gap:6px}
-.chat-view-head .btn.sm{padding:7px 10px}
-.chat-view-head .btn.sm span{display:none}
-.chat-view .chat-body{padding:16px;flex:1}
-.chat-view .msg.them b.sender{
-  color:var(--amber);font-size:10.5px;
-  display:inline-flex;align-items:center;gap:5px;
-  margin-bottom:3px;font-weight:800;
-}
+  /* Модалки снова по центру */
+  .ov{align-items:center;padding:20px}
+  .md{max-width:440px;border-radius:18px;border-bottom:1px solid var(--border);padding:28px;padding-bottom:28px;animation:modalIn .25s ease;max-height:90vh}
+  .md::before{display:none}
+  @keyframes modalIn{from{opacity:0;transform:translateY(14px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
+  .md.wide{max-width:600px}
+  .md h2{font-size:20px;margin-bottom:6px}
+  .md h2 .ic{width:36px;height:36px}
 
-/* ============================================================
-   ADMIN ORDERS
-============================================================ */
-.order-card{
-  background:var(--card);
-  border:1px solid var(--line);
-  border-left:3px solid var(--amber);
-  border-radius:14px;padding:16px;margin-bottom:12px;
-}
-.order-card.done{border-left-color:var(--green);opacity:.78}
-.order-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:10px;flex-wrap:wrap}
-.order-head b{font-size:14.5px;font-weight:800}
-.order-head .when{font-size:11px;color:var(--muted);margin-top:3px}
-.order-items{font-size:13px;color:var(--muted);margin-bottom:10px;line-height:1.65}
-.order-items span{color:var(--text);font-weight:600}
-.status{
-  font-size:10px;font-weight:800;padding:4px 9px;border-radius:7px;
-  letter-spacing:.7px;
-  background:rgba(255,176,32,.14);
-  color:var(--amber3);
-  border:1px solid rgba(255,176,32,.28);
-  display:inline-flex;align-items:center;gap:5px;
-  text-transform:uppercase;
-}
-.status .ico{font-size:11px}
-.status.ok{background:rgba(74,222,128,.14);color:var(--green);border-color:rgba(74,222,128,.3)}
-.order-actions{display:flex;gap:7px;margin-top:12px;flex-wrap:wrap}
-.order-actions .btn{flex:1;min-width:0;padding:9px 10px;font-size:12px}
-.order-actions .btn .ico{font-size:14px}
+  /* Чат — панель как раньше */
+  .chat-panel{position:fixed;left:22px;bottom:88px;top:auto;right:auto;width:400px;height:520px;max-height:calc(100vh - 120px);border-radius:18px;border:1px solid var(--border);box-shadow:0 24px 70px #000000cc;overflow:hidden;flex-direction:row;opacity:0;pointer-events:none;transform:translateY(14px) scale(.96);transform-origin:bottom left;padding-top:0;transition:.25s}
+  .chat-panel.open{transform:translateY(0) scale(1)}
+  .chat-panel .chat-side{display:none;width:145px;border-right:1px solid var(--border);background:var(--bg);flex-direction:column;overflow-y:auto;flex-shrink:0}
+  .chat-panel.admin .chat-side{display:flex}
+  .chat-panel .chat-side-head{padding:12px;font-size:10px;font-weight:800;color:var(--muted);letter-spacing:1px;text-transform:uppercase;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--bg);z-index:1}
+  .chat-side .chat-user{padding:11px 12px;display:block}
+  .chat-side .chat-user .uav{display:none}
+  .chat-side .chat-user .nm{font-size:12.5px;padding-right:20px}
+  .chat-side .chat-user .lst{font-size:10.5px}
+  .chat-side .chat-user .un{position:absolute;top:12px;right:10px;min-width:17px;height:17px;font-size:10px}
+  .chat-side .chat-user.active{background:#00d47a14;border-left:3px solid var(--green);padding-left:9px}
+  .chat-panel .chat-back{display:none}
+  .chat-list-view{display:none!important}
+  .chat-panel.admin.list-mode .chat-main{display:flex}
+  .chat-panel .chat-input{padding-bottom:11px}
+  .chat-fab{position:fixed;bottom:22px;left:22px;width:54px;height:54px;border-radius:50%;background:var(--green-d);color:#fff;box-shadow:0 10px 30px #00a86099;z-index:150;display:flex;align-items:center;justify-content:center;transition:.2s}
+  .chat-fab:hover{transform:scale(1.08);background:var(--green)}
+  .chat-fab .ico-chat,.chat-fab .ico-close{transition:.2s}
+  .chat-fab .ico-close{display:none}
+  .chat-fab.open .ico-chat{display:none}
+  .chat-fab.open .ico-close{display:block}
+  .chat-fab .badge-dot{position:absolute;top:-2px;right:-2px;min-width:20px;height:20px;border-radius:10px;background:#ff4d4d;color:#fff;font-size:10.5px;font-weight:800;display:none;align-items:center;justify-content:center;padding:0 5px;border:2px solid var(--bg)}
+  .chat-fab .badge-dot.show{display:flex}
 
-/* ============================================================
-   TABS
-============================================================ */
-.tabs{
-  display:flex;gap:5px;
-  background:var(--card);
-  padding:5px;border-radius:12px;
-  border:1px solid var(--line);
-  margin-bottom:20px;
-  width:100%;
-}
-.tabs button{
-  flex:1;
-  padding:10px 14px;border-radius:9px;
-  background:transparent;color:var(--muted);
-  font-weight:700;font-size:13px;
-  display:inline-flex;align-items:center;justify-content:center;gap:7px;
-  transition:all var(--t) var(--ease-back);
-  min-height:42px;
-}
-.tabs button.on{
-  background:linear-gradient(135deg,var(--amber),var(--amber2));
-  color:#1a1206;
-  box-shadow:0 4px 14px rgba(255,140,0,.3);
-}
-.tabs button .ico{font-size:15px}
-
-/* ============================================================
-   MODAL — bottom sheet on mobile, centered on desktop
-============================================================ */
-.modal-bg{
-  position:fixed;inset:0;
-  background:rgba(0,0,0,.78);
-  z-index:1000;
-  display:none;
-  align-items:flex-end;
-  justify-content:center;
-  padding:0;
-  opacity:0;
-  transition:opacity var(--t) var(--ease);
-}
-.modal-bg.on{display:flex;opacity:1}
-.modal{
-  background:var(--card2);
-  border:1px solid var(--line);
-  border-top-left-radius:22px;
-  border-top-right-radius:22px;
-  border-bottom-left-radius:0;
-  border-bottom-right-radius:0;
-  padding:24px 20px calc(24px + var(--safe-bottom));
-  width:100%;
-  max-width:600px;
-  max-height:88vh;
-  overflow-y:auto;
-  box-shadow:0 -20px 60px rgba(0,0,0,.7);
-  transform:translateY(100%);
-  transition:transform var(--t-slow) var(--ease-back);
-  position:relative;
-}
-.modal-bg.on .modal{transform:translateY(0)}
-.modal::before{
-  content:'';position:absolute;top:8px;left:50%;transform:translateX(-50%);
-  width:40px;height:4px;border-radius:2px;background:var(--line-hi);
-}
-.modal h3{font-size:20px;font-weight:900;margin-bottom:6px;letter-spacing:-.3px;margin-top:8px}
-.modal .sub{color:var(--muted);font-size:13px;margin-bottom:18px}
-.hint{
-  font-size:11.5px;color:var(--muted);
-  background:rgba(255,176,32,.05);
-  border:1px solid rgba(255,176,32,.15);
-  border-radius:11px;padding:11px 13px;margin-top:14px;line-height:1.55;
-}
-.hint b{color:var(--amber)}
-
-/* ============================================================
-   REVIEWS
-============================================================ */
-.review{
-  background:var(--card);
-  border:1px solid var(--line);border-radius:16px;padding:18px;
-}
-.review .top{display:flex;align-items:center;gap:11px;margin-bottom:12px}
-.review .stars{color:var(--amber);font-size:13px;letter-spacing:1.5px}
-.review .txt{font-size:13.5px;color:#d8cfc2;line-height:1.6}
-.review .who{font-size:11px;color:var(--muted);margin-top:9px;font-weight:700;letter-spacing:.4px;text-transform:uppercase}
-
-/* ============================================================
-   GAME
-============================================================ */
-.game{
-  background:var(--card);
-  border:1px solid var(--line);border-radius:18px;
-  padding:20px;text-align:center;
-  box-shadow:0 10px 26px rgba(0,0,0,.3);
-}
-.arena{
-  position:relative;height:min(55vh, 340px);
-  background:var(--bg2);
-  border-radius:14px;border:1px solid var(--line);
-  margin:16px 0;overflow:hidden;cursor:crosshair;
-  background-image:
-    linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);
-  background-size:36px 36px;
-  touch-action:manipulation;
-}
-.target{
-  position:absolute;width:58px;height:58px;border-radius:50%;
-  display:grid;place-items:center;
-  background:radial-gradient(circle at 35% 30%,#ffd89a 12%,#ffb020 22%,#ff7a00 62%,#b45309);
-  border:2px solid #7c2d12;cursor:pointer;user-select:none;
-  color:#3b1a05;font-size:26px;
-  box-shadow:0 0 22px rgba(255,140,0,.5), inset 0 0 12px rgba(255,255,255,.25);
-  animation:targetPop .3s var(--ease-back);
-  transition:transform .12s ease,opacity .12s ease;
-}
-.target svg{stroke-width:1.8}
-@keyframes targetPop{from{transform:scale(0) rotate(-90deg);opacity:0}to{transform:scale(1) rotate(0);opacity:1}}
-.game-info{display:flex;justify-content:space-around;gap:16px;flex-wrap:wrap;font-size:11px;font-weight:700;letter-spacing:.5px;color:var(--muted);text-transform:uppercase}
-.game-info b{color:var(--amber);font-size:22px;display:block;letter-spacing:-.5px;margin-top:3px;font-weight:900}
-.game .btn{width:100%;margin-top:6px}
-
-/* ============================================================
-   INFO CARDS
-============================================================ */
-.info-grid{display:grid;grid-template-columns:1fr;gap:14px}
-.info{
-  background:var(--card);
-  border:1px solid var(--line);border-radius:16px;padding:20px;
-}
-.info .ic{
-  width:50px;height:50px;border-radius:14px;
-  display:grid;place-items:center;
-  background:rgba(255,176,32,.1);
-  border:1px solid rgba(255,176,32,.2);
-  color:var(--amber);font-size:24px;margin-bottom:14px;
-}
-.info .ic svg{stroke-width:1.7}
-.info h4{font-size:15px;font-weight:800;margin-bottom:7px}
-.info p{font-size:13px;color:var(--muted);line-height:1.6}
-
-/* ============================================================
-   FOOTER
-============================================================ */
-footer{
-  border-top:1px solid var(--line);
-  padding:34px 0;
-  text-align:center;
-  color:var(--muted);font-size:12.5px;
-  background:var(--bg2);
-}
-footer b{color:var(--amber);letter-spacing:1px}
-
-/* ============================================================
-   MOBILE BOTTOM NAVIGATION
-============================================================ */
-.mobile-nav{
-  display:none;
-  position:fixed;bottom:0;left:0;right:0;
-  background:rgba(20,17,16,.98);
-  border-top:1px solid var(--line);
-  z-index:300;
-  padding-bottom:var(--safe-bottom);
-  box-shadow:0 -4px 20px rgba(0,0,0,.4);
-}
-body.is-mobile .mobile-nav{display:flex}
-.mobile-nav .tab{
-  flex:1;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
-  padding:8px 4px 10px;
-  color:var(--muted);
-  font-size:10px;font-weight:700;letter-spacing:.3px;
-  min-height:var(--bottom-nav-h);
-  transition:color var(--t-fast) ease;
-  position:relative;
-  background:none;
-  border:none;
-}
-.mobile-nav .tab .ico{font-size:22px;transition:transform var(--t) var(--ease-back)}
-.mobile-nav .tab.active{color:var(--amber)}
-.mobile-nav .tab.active .ico{transform:translateY(-2px) scale(1.08)}
-.mobile-nav .tab.active::before{
-  content:'';position:absolute;top:4px;left:50%;transform:translateX(-50%);
-  width:24px;height:2.5px;border-radius:2px;
-  background:linear-gradient(90deg,var(--amber),var(--amber2));
-  box-shadow:0 0 8px rgba(255,140,0,.6);
-}
-.mobile-nav .tab:active .ico{transform:scale(.92)}
-.mobile-nav .tab .badge{
-  position:absolute;top:4px;right:calc(50% - 22px);
-  min-width:18px;height:18px;border-radius:9px;padding:0 5px;
-  background:linear-gradient(135deg,var(--amber),var(--amber2));
-  color:#1a1206;font-size:10px;font-weight:900;
-  display:none;align-items:center;justify-content:center;
-  border:2px solid var(--bg2);
-}
-.mobile-nav .tab .badge.on{display:inline-flex}
-
-/* ============================================================
-   TOASTS
-============================================================ */
-#toasts{
-  position:fixed;bottom:calc(var(--bottom-nav-h) + 16px + var(--safe-bottom));
-  left:16px;right:16px;
-  z-index:2000;
-  display:flex;flex-direction:column;gap:10px;
-  pointer-events:none;
-  align-items:stretch;
-}
-.toast{
-  background:var(--card2);
-  border:1px solid var(--line);
-  border-left:3px solid var(--amber);
-  border-radius:12px;padding:12px 16px;
-  font-size:13px;font-weight:600;
-  box-shadow:0 12px 30px rgba(0,0,0,.55);
-  animation:toastIn .3s var(--ease-back);
-  display:flex;align-items:center;gap:10px;
-  pointer-events:auto;
-  position:relative;overflow:hidden;
-}
-.toast::after{
-  content:'';position:absolute;bottom:0;left:0;height:2px;
-  background:linear-gradient(90deg,var(--amber),var(--amber2));
-  width:100%;transform-origin:left;
-  animation:toastBar 3.2s linear forwards;
-}
-@keyframes toastBar{to{transform:scaleX(0)}}
-.toast .ico{font-size:18px;color:var(--amber);flex-shrink:0}
-.toast.ok{border-left-color:var(--green)}
-.toast.ok .ico{color:var(--green)}
-.toast.ok::after{background:linear-gradient(90deg,var(--green),#16a34a)}
-.toast.err{border-left-color:var(--red)}
-.toast.err .ico{color:var(--red)}
-.toast.err::after{background:linear-gradient(90deg,var(--red),#dc2626)}
-@keyframes toastIn{from{transform:translate3d(0,20px,0);opacity:0}to{transform:none;opacity:1}}
-.toast.out{animation:toastOut .3s var(--ease) forwards}
-@keyframes toastOut{to{transform:translate3d(0,20px,0);opacity:0}}
-
-.hidden{display:none!important}
-
-/* ============================================================
-   DESKTOP — от 900px
-============================================================ */
-@media (min-width:900px){
-  section{padding:90px 0}
-  .wrap{padding:0 22px}
-  .sec-head{margin-bottom:44px}
-  .sec-head p{font-size:15.5px}
-
-  .nav{padding:14px 22px;gap:22px}
-  .logo{font-size:16px;gap:12px}
-  .logo .mark{width:40px;height:40px;font-size:22px;border-radius:12px}
-  .logo .mark svg{width:22px;height:22px}
-  .logo small{font-size:9.5px}
-  .nav-links{display:flex}
-  .nav-right{margin-left:0}
-  .user-chip{padding:7px 14px;font-size:13px}
-  .user-chip .name{display:inline}
-  .user-chip .cls{display:inline}
-  .avatar{width:26px;height:26px;font-size:11px}
-
-  .hero{padding:100px 0 80px}
-  .hero h1{letter-spacing:-3.5px}
-  .hero p{font-size:17px}
-  .hero-actions{flex-direction:row;max-width:none;gap:14px}
-  .hero-actions .btn{width:auto}
-  .badge-top{padding:8px 18px;font-size:11.5px;letter-spacing:1.2px;margin-bottom:26px}
-  .stats{grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-top:70px}
-  .stat{padding:26px 18px;border-radius:16px}
-  .stat b{font-size:36px}
-  .stat span{font-size:12.5px;margin-top:8px}
-
-  .grid{grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
-  .card{padding:24px;border-radius:18px}
-  .card:hover{transform:translateY(-5px);box-shadow:0 18px 40px rgba(0,0,0,.45)}
-  .p-icon{width:68px;height:68px;border-radius:18px;font-size:32px;margin-bottom:18px}
-  .card h3{font-size:16px;padding-right:0}
-  .card .desc{font-size:13px;margin-bottom:18px}
-  .price{font-size:22px}
-  .tag{top:16px;right:16px;font-size:10px;padding:5px 10px;border-radius:8px}
-
-  .cart-box{padding:28px;border-radius:20px}
-  .cart-item{gap:16px;padding:16px 0}
-  .cart-item .ce{width:48px;height:48px;border-radius:13px;font-size:24px}
-  .cart-item .ci b{font-size:14.5px}
-  .cart-item .ci .line-total{display:none}
-  .qty button{width:30px;height:30px}
-  .total{font-size:18px;margin-top:22px;padding-top:22px}
-  .total b{font-size:28px}
-
-  .row2{grid-template-columns:1fr 1fr;gap:14px}
-  .field input,.field textarea,.field select{font-size:14.5px;padding:13px 16px}
-  .field textarea{font-size:14.5px}
-
-  .chat{height:480px;border-radius:20px}
-  .chat-head{padding:16px 22px}
-  .chat-body{padding:22px;gap:12px}
-  .msg{padding:12px 16px;border-radius:16px;font-size:14px}
-  .chat-foot{padding:14px;gap:10px;padding-bottom:14px}
-  .chat-foot .btn span{display:inline}
-
-  .messenger{
-    grid-template-columns:340px 1fr;
-    height:640px;
-    border-radius:20px;
-  }
-  .contacts{border-right:1px solid var(--line)}
-  .contact{padding:14px 18px}
-  .contact .avatar{width:42px;height:42px}
-  .contact .info b{font-size:14px}
-  .chat-view{
-    display:flex !important;
-    position:static;
-    animation:none;
-  }
-  .messenger.mobile-chat-open .chat-view{display:flex}
-  .chat-view-head{padding:14px 22px}
-  .chat-view-head .avatar{width:42px;height:42px}
-  .chat-view-head .nm{font-size:15px}
-  .chat-view-head .back-btn{display:none}
-  .chat-view-head .btn.sm span{display:inline}
-  .chat-view-head .btn.sm{padding:8px 14px}
-
-  .order-card{padding:20px;margin-bottom:16px}
-  .order-head b{font-size:15px}
-  .order-items{font-size:13.5px}
-  .order-actions{flex-wrap:nowrap}
-  .order-actions .btn{flex:0 0 auto;padding:8px 14px;font-size:12.5px}
-
-  .tabs{width:fit-content;margin-bottom:26px}
-  .tabs button{flex:0 0 auto;padding:10px 20px;font-size:13.5px}
-
-  .modal-bg{align-items:center;padding:20px}
-  .modal{
-    border-radius:22px;
-    padding:34px;
-    max-width:450px;
-    transform:scale(.94) translateY(16px);
-    box-shadow:0 30px 70px rgba(0,0,0,.7);
-  }
-  .modal-bg.on .modal{transform:scale(1) translateY(0)}
-  .modal::before{display:none}
-  .modal h3{font-size:24px;margin-top:0}
-  .modal .sub{font-size:13.5px;margin-bottom:24px}
-
-  .review{padding:22px}
-  .review .txt{font-size:14px}
-
-  .game{padding:28px;border-radius:20px}
-  .arena{height:340px;border-radius:16px;margin:20px 0;background-size:40px 40px}
-  .target{width:64px;height:64px;font-size:30px}
-  .game-info{gap:44px;font-size:13px}
-  .game-info b{font-size:26px}
-  .game .btn{width:auto;margin-top:0}
-
-  .info-grid{grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
-  .info{padding:26px}
-  .info .ic{width:56px;height:56px;font-size:26px;margin-bottom:16px}
-  .info h4{font-size:15.5px}
-  .info p{font-size:13.5px}
-
-  #toasts{
-    bottom:24px;right:24px;left:auto;
-    align-items:flex-end;
-  }
-  .toast{max-width:340px;padding:14px 18px;font-size:13.5px}
-  @keyframes toastIn{from{transform:translate3d(110%,0,0);opacity:0}to{transform:none;opacity:1}}
-  @keyframes toastOut{to{transform:translate3d(110%,0,0);opacity:0}}
+  .hero{padding:70px 0 40px}
+  .hero p{font-size:16px}
+  .stats{grid-template-columns:repeat(4,1fr);gap:14px;margin:50px 0}
+  .stat{padding:22px 20px}
+  .stat .ic{width:44px;height:44px}
+  .stat .num{font-size:28px}
+  .stat .lbl{font-size:11px}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+  .news-grid{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+  .reviews-grid{grid-template-columns:repeat(auto-fill,minmax(270px,1fr))}
+  .rules{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+  .about-grid{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+  .foot-grid{grid-template-columns:2fr 1fr 1fr 1fr;gap:26px}
+  section{padding:40px 0}
+  .sec-title{font-size:24px}
+  .sec-title .ic{width:36px;height:36px}
+  .featured{padding:30px}
+  .featured h2{font-size:28px}
+  .featured .ficon{opacity:1;width:110px;height:110px;right:20px;top:auto;position:static;align-self:center}
+  .featured{flex-direction:row}
+  .featured .ftxt{padding-right:0}
+  .featured p{max-width:500px}
 }
 
-/* Hover-only effects (desktop) */
-@media (hover:none){
-  .card:hover{transform:none;box-shadow:none}
-  .card:hover .p-icon{transform:none}
-  .stat:hover{transform:none}
-  .info:hover{transform:none}
-  .review:hover{transform:none}
-  .btn:hover{transform:none;box-shadow:0 4px 14px rgba(255,140,0,.25)}
-  .logo:hover .mark{transform:none}
-}
-
-@media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{
-    animation-duration:.01ms!important;
-    animation-iteration-count:1!important;
-    transition-duration:.01ms!important;
-    scroll-behavior:auto!important;
-  }
+@media(min-width:1100px){
+  .grid{grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
 }
 </style>
 </head>
 <body>
 
-<header id="header">
-  <div class="nav">
-    <a href="#" class="logo" onclick="event.preventDefault();scrollToSection('hero')">
-      <div class="mark" id="logoIcon"></div>
-      <div>БУМАЖНОЕ ОРУЖИЕ<small>ШКОЛА 43 · ТЮМЕНЬ</small></div>
-    </a>
-    <nav class="nav-links">
-      <a href="#catalog" id="navCatalog">Каталог</a>
-      <a href="#cart" id="navCart">Корзина <span id="cartBadge"></span></a>
-      <a href="#chat" id="navChat">Написать админу</a>
-      <a href="#game" id="navGame">Тир</a>
-      <a href="#reviews" id="navReviews">Отзывы</a>
-      <a href="#school" id="navSchool">О школе</a>
+<!-- ========= SVG ICON SPRITE ========= -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-sword" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 17.5L3 6V3h3l11.5 11.5"/><path d="M13 19l6-6 2 2-6 6z"/><path d="M16 16l4 4"/></symbol>
+    <symbol id="i-katana" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20L20 4"/><path d="M18 2l4 4-3 3-4-4z"/><path d="M6 18l-2 2 2 2 2-2"/></symbol>
+    <symbol id="i-pistol" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h11l6 3v3h-3l-1 6h-4l-1-6H7l-2-2H3z"/><circle cx="7" cy="11" r="1.3"/></symbol>
+    <symbol id="i-shuriken" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v8M12 22v-8M2 12h8M22 12h-8M5 5l6 6M19 19l-6-6M19 5l-6 6M5 19l6-6"/><circle cx="12" cy="12" r="2"/></symbol>
+    <symbol id="i-knife" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l6-6"/><path d="M10 14L20 4v4l-10 10z"/><circle cx="5" cy="19" r="1.5"/></symbol>
+    <symbol id="i-axe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4l6 6-4 4-6-6z"/><path d="M10 8L2 20l2 2 12-8"/></symbol>
+    <symbol id="i-bow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4c8 0 16 8 16 16"/><path d="M4 20L20 4"/><path d="M16 8l4-4M8 16l-4 4"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v7c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V5z"/></symbol>
+    <symbol id="i-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></symbol>
+    <symbol id="i-bomb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="14" r="7"/><path d="M16 8l3-3M18 2v4M22 6h-4"/></symbol>
+    <symbol id="i-cart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M3 4h2l2.5 12h11L21 8H6"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .4 2 .7 2.9a2 2 0 01-.5 2.1L8 10a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.5c.9.3 1.9.6 2.9.7a2 2 0 011.7 2z"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></symbol>
+    <symbol id="i-send" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0116 0"/></symbol>
+    <symbol id="i-crown" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l4 5 5-7 5 7 4-5v11H3z"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></symbol>
+    <symbol id="i-sort" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M6 12h12M10 18h4"/></symbol>
+    <symbol id="i-coin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9 10h6M9 14h6"/></symbol>
+    <symbol id="i-news" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h13a3 3 0 013 3v11a2 2 0 01-2 2H5a1 1 0 01-1-1z"/><path d="M8 8h8M8 12h8M8 16h5"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .9-5 4.9 1.2 7L12 18l-6.2 3.3L7 14.3l-5-4.9 7-.9z"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v.01M12 11v6"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-7-8-13a8 8 0 1116 0c0 6-8 13-8 13z"/><circle cx="12" cy="9" r="3"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-gift" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v8H4v-8M2 7h20v5H2zM12 22V7M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></symbol>
+    <symbol id="i-box" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8M12 13v8"/></symbol>
+    <symbol id="i-flame" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2s4 5 4 9a4 4 0 01-8 0c0-1 .5-2 1-3-2 1-5 3-5 7a8 8 0 1016 0c0-5-4-9-8-13z"/></symbol>
+    <symbol id="i-dice" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8" cy="8" r="1.2" fill="currentColor"/><circle cx="16" cy="8" r="1.2" fill="currentColor"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/><circle cx="8" cy="16" r="1.2" fill="currentColor"/><circle cx="16" cy="16" r="1.2" fill="currentColor"/></symbol>
+    <symbol id="i-arrow-r" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></symbol>
+    <symbol id="i-arrow-l" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 19l-7-7 7-7"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></symbol>
+    <symbol id="i-q" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 015 0c0 1.5-2.5 2-2.5 3.5M12 17v.01"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h18"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l9-7 9 7v10a2 2 0 01-2 2h-4v-7h-6v7H5a2 2 0 01-2-2z"/></symbol>
+  </defs>
+</svg>
+
+<!-- ========= TOP BAR ========= -->
+<header class="topbar">
+  <div class="wrap tb-row">
+    <div class="logo" onclick="scrollTo({top:0,behavior:'smooth'})">
+      <div class="logo-mark"><svg width="20" height="20"><use href="#i-sword"/></svg></div>
+      <div class="logo-txt">Paper Arms<small>ШКОЛА №43 • ТЮМЕНЬ</small></div>
+    </div>
+    <nav class="topmenu">
+      <button onclick="go('catalog')"><svg width="15" height="15"><use href="#i-cart"/></svg>Каталог</button>
+      <button onclick="go('news')"><svg width="15" height="15"><use href="#i-news"/></svg>Новости</button>
+      <button onclick="go('reviews')"><svg width="15" height="15"><use href="#i-star"/></svg>Отзывы</button>
+      <button onclick="go('rules')"><svg width="15" height="15"><use href="#i-shield"/></svg>Правила</button>
+      <button onclick="go('about')"><svg width="15" height="15"><use href="#i-info"/></svg>О нас</button>
     </nav>
-    <div class="nav-right" id="navRight"></div>
+    <div class="tb-actions" id="nav"></div>
+    <button class="burger" onclick="openM('menuModal')" aria-label="Меню">
+      <svg width="20" height="20"><use href="#i-menu"/></svg>
+    </button>
   </div>
 </header>
 
 <main>
-  <section class="hero" id="hero">
-    <div class="wrap">
-      <div class="badge-top"><span class="pulse"></span> ШКОЛА №43 · ТЮМЕНЬ</div>
-      <h1>Бумажное оружие<br><em>ручной работы</em></h1>
-      <p>
-        Мы делаем самое опасное бумажное оружие в школе №43 города Тюмень.
-        Плотная бумага, армированный скотч, честная ручная сборка.
-      </p>
-      <div class="hero-actions">
-        <a href="#catalog" class="btn" id="heroBtn1"><span>Смотреть каталог</span></a>
-        <a href="#chat" class="btn ghost" id="heroBtn2"><span>Написать админу</span></a>
-      </div>
-      <div class="stats">
-        <div class="stat"><b id="s1">0</b><span>Моделей в каталоге</span></div>
-        <div class="stat"><b id="s2">0</b><span>Заказов выполнено</span></div>
-        <div class="stat"><b>43</b><span>Школа · Тюмень</span></div>
-        <div class="stat"><b>100%</b><span>Из бумаги</span></div>
-      </div>
+<div class="wrap">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge">
+      <svg width="13" height="13"><use href="#i-pin"/></svg>
+      Только школа №43, Тюмень
+    </div>
+    <h1>Бумажное <span class="gr">оружие</span><br>ручной работы</h1>
+    <p>Мечи, катаны, пистолеты и сюрикены. Сделано учениками, доставка до парты.</p>
+    <div class="hero-btns">
+      <button class="btn btn-p" onclick="go('catalog')">
+        <svg width="15" height="15"><use href="#i-cart"/></svg>В каталог
+      </button>
+      <button class="btn" onclick="go('news')">
+        <svg width="15" height="15"><use href="#i-news"/></svg>Новости
+      </button>
     </div>
   </section>
 
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat">
+      <div class="ic"><svg width="20" height="20"><use href="#i-box"/></svg></div>
+      <div class="num" id="stProducts">0</div>
+      <div class="lbl">Товаров</div>
+    </div>
+    <div class="stat">
+      <div class="ic"><svg width="20" height="20"><use href="#i-check"/></svg></div>
+      <div class="num">1 247</div>
+      <div class="lbl">Заказов</div>
+    </div>
+    <div class="stat">
+      <div class="ic"><svg width="20" height="20"><use href="#i-star"/></svg></div>
+      <div class="num">4.9</div>
+      <div class="lbl">Рейтинг</div>
+    </div>
+    <div class="stat">
+      <div class="ic"><svg width="20" height="20"><use href="#i-shield"/></svg></div>
+      <div class="num">43</div>
+      <div class="lbl">Школа №</div>
+    </div>
+  </div>
+
+  <!-- FEATURED -->
+  <div class="featured">
+    <div class="ftxt">
+      <div class="flabel">
+        <svg width="12" height="12"><use href="#i-flame"/></svg>Хит недели
+      </div>
+      <h2>Бумажная катана 40 см</h2>
+      <p>Длинный меч самурая. Прочный и лёгкий. Осталось 4 штуки!</p>
+      <button class="btn btn-p" onclick="orderProduct(5)">
+        <svg width="15" height="15"><use href="#i-cart"/></svg>Заказать за 280 ₽
+      </button>
+    </div>
+    <div class="ficon"><svg width="100" height="100"><use href="#i-katana"/></svg></div>
+  </div>
+
+  <!-- CATALOG -->
   <section id="catalog">
-    <div class="wrap">
-      <div class="sec-head reveal">
-        <div class="eyebrow">КАТАЛОГ</div>
-        <h2>Наши <span>изделия</span></h2>
-        <p>Всё делается вручную в школе №43. Добавляй в корзину и отправляй заказ админу.</p>
-      </div>
-      <div class="grid" id="products"></div>
-    </div>
-  </section>
-
-  <section id="cart">
-    <div class="wrap">
-      <div class="sec-head reveal">
-        <div class="eyebrow">КОРЗИНА</div>
-        <h2>Твой <span>заказ</span></h2>
-        <p>Проверь заказ, добавь комментарий и отправь админу — он ответит в личном чате.</p>
-      </div>
-      <div class="cart-box reveal" id="cartBox"></div>
-    </div>
-  </section>
-
-  <section id="chat">
-    <div class="wrap">
-      <div class="sec-head reveal">
-        <div class="eyebrow">ЛИЧНЫЙ ЧАТ</div>
-        <h2>Написать <span>админу</span></h2>
-        <p>Это только ваш диалог. Админ видит его отдельно от других учеников.</p>
-      </div>
-      <div class="reveal" id="chatWrap"></div>
-    </div>
-  </section>
-
-  <section id="adminPanel" class="hidden">
-    <div class="wrap">
-      <div class="sec-head reveal">
-        <div class="eyebrow">АДМИН-ПАНЕЛЬ</div>
-        <h2>Управление <span>бизнесом</span></h2>
-        <p>Заказы и личные переписки с учениками школы №43.</p>
-      </div>
-      <div class="tabs reveal">
-        <button id="tabOrders" class="on" onclick="switchAdmin('orders')">Заказы</button>
-        <button id="tabMsgs" onclick="switchAdmin('msgs')">Чаты</button>
-      </div>
-      <div id="adminOrders" class="reveal"></div>
-      <div id="adminMsgs" class="hidden reveal"></div>
-    </div>
-  </section>
-
-  <section id="game">
-    <div class="wrap">
-      <div class="sec-head reveal">
-        <div class="eyebrow">МИНИ-ИГРА</div>
-        <h2>Бумажный <span>тир</span></h2>
-        <p>Разомнись: попади по мишеням за 30 секунд.</p>
-      </div>
-      <div class="game reveal">
-        <div class="game-info">
-          <div>Очки<b id="gScore">0</b></div>
-          <div>Время<b id="gTime">30</b></div>
-          <div>Рекорд<b id="gBest">0</b></div>
+    <div class="sec-head">
+      <div>
+        <div class="sec-title">
+          <div class="ic"><svg width="19" height="19"><use href="#i-cart"/></svg></div>
+          Каталог
         </div>
-        <div class="arena" id="arena">
-          <div style="position:absolute;inset:0;display:grid;place-items:center;color:#5b5145;font-weight:700;text-align:center;padding:20px;font-size:14px" id="arenaHint">
-            Нажми «Старт» и стреляй по мишеням
-          </div>
-        </div>
-        <button class="btn" id="gameBtn" onclick="startGame()"><span>Старт</span></button>
+        <div class="sec-sub">Сделано вручную учениками</div>
+      </div>
+      <button class="btn btn-sm" onclick="randomPick()">
+        <svg width="13" height="13"><use href="#i-dice"/></svg>Случайное
+      </button>
+    </div>
+
+    <div class="filters">
+      <div class="ff">
+        <svg width="15" height="15" class="ic"><use href="#i-search"/></svg>
+        <input type="text" id="search" placeholder="Поиск...">
+      </div>
+      <div class="ff">
+        <svg width="15" height="15" class="ic"><use href="#i-sort"/></svg>
+        <select id="sort">
+          <option value="new">Сначала новые</option>
+          <option value="cheap">Дешёвые</option>
+          <option value="expensive">Дорогие</option>
+          <option value="name">По названию</option>
+        </select>
+      </div>
+      <div class="ff">
+        <svg width="15" height="15" class="ic"><use href="#i-coin"/></svg>
+        <input type="number" id="maxPrice" placeholder="Макс. цена">
       </div>
     </div>
+
+    <div class="chips" id="chips"></div>
+    <div class="grid" id="products"></div>
   </section>
 
+  <!-- NEWS -->
+  <section id="news">
+    <div class="sec-head">
+      <div>
+        <div class="sec-title">
+          <div class="ic"><svg width="19" height="19"><use href="#i-news"/></svg></div>
+          Новости
+        </div>
+        <div class="sec-sub">Акции и события школы</div>
+      </div>
+    </div>
+    <div class="news-grid" id="news-grid"></div>
+  </section>
+
+  <!-- REVIEWS -->
   <section id="reviews">
-    <div class="wrap">
-      <div class="sec-head reveal">
-        <div class="eyebrow">ОТЗЫВЫ</div>
-        <h2>Что говорят <span>покупатели</span></h2>
-        <p>Реальные отзывы ребят из школы №43.</p>
-      </div>
-      <div class="grid reveal" id="reviewsList"></div>
-      <div class="cart-box reveal" style="margin-top:20px">
-        <h3 style="font-size:17px;margin-bottom:16px;font-weight:800">Оставить отзыв</h3>
-        <div class="row2">
-          <div class="field"><label>Оценка</label>
-            <select id="revStars">
-              <option value="5">★★★★★ — Отлично</option>
-              <option value="4">★★★★ — Хорошо</option>
-              <option value="3">★★★ — Нормально</option>
-              <option value="2">★★ — Так себе</option>
-              <option value="1">★ — Плохо</option>
-            </select>
-          </div>
-          <div class="field"><label>Комментарий</label>
-            <input id="revText" placeholder="Напиши, что понравилось...">
-          </div>
+    <div class="sec-head">
+      <div>
+        <div class="sec-title">
+          <div class="ic"><svg width="19" height="19"><use href="#i-star"/></svg></div>
+          Отзывы
         </div>
-        <button class="btn full" onclick="addReview()"><span>Отправить отзыв</span></button>
+        <div class="sec-sub">Что говорят ученики</div>
+      </div>
+    </div>
+    <div class="reviews-grid" id="reviews-grid"></div>
+  </section>
+
+  <!-- RULES -->
+  <section id="rules">
+    <div class="sec-head">
+      <div>
+        <div class="sec-title">
+          <div class="ic"><svg width="19" height="19"><use href="#i-shield"/></svg></div>
+          Правила
+        </div>
+      </div>
+    </div>
+    <div class="rules">
+      <div class="rule">
+        <div class="rule-head"><div class="rule-num">1</div><h4>Только школа №43</h4></div>
+        <p>Продажа и передача товара только на территории школы №43, г. Тюмень.</p>
+      </div>
+      <div class="rule">
+        <div class="rule-head"><div class="rule-num">2</div><h4>Безопасность</h4></div>
+        <p>Не направляй на людей в лицо и не используй на уроках.</p>
+      </div>
+      <div class="rule">
+        <div class="rule-head"><div class="rule-num">3</div><h4>Оплата</h4></div>
+        <p>Наличными на перемене или переводом на карту продавца.</p>
+      </div>
+      <div class="rule">
+        <div class="rule-head"><div class="rule-num">4</div><h4>Возврат</h4></div>
+        <p>Если порвался при получении — заменим бесплатно в течение дня.</p>
+      </div>
+      <div class="rule">
+        <div class="rule-head"><div class="rule-num">5</div><h4>Уважение</h4></div>
+        <p>Не оскорбляй других. Нарушителей — в бан.</p>
+      </div>
+      <div class="rule">
+        <div class="rule-head"><div class="rule-num">6</div><h4>Учёба важнее</h4></div>
+        <p>Магазин — хобби. Уроки делать обязательно!</p>
       </div>
     </div>
   </section>
 
-  <section id="school">
-    <div class="wrap">
-      <div class="sec-head reveal">
-        <div class="eyebrow">О НАС</div>
-        <h2>Школа <span>№43, Тюмень</span></h2>
-        <p>Место, где всё это и происходит.</p>
+  <!-- FAQ -->
+  <section>
+    <div class="sec-head">
+      <div>
+        <div class="sec-title">
+          <div class="ic"><svg width="19" height="19"><use href="#i-q"/></svg></div>
+          Частые вопросы
+        </div>
       </div>
-      <div class="info-grid reveal" id="infoGrid"></div>
+    </div>
+    <div class="faq" id="faq"></div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="sec-head">
+      <div>
+        <div class="sec-title">
+          <div class="ic"><svg width="19" height="19"><use href="#i-info"/></svg></div>
+          О магазине
+        </div>
+      </div>
+    </div>
+    <div class="about-grid">
+      <div class="about-card">
+        <div class="ic"><svg width="22" height="22"><use href="#i-pin"/></svg></div>
+        <h4>Где мы</h4>
+        <p>Школа №43, Тюмень. Большая перемена, у столовой на 2 этаже.</p>
+      </div>
+      <div class="about-card">
+        <div class="ic"><svg width="22" height="22"><use href="#i-clock"/></svg></div>
+        <h4>Время работы</h4>
+        <p>Перемены: 09:40–09:50, 11:30–11:50, 13:20–13:35.</p>
+      </div>
+      <div class="about-card">
+        <div class="ic"><svg width="22" height="22"><use href="#i-chat"/></svg></div>
+        <h4>Связь</h4>
+        <p>Оставь номер при заказе или напиши в чат.</p>
+      </div>
+      <div class="about-card">
+        <div class="ic"><svg width="22" height="22"><use href="#i-gift"/></svg></div>
+        <h4>Бонусы</h4>
+        <p>Купил 3 товара — 4-й со скидкой 30%!</p>
+      </div>
     </div>
   </section>
+
+</div>
 </main>
 
+<!-- FOOTER -->
 <footer>
   <div class="wrap">
-    <p><b>БУМАЖНОЕ ОРУЖИЕ</b> · Школа №43, Тюмень</p>
-    <p style="margin-top:8px;font-size:12px">Всё изделие изготовлено из бумаги. Безопасно. Сделано с душой.</p>
+    <div class="foot-grid">
+      <div class="foot-col">
+        <h4>Paper Arms</h4>
+        <p>Магазин бумажного оружия ручной работы. Только школа №43, Тюмень.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Разделы</h4>
+        <a onclick="go('catalog')">Каталог</a>
+        <a onclick="go('news')">Новости</a>
+        <a onclick="go('reviews')">Отзывы</a>
+        <a onclick="go('rules')">Правила</a>
+      </div>
+      <div class="foot-col">
+        <h4>Помощь</h4>
+        <a onclick="openChat()">Чат с админом</a>
+        <a onclick="toast('Наличные или перевод')">Оплата</a>
+        <a onclick="toast('Доставка до парты')">Доставка</a>
+        <a onclick="toast('Возврат в течение дня')">Возврат</a>
+      </div>
+      <div class="foot-col">
+        <h4>Ещё</h4>
+        <a onclick="scrollTo({top:0,behavior:'smooth'})">Наверх</a>
+        <a onclick="go('faq')">FAQ</a>
+        <a onclick="go('about')">О нас</a>
+      </div>
+    </div>
+    <div class="copy">© 2025 Paper Arms • Школа №43, Тюмень</div>
   </div>
 </footer>
 
-<!-- MOBILE BOTTOM NAV -->
-<nav class="mobile-nav" id="mobileNav">
-  <button class="tab active" data-target="hero" onclick="mobileNavGo('hero')">
-    <span class="ico"></span>
-    <span>Главная</span>
+<!-- ========= BOTTOM NAV (mobile only) ========= -->
+<nav class="bottomnav">
+  <button class="bnav-btn" data-nav="home" onclick="scrollTo({top:0,behavior:'smooth'})">
+    <svg width="22" height="22"><use href="#i-home"/></svg>
+    Главная
   </button>
-  <button class="tab" data-target="catalog" onclick="mobileNavGo('catalog')">
-    <span class="ico"></span>
-    <span>Каталог</span>
+  <button class="bnav-btn" data-nav="catalog" onclick="go('catalog')">
+    <svg width="22" height="22"><use href="#i-cart"/></svg>
+    Каталог
   </button>
-  <button class="tab" data-target="cart" onclick="mobileNavGo('cart')">
-    <span class="ico"></span>
-    <span>Корзина</span>
-    <span class="badge" id="mobileCartBadge"></span>
+  <button class="bnav-btn" data-nav="news" onclick="go('news')">
+    <svg width="22" height="22"><use href="#i-news"/></svg>
+    Новости
   </button>
-  <button class="tab" data-target="chat" onclick="mobileNavGo('chat')">
-    <span class="ico"></span>
-    <span>Чат</span>
+  <button class="bnav-btn" onclick="openChat()">
+    <span class="ic">
+      <svg width="22" height="22"><use href="#i-chat"/></svg>
+      <span class="badge-dot" id="chatBadgeMobile">0</span>
+    </span>
+    Чат
   </button>
-  <button class="tab" data-target="profile" onclick="mobileNavGo('profile')">
-    <span class="ico"></span>
-    <span id="mobileProfileLabel">Профиль</span>
+  <button class="bnav-btn" onclick="openM('menuModal')">
+    <svg width="22" height="22"><use href="#i-menu"/></svg>
+    Ещё
   </button>
 </nav>
 
-<!-- MODAL -->
-<div class="modal-bg" id="modalBg">
-  <div class="modal">
-    <h3 id="mTitle">Вход</h3>
-    <p class="sub" id="mSub">Войди, чтобы делать заказы</p>
+<!-- CHAT FAB (desktop only, показан через CSS) -->
+<button class="chat-fab" id="chatFab" onclick="openChat()">
+  <svg class="ico-chat" width="22" height="22"><use href="#i-chat"/></svg>
+  <svg class="ico-close" width="22" height="22"><use href="#i-close"/></svg>
+  <span class="badge-dot" id="chatBadge">0</span>
+</button>
 
-    <div class="tabs" style="width:100%;margin-bottom:18px">
-      <button id="tabLogin" class="on" onclick="setAuthMode('login')">Вход</button>
-      <button id="tabReg" onclick="setAuthMode('reg')">Регистрация</button>
+<!-- CHAT PANEL -->
+<div class="chat-panel" id="chatPanel">
+  <aside class="chat-side" id="chatSide"></aside>
+  <div class="chat-list-view" id="chatListView">
+    <div class="chat-list-head">
+      <button class="chat-back" onclick="closeChat()"><svg width="20" height="20"><use href="#i-arrow-l"/></svg></button>
+      <div class="ttl">Диалоги</div>
     </div>
-
-    <div id="regFields" class="hidden">
-      <div class="field"><label>Имя</label><input id="rFirst" placeholder="Иван" autocomplete="off"></div>
-      <div class="field"><label>Фамилия</label><input id="rLast" placeholder="Петров" autocomplete="off"></div>
-      <div class="field"><label>Класс</label><input id="rClass" placeholder="6а" autocomplete="off"></div>
-    </div>
-
-    <div class="field"><label>Имя</label><input id="lFirst" placeholder="Иван" autocomplete="off"></div>
-    <div class="field"><label>Фамилия</label><input id="lLast" placeholder="Петров" autocomplete="off"></div>
-    <div class="field"><label>Пароль</label><input id="lPass" type="password" placeholder="••••••" autocomplete="off"></div>
-
-    <button class="btn full" style="margin-top:10px" id="authBtn" onclick="doAuth()"><span>Войти</span></button>
-    <button class="btn ghost full" style="margin-top:10px" onclick="closeModal()"><span>Отмена</span></button>
-    <div class="hint" id="authHint">
-      Регистрация: имя, фамилия, класс и пароль.<br>
-      Админ входит как <b>admin / admin</b> со своим паролем.
+    <div id="chatUsers"></div>
+  </div>
+  <div class="chat-main">
+    <div class="chat-head" id="chatHead"></div>
+    <div class="chat-body" id="chatBody"></div>
+    <div class="chat-input" id="chatInputRow">
+      <input type="text" id="chatInput" placeholder="Сообщение..." autocomplete="off">
+      <button onclick="sendChat()" title="Отправить">
+        <svg width="18" height="18"><use href="#i-send"/></svg>
+      </button>
     </div>
   </div>
 </div>
 
-<!-- PROFILE SHEET (mobile) -->
-<div class="modal-bg" id="profileBg">
-  <div class="modal">
-    <h3 id="pName">Профиль</h3>
-    <p class="sub" id="pSub">Твой аккаунт</p>
-    <div id="pBody"></div>
-    <button class="btn ghost full" style="margin-top:12px" onclick="closeProfile()"><span>Закрыть</span></button>
+<!-- MENU MODAL (mobile) -->
+<div class="ov" id="menuModal">
+  <div class="md">
+    <button class="md-close" onclick="closeM('menuModal')"><svg width="18" height="18"><use href="#i-close"/></svg></button>
+    <h2><span class="ic"><svg width="18" height="18"><use href="#i-menu"/></svg></span>Меню</h2>
+    <div style="display:grid;gap:8px;margin-top:6px">
+      <button class="btn btn-block" style="justify-content:flex-start" onclick="closeM('menuModal');go('catalog')"><svg width="16" height="16"><use href="#i-cart"/></svg>Каталог</button>
+      <button class="btn btn-block" style="justify-content:flex-start" onclick="closeM('menuModal');go('news')"><svg width="16" height="16"><use href="#i-news"/></svg>Новости</button>
+      <button class="btn btn-block" style="justify-content:flex-start" onclick="closeM('menuModal');go('reviews')"><svg width="16" height="16"><use href="#i-star"/></svg>Отзывы</button>
+      <button class="btn btn-block" style="justify-content:flex-start" onclick="closeM('menuModal');go('rules')"><svg width="16" height="16"><use href="#i-shield"/></svg>Правила</button>
+      <button class="btn btn-block" style="justify-content:flex-start" onclick="closeM('menuModal');go('faq')"><svg width="16" height="16"><use href="#i-q"/></svg>Частые вопросы</button>
+      <button class="btn btn-block" style="justify-content:flex-start" onclick="closeM('menuModal');go('about')"><svg width="16" height="16"><use href="#i-info"/></svg>О нас</button>
+    </div>
+    <div id="menuAdmin" style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border)"></div>
   </div>
 </div>
 
-<div id="toasts"></div>
+<!-- ORDER MODAL -->
+<div class="ov" id="orderModal">
+  <div class="md">
+    <button class="md-close" onclick="closeM('orderModal')"><svg width="18" height="18"><use href="#i-close"/></svg></button>
+    <h2><span class="ic"><svg width="18" height="18"><use href="#i-phone"/></svg></span>Оформление заказа</h2>
+    <p class="sub">Введите номер — продавец свяжется в течение дня.</p>
+    <label>Ваш номер телефона</label>
+    <input type="tel" id="phoneInput" placeholder="+7 999 123-45-67" autocomplete="off" inputmode="tel">
+    <button class="btn btn-p btn-block" onclick="submitOrder()">
+      Продолжить <svg width="15" height="15"><use href="#i-arrow-r"/></svg>
+    </button>
+  </div>
+</div>
+
+<!-- SUCCESS MODAL -->
+<div class="ov" id="successModal">
+  <div class="md">
+    <button class="md-close" onclick="closeM('successModal')"><svg width="18" height="18"><use href="#i-close"/></svg></button>
+    <div class="success-box">
+      <div class="success-icon"><svg width="36" height="36"><use href="#i-check"/></svg></div>
+      <h3>Заказ принят!</h3>
+      <p>Мы свяжемся с вами по номеру</p>
+      <div class="hl" id="successPhone">+7 XXX XXX-XX-XX</div>
+      <p>Вам позвонят в течение дня</p>
+    </div>
+    <button class="btn btn-p btn-block" style="margin-top:14px" onclick="closeM('successModal')">Понятно</button>
+  </div>
+</div>
+
+<!-- CHAT NAME MODAL -->
+<div class="ov" id="nameModal">
+  <div class="md">
+    <button class="md-close" onclick="closeM('nameModal')"><svg width="18" height="18"><use href="#i-close"/></svg></button>
+    <h2><span class="ic"><svg width="18" height="18"><use href="#i-user"/></svg></span>Как вас зовут?</h2>
+    <p class="sub">Представьтесь, чтобы админ знал, с кем общается.</p>
+    <label>Ваше имя</label>
+    <input type="text" id="chatNameInput" placeholder="Например: Иван" autocomplete="off">
+    <button class="btn btn-p btn-block" onclick="submitChatName()">
+      Начать чат <svg width="15" height="15"><use href="#i-arrow-r"/></svg>
+    </button>
+  </div>
+</div>
+
+<!-- ADD PRODUCT MODAL -->
+<div class="ov" id="addModal">
+  <div class="md wide">
+    <button class="md-close" onclick="closeM('addModal')"><svg width="18" height="18"><use href="#i-close"/></svg></button>
+    <h2><span class="ic"><svg width="18" height="18"><use href="#i-plus"/></svg></span>Добавить оружие</h2>
+    <label>Название</label>
+    <input type="text" id="pName" placeholder="Бумажная катана">
+    <label>Иконка</label>
+    <div class="icon-picker" id="iconPicker"></div>
+    <label>Описание</label>
+    <textarea id="pDesc" rows="2" placeholder="Острое, крепкое"></textarea>
+    <label>Категория</label>
+    <select id="pCat">
+      <option>Мечи</option><option>Пистолеты</option>
+      <option>Метательное</option><option>Ножи</option><option>Другое</option>
+    </select>
+    <label>Цена (₽)</label>
+    <input type="number" id="pPrice" placeholder="150" min="1" inputmode="numeric">
+    <button class="btn btn-p btn-block" onclick="addProduct()">
+      <svg width="15" height="15"><use href="#i-check"/></svg>Добавить
+    </button>
+  </div>
+</div>
+
+<!-- ADD NEWS MODAL -->
+<div class="ov" id="newsModal">
+  <div class="md">
+    <button class="md-close" onclick="closeM('newsModal')"><svg width="18" height="18"><use href="#i-close"/></svg></button>
+    <h2><span class="ic"><svg width="18" height="18"><use href="#i-news"/></svg></span>Добавить новость</h2>
+    <label>Заголовок</label>
+    <input type="text" id="nTitle" placeholder="Новая партия мечей!">
+    <label>Текст</label>
+    <textarea id="nText" rows="3" placeholder="Сегодня привезли..."></textarea>
+    <label>Категория</label>
+    <select id="nCat">
+      <option>🔥 Акция</option><option>🆕 Новинка</option>
+      <option>📢 Объявление</option><option>🎉 Событие</option>
+    </select>
+    <button class="btn btn-p btn-block" onclick="addNews()">
+      <svg width="15" height="15"><use href="#i-check"/></svg>Опубликовать
+    </button>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div class="ov" id="adminModal">
+  <div class="md wide">
+    <button class="md-close" onclick="closeM('adminModal')"><svg width="18" height="18"><use href="#i-close"/></svg></button>
+    <h2><span class="ic"><svg width="18" height="18"><use href="#i-crown"/></svg></span>Панель админа</h2>
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab(event,'tabProducts')">
+        <svg width="14" height="14"><use href="#i-box"/></svg>Товары
+      </button>
+      <button class="tab" onclick="switchTab(event,'tabNews')">
+        <svg width="14" height="14"><use href="#i-news"/></svg>Новости
+      </button>
+    </div>
+    <div id="tabProducts">
+      <button class="btn btn-p btn-block" style="margin-bottom:12px" onclick="openM('addModal')">
+        <svg width="14" height="14"><use href="#i-plus"/></svg>Добавить товар
+      </button>
+      <div id="adminProducts"></div>
+    </div>
+    <div id="tabNews" style="display:none">
+      <button class="btn btn-p btn-block" style="margin-bottom:12px" onclick="openM('newsModal')">
+        <svg width="14" height="14"><use href="#i-plus"/></svg>Добавить новость
+      </button>
+      <div id="adminNews"></div>
+    </div>
+  </div>
+</div>
 
 <script>
-/* ============================================================
-   ICONS
-============================================================ */
-const I = {
-  sword:'<path d="M14.5 17.5L3 6V3h3l11.5 11.5"/><path d="M13 19l6-6"/><path d="M16 16l4 4"/><path d="M19 21l2-2"/>',
-  katana:'<path d="M21 3.5C14 5 9 10 7 17"/><path d="M7 17L3 21"/><path d="M5 15l4 4"/>',
-  pistol:'<path d="M3 7h15v5h-5l-2 3H7l1-3H3z"/><path d="M9 15l-2 6h4l2-6"/>',
-  rifle:'<path d="M2 9h18v3h-5l-2 2H8l1-3H2z"/><path d="M8 14l-2 7h3l2-7"/><path d="M15 12l1 2h4v-2"/><path d="M19 12V9h3"/>',
-  dagger:'<path d="M12 2l2.5 3v9L12 17l-2.5-3V5z"/><path d="M6 14h12"/><path d="M10 17v4h4v-4"/>',
-  bow:'<path d="M6 2Q14 12 6 22"/><path d="M6 2v20"/><path d="M3 12h15"/><path d="M14 9l4 3-4 3"/>',
-  axe:'<path d="M6 3v18"/><path d="M6 5c6 0 10 3 10 7s-4 7-10 7z"/>',
-  shield:'<path d="M12 2l8 3v6c0 5-3 9-8 11-5-2-8-6-8-11V5z"/><path d="M12 5v14"/><path d="M4 8h16"/>',
-  scythe:'<path d="M4 22L15 5"/><path d="M15 5c4-2 7 1 6 5"/>',
-  swords:'<path d="M3 3L12 12"/><path d="M10 14L14 10"/><path d="M12 12L19 19"/><path d="M21 3L12 12"/><path d="M10 10L14 14"/><path d="M12 12L5 19"/>',
-  kunai:'<path d="M12 2l3 5-3 4-3-4z"/><path d="M12 11v7"/><circle cx="12" cy="20" r="2"/>',
-  helmet:'<path d="M12 2C7.6 2 4 5.6 4 10v7h3v3h10v-3h3v-7c0-4.4-3.6-8-8-8z"/><path d="M8 10h8"/><path d="M12 2v8"/>',
-  cart:'<circle cx="9" cy="20" r="1.5"/><circle cx="17" cy="20" r="1.5"/><path d="M2 3h3l2.5 12h11l2-8H6"/>',
-  chat:'<path d="M21 11.5a8.4 8.4 0 0 1-9 8.4L3 21l1.1-3.3A8.4 8.4 0 1 1 21 11.5z"/>',
-  crown:'<path d="M4 7l4 4 4-7 4 7 4-4-2 12H6z"/>',
-  lock:'<rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>',
-  box:'<path d="M3 7l9-4 9 4v10l-9 4-9-4z"/><path d="M3 7l9 4 9-4"/><path d="M12 11v10"/>',
-  check:'<path d="M4 12l5 5L20 6"/>',
-  star:'<path d="M12 2l3 6.5 7 .9-5 4.8 1.2 7L12 18l-6.2 3.2L7 14.2l-5-4.8 7-.9z"/>',
-  target:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/>',
-  user:'<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/>',
-  users:'<circle cx="9" cy="8" r="3.5"/><path d="M2 21c0-4 3.2-7 7-7s7 3 7 7"/><path d="M16 5.5a3.5 3.5 0 0 1 0 7"/><path d="M22 21c0-3.5-2.5-6-5.5-6.5"/>',
-  logout:'<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/>',
-  school:'<path d="M3 21h18"/><path d="M5 21V10l7-5 7 5v11"/><path d="M9 21v-6h6v6"/>',
-  paper:'<path d="M6 2h9l5 5v15H6z"/><path d="M15 2v5h5"/>',
-  bolt:'<path d="M13 2L4 14h6l-1 8 9-12h-6z"/>',
-  truck:'<path d="M3 6h11v10H3z"/><path d="M14 9h4l3 3v4h-7z"/><circle cx="7" cy="18" r="1.7"/><circle cx="17" cy="18" r="1.7"/>',
-  award:'<circle cx="12" cy="9" r="6"/><path d="M8.5 14L7 22l5-3 5 3-1.5-8"/>',
-  send:'<path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/>',
-  trash:'<path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M5 6l1 15h12l1-15"/>',
-  close:'<path d="M6 6l12 12"/><path d="M18 6L6 18"/>',
-  plus:'<path d="M12 5v14"/><path d="M5 12h14"/>',
-  minus:'<path d="M5 12h14"/>',
-  play:'<path d="M6 4l14 8-14 8z"/>',
-  clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
-  undo:'<path d="M9 14L4 9l5-5"/><path d="M4 9h11a5 5 0 0 1 0 10h-3"/>',
-  flame:'<path d="M12 2c1 4 5 5 5 10a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-6 1-9z"/>',
-  comment:'<path d="M21 12a8 8 0 0 1-12 7l-5 2 2-5A8 8 0 1 1 21 12z"/><path d="M8 11h8"/><path d="M8 15h5"/>',
-  arrowLeft:'<path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/>',
-  home:'<path d="M3 11l9-8 9 8"/><path d="M5 9.5V21h14V9.5"/>',
-  menu:'<path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/>',
-  phone:'<rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/>',
-  monitor:'<rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/>'
-};
-function ico(name, cls){
-  return `<span class="ico ${cls||''}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${I[name]||''}</svg></span>`;
-}
-
-/* ============================================================
+/* =========================================================
    DEVICE DETECTION
-============================================================ */
-const Device = (function(){
-  function detect(){
-    const ua = navigator.userAgent || '';
-    const isMobileUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile/i.test(ua);
-    const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
-    const isNarrow = window.matchMedia('(max-width:899px)').matches;
-    const isSmallScreen = window.innerWidth < 900;
-    // Tablet detection — treat iPad/small tablets as mobile
-    const isTablet = /iPad/i.test(ua) || (isTouch && window.innerWidth < 1100);
-    return {
-      isMobile: isMobileUA || isNarrow || isSmallScreen || isTablet,
-      isDesktop: !(isMobileUA || isNarrow || isSmallScreen || isTablet),
-      hasTouch: isTouch,
-      width: window.innerWidth,
-      height: window.innerHeight
-    };
-  }
-  let state = detect();
-  const listeners = [];
-  function apply(){
-    document.body.classList.toggle('is-mobile', state.isMobile);
-    document.body.classList.toggle('is-desktop', state.isDesktop);
-    document.body.classList.toggle('has-touch', state.hasTouch);
-    listeners.forEach(fn=>fn(state));
-  }
-  function refresh(){
-    const next = detect();
-    const changed = next.isMobile !== state.isMobile;
-    state = next;
-    if(changed) apply();
-    return changed;
-  }
-  apply();
-  window.addEventListener('resize', refresh, {passive:true});
-  window.addEventListener('orientationchange', ()=>setTimeout(refresh,100), {passive:true});
-  return {
-    get isMobile(){ return state.isMobile; },
-    get isDesktop(){ return state.isDesktop; },
-    get hasTouch(){ return state.hasTouch; },
-    onChange(fn){ listeners.push(fn); }
-  };
-})();
+========================================================= */
+(function detectDevice(){
+  const ua = navigator.userAgent || '';
+  const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+  const isMobileUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile/i.test(ua);
+  const isSmallScreen = window.innerWidth < 900;
+  const isMobile = isMobileUA || (isTouch && isSmallScreen);
 
-/* ============================================================
-   STORAGE
-============================================================ */
-const K = {
-  users:'pw_users_v5', session:'pw_session_v5',
-  messages:'pw_messages_v5', orders:'pw_orders_v5',
-  reviews:'pw_reviews_v5', best:'pw_best_v5',
-  readState:'pw_read_v5'
-};
-const ADMIN_PASS = 'а!67огс891-';
+  document.body.classList.add(isMobile ? 'is-mobile' : 'is-desktop');
+  document.documentElement.dataset.device = isMobile ? 'mobile' : 'desktop';
 
-function load(k,d){ try{ const v = JSON.parse(localStorage.getItem(k)); return v===null?d:v; }catch(e){ return d; } }
-function save(k,v){ localStorage.setItem(k, JSON.stringify(v)); }
-
-(function initAdmin(){
-  let users = load(K.users, []);
-  if(!users.some(u=>u.isAdmin)){
-    users.push({id:'admin',firstName:'admin',lastName:'admin',cls:'—',password:ADMIN_PASS,isAdmin:true});
-    save(K.users, users);
-  }
-})();
-if(load(K.reviews,null)===null){
-  save(K.reviews, [
-    {id:1,name:'Кирилл, 6а',stars:5,text:'Заказал катану — сделали за день! Выглядит реально круто, все на перемене офигели.'},
-    {id:2,name:'Аня, 7б',stars:5,text:'Брала бумажный щит. Лёгкий, красивый и вообще не опасный. Спасибо!'},
-    {id:3,name:'Максим, 8в',stars:4,text:'Автомат хороший, только магазин иногда отваливается. Но за такие деньги — топ.'}
-  ]);
-}
-
-/* ============================================================
-   STATE
-============================================================ */
-let authMode = 'login';
-let cart = [];
-let adminView = 'orders';
-let adminChatUser = null;
-let currentSection = 'hero';
-
-/* ============================================================
-   DATA
-============================================================ */
-const PRODUCTS = [
-  {id:1,  name:'Бумажный меч «Клинок Школы»',price:150,icon:'sword', tag:'ХИТ',     desc:'Классика. 30 см, плотная бумага, армированный скотч.'},
-  {id:2,  name:'Бумажная катана «Тюмень»',    price:220,icon:'katana',tag:'ХИТ',     desc:'Длинный клинок. Идеальна для дуэлей на перемене.'},
-  {id:3,  name:'Бумажный пистолет «43»',      price:120,icon:'pistol',tag:'НОВИНКА', desc:'Из тетрадного листа. Стреляет бумажными пульками.'},
-  {id:4,  name:'Бумажный автомат «Перемена»', price:350,icon:'rifle', tag:'',        desc:'Полноразмерный, с магазином на 5 бумажных пуль.'},
-  {id:5,  name:'Бумажный кинжал «Стикер»',    price:90, icon:'dagger',tag:'',        desc:'Компактный — легко помещается в пенал.'},
-  {id:6,  name:'Бумажный лук «Осада»',        price:280,icon:'bow',   tag:'',        desc:'Стреляет бумажными стрелами на 5 метров.'},
-  {id:7,  name:'Бумажный топор «Директор»',   price:230,icon:'axe',   tag:'',        desc:'Внушительный размер, но абсолютно безопасный.'},
-  {id:8,  name:'Бумажный щит «Портфель»',     price:180,icon:'shield',tag:'',        desc:'Защита от бумажных атак. 40 см в диаметре.'},
-  {id:9,  name:'Бумажная коса «Экзамен»',     price:420,icon:'scythe',tag:'ЛИМИТ',   desc:'Лимитированная серия. Только для смелых.'},
-  {id:10, name:'Набор «Дуэль» (2 меча)',      price:260,icon:'swords',tag:'ВЫГОДА',  desc:'Два одинаковых меча — для честной дуэли с другом.'},
-  {id:11, name:'Бумажный метательный нож (3 шт)',price:140,icon:'kunai',tag:'',     desc:'Три ножа с утяжелённым кончиком. Летают ровно.'},
-  {id:12, name:'Бумажный шлем «Рыцарь 43»',   price:310,icon:'helmet',tag:'',       desc:'Полноценный шлем из картона. Подходит на любой размер.'}
-];
-
-const INFO_CARDS = [
-  {icon:'school',title:'Школа №43, Тюмень',text:'Именно здесь, на переменах и после уроков, рождается каждое изделие. Наша мастерская — это парта, ножницы и рулон плотной бумаги.'},
-  {icon:'paper', title:'Только бумага',     text:'Никакого металла, дерева и пластика. Плотная бумага, картон, скотч и клей. Абсолютно безопасно для школы.'},
-  {icon:'bolt',  title:'Быстрое изготовление',text:'Простой меч — за 1 перемену. Катана или автомат — 1–2 дня. Всё зависит от сложности модели.'},
-  {icon:'chat',  title:'Личный заказ',      text:'Хочешь что-то не из каталога? Напиши админу в личный чат — обсудим размер, цвет и форму.'},
-  {icon:'truck', title:'Доставка по школе', text:'Передаём заказ лично в руки прямо в школе №43. Договариваемся о встрече через личный чат с админом.'},
-  {icon:'award', title:'Гарантия качества', text:'Если изделие развалилось — переделаем бесплатно. Просто напиши админу в чат.'}
-];
-
-/* ============================================================
-   UTILS
-============================================================ */
-function esc(s){ return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
-function now(){
-  const d=new Date(); const p=n=>String(n).padStart(2,'0');
-  return p(d.getDate())+'.'+p(d.getMonth()+1)+'.'+d.getFullYear()+' '+p(d.getHours())+':'+p(d.getMinutes());
-}
-function getSession(){
-  const id = localStorage.getItem(K.session);
-  if(!id) return null;
-  return load(K.users,[]).find(u=>u.id===id) || null;
-}
-function setSession(id){ localStorage.setItem(K.session, id); }
-function clearSession(){ localStorage.removeItem(K.session); }
-function money(n){ return n.toLocaleString('ru-RU')+' ₽'; }
-function getMessages(){ return load(K.messages, []); }
-function saveMessages(m){ save(K.messages, m); }
-
-function toast(text, type){
-  const icons = {ok:'check', err:'close', '':'flame'};
-  const t = document.createElement('div');
-  t.className = 'toast ' + (type||'');
-  t.innerHTML = ico(icons[type||'']||'flame','md') + '<span>' + esc(text) + '</span>';
-  document.getElementById('toasts').appendChild(t);
-  setTimeout(()=>{
-    t.classList.add('out');
-    setTimeout(()=>t.remove(), 320);
-  }, 3200);
-}
-
-/* ============================================================
-   AUTH
-============================================================ */
-function openModal(mode){
-  authMode = mode||'login';
-  setAuthMode(authMode);
-  document.getElementById('modalBg').classList.add('on');
-  document.body.classList.add('no-scroll');
-  setTimeout(()=>document.getElementById('lFirst').focus(), 200);
-}
-function closeModal(){
-  document.getElementById('modalBg').classList.remove('on');
-  if(!document.getElementById('profileBg').classList.contains('on'))
-    document.body.classList.remove('no-scroll');
-}
-function setAuthMode(m){
-  authMode = m;
-  const isReg = m==='reg';
-  document.getElementById('tabLogin').classList.toggle('on',!isReg);
-  document.getElementById('tabReg').classList.toggle('on',isReg);
-  document.getElementById('regFields').classList.toggle('hidden',!isReg);
-  document.getElementById('mTitle').textContent = isReg?'Регистрация':'Вход';
-  document.getElementById('mSub').textContent = isReg?'Укажи имя, фамилию и класс (например 6а)':'Войди, чтобы делать заказы';
-  document.getElementById('authBtn').innerHTML = '<span>'+(isReg?'Зарегистрироваться':'Войти')+'</span>';
-  document.getElementById('authHint').innerHTML = isReg
-    ? 'Пароль придумай сам — он понадобится для входа. Класс указывай как в школе, например <b>6а</b>.'
-    : 'Админ входит как <b>admin / admin</b> со своим паролем.';
-}
-function doAuth(){
-  const first = document.getElementById('lFirst').value.trim();
-  const last  = document.getElementById('lLast').value.trim();
-  const pass  = document.getElementById('lPass').value;
-  if(!first||!last||!pass){ toast('Заполни имя, фамилию и пароль','err'); return; }
-
-  const users = load(K.users, []);
-
-  if(authMode==='reg'){
-    const cls = document.getElementById('rClass').value.trim();
-    if(!cls){ toast('Укажи класс, например 6а','err'); return; }
-    if(users.some(u=>u.firstName.toLowerCase()===first.toLowerCase() && u.lastName.toLowerCase()===last.toLowerCase())){
-      toast('Такой ученик уже зарегистрирован','err'); return;
-    }
-    const u = {id:'u'+Date.now()+Math.random().toString(36).slice(2,7), firstName:first, lastName:last, cls, password:pass, isAdmin:false};
-    users.push(u); save(K.users, users);
-    setSession(u.id);
-    toast('Добро пожаловать, '+first+'!','ok');
-    closeModal(); refreshAll();
-    return;
-  }
-
-  const u = users.find(x=>x.firstName.toLowerCase()===first.toLowerCase() && x.lastName.toLowerCase()===last.toLowerCase() && x.password===pass);
-  if(!u){ toast('Неверное имя, фамилия или пароль','err'); return; }
-  setSession(u.id);
-  toast(u.isAdmin?'Админ вошёл в систему':'С возвращением, '+u.firstName+'!','ok');
-  closeModal(); refreshAll();
-}
-function logout(){
-  clearSession(); cart=[]; adminChatUser=null;
-  toast('Ты вышел из аккаунта');
-  closeProfile();
-  refreshAll();
-}
-
-/* ============================================================
-   PROFILE SHEET (mobile)
-============================================================ */
-function openProfile(){
-  const u = getSession();
-  const bg = document.getElementById('profileBg');
-
-  if(!u){
-    openModal('login');
-    return;
-  }
-  document.getElementById('pName').textContent = u.isAdmin ? 'Админ' : (u.firstName + ' ' + u.lastName);
-  document.getElementById('pSub').textContent = u.isAdmin ? 'Панель управления' : ('Класс ' + u.cls);
-
-  let body = '';
-  if(u.isAdmin){
-    body = `<button class="btn full" onclick="closeProfile();scrollToSection('adminPanel')"><span>Открыть админ-панель</span></button>`;
-  } else {
-    body = `
-      <div style="background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:12px">
-        <div style="font-size:11px;color:var(--muted);letter-spacing:1px;font-weight:800;margin-bottom:4px">УЧЕНИК</div>
-        <div style="font-size:15px;font-weight:700">${esc(u.firstName)} ${esc(u.lastName)}</div>
-        <div style="font-size:12.5px;color:var(--amber);font-weight:700;margin-top:3px">Класс ${esc(u.cls)}</div>
-      </div>
-      <button class="btn full" onclick="closeProfile();scrollToSection('cart')"><span>Моя корзина</span></button>
-      <button class="btn ghost full" style="margin-top:8px" onclick="closeProfile();scrollToSection('chat')"><span>Мой чат с админом</span></button>
-    `;
-  }
-  body += `<button class="btn danger full" style="margin-top:12px" onclick="logout()"><span>Выйти из аккаунта</span></button>`;
-  document.getElementById('pBody').innerHTML = body;
-
-  bg.classList.add('on');
-  document.body.classList.add('no-scroll');
-}
-function closeProfile(){
-  document.getElementById('profileBg').classList.remove('on');
-  if(!document.getElementById('modalBg').classList.contains('on'))
-    document.body.classList.remove('no-scroll');
-}
-
-/* ============================================================
-   NAVIGATION
-============================================================ */
-function scrollToSection(id){
-  const el = document.getElementById(id);
-  if(!el) return;
-  const headerH = document.getElementById('header').offsetHeight;
-  const top = el.getBoundingClientRect().top + window.scrollY - headerH - 8;
-  window.scrollTo({top, behavior:'smooth'});
-  setActiveTab(id);
-}
-function setActiveTab(id){
-  document.querySelectorAll('.mobile-nav .tab').forEach(t=>{
-    t.classList.toggle('active', t.dataset.target === id);
-  });
-  currentSection = id;
-}
-function mobileNavGo(target){
-  if(target === 'profile'){ openProfile(); return; }
-  scrollToSection(target);
-}
-
-/* ============================================================
-   HEADER
-============================================================ */
-function renderNav(){
-  const u = getSession();
-  const box = document.getElementById('navRight');
-
-  if(!u){
-    box.innerHTML = `
-      <button class="btn ghost sm" onclick="openModal('login')"><span>Войти</span></button>
-      <button class="btn sm" onclick="openModal('reg')" id="headerRegBtn"><span>Регистрация</span></button>`;
-  } else if(u.isAdmin){
-    box.innerHTML = `
-      <div class="user-chip"><div class="avatar adm">${ico('crown','xs')}</div>
-        <span class="name">admin</span></div>
-      <button class="btn ghost sm" onclick="logout()">${ico('logout','sm')}<span>Выйти</span></button>`;
-  } else {
-    box.innerHTML = `
-      <div class="user-chip"><div class="avatar">${esc(u.firstName[0]||'?')}</div>
-        <span class="name">${esc(u.firstName)}</span>
-        <span class="cls">· ${esc(u.cls)}</span></div>
-      <button class="btn ghost sm" onclick="logout()">${ico('logout','sm')}<span>Выйти</span></button>`;
-  }
-
-  // Hide "Регистрация" button on very small screens if not logged in
-  if(!u && Device.isMobile){
-    const reg = document.getElementById('headerRegBtn');
-    if(reg && window.innerWidth < 380) reg.style.display = 'none';
-  }
-
-  const count = cart.reduce((s,i)=>s+i.qty,0);
-  const badge = document.getElementById('cartBadge');
-  if(badge) badge.textContent = count?'('+count+')':'';
-
-  const mobileBadge = document.getElementById('mobileCartBadge');
-  if(mobileBadge){
-    mobileBadge.textContent = count > 99 ? '99+' : count;
-    mobileBadge.classList.toggle('on', count > 0);
-  }
-
-  const mobileProfileLabel = document.getElementById('mobileProfileLabel');
-  if(mobileProfileLabel){
-    if(!u) mobileProfileLabel.textContent = 'Войти';
-    else if(u.isAdmin) mobileProfileLabel.textContent = 'Админ';
-    else mobileProfileLabel.textContent = u.firstName;
-  }
-
-  // Update mobile nav profile icon
-  const profileTab = document.querySelector('.mobile-nav .tab[data-target="profile"]');
-  if(profileTab){
-    const iconSpan = profileTab.querySelector('.ico');
-    if(iconSpan) iconSpan.innerHTML = u && u.isAdmin ? ico('crown') : ico('user');
-  }
-}
-
-/* ============================================================
-   CATALOG
-============================================================ */
-function renderProducts(){
-  document.getElementById('products').innerHTML = PRODUCTS.map(p=>`
-    <div class="card reveal">
-      ${p.tag?`<div class="tag">${esc(p.tag)}</div>`:''}
-      <div class="p-icon">${ico(p.icon)}</div>
-      <h3>${esc(p.name)}</h3>
-      <div class="desc">${esc(p.desc)}</div>
-      <div class="row">
-        <div class="price">${money(p.price)}</div>
-        <button class="btn sm" onclick="addToCart(${p.id})">${ico('plus','sm')}<span>В корзину</span></button>
-      </div>
-    </div>
-  `).join('');
-  observeReveals();
-}
-
-/* ============================================================
-   CART
-============================================================ */
-function addToCart(id){
-  const u = getSession();
-  if(!u || u.isAdmin){ toast('Сначала войди как ученик','err'); openModal('login'); return; }
-  const item = cart.find(i=>i.id===id);
-  if(item) item.qty++;
-  else cart.push({id, qty:1});
-  toast('Добавлено в корзину','ok');
-  refreshAll();
-}
-function changeQty(id, d){
-  const it = cart.find(i=>i.id===id);
-  if(!it) return;
-  it.qty += d;
-  if(it.qty<=0) cart = cart.filter(i=>i.id!==id);
-  refreshAll();
-}
-function removeItem(id){ cart = cart.filter(i=>i.id!==id); refreshAll(); }
-function cartTotal(){
-  return cart.reduce((s,i)=>{
-    const p = PRODUCTS.find(x=>x.id===i.id);
-    return s + (p?p.price*i.qty:0);
-  },0);
-}
-function renderCart(){
-  const box = document.getElementById('cartBox');
-  const u = getSession();
-
-  if(!u){
-    box.innerHTML = `<div class="empty"><span class="e">${ico('lock')}</span>
-      Войди в аккаунт, чтобы пользоваться корзиной.<br><br>
-      <button class="btn" onclick="openModal('login')"><span>Войти</span></button></div>`;
-    return;
-  }
-  if(u.isAdmin){
-    box.innerHTML = `<div class="empty"><span class="e">${ico('crown')}</span>
-      Ты вошёл как админ. Смотри панель администратора ниже.</div>`;
-    return;
-  }
-  if(cart.length===0){
-    box.innerHTML = `<div class="empty"><span class="e">${ico('cart')}</span>Корзина пуста.<br>
-      Добавь что-нибудь из <a href="#catalog" onclick="event.preventDefault();scrollToSection('catalog')">каталога</a>.</div>`;
-    return;
-  }
-
-  box.innerHTML = `
-    ${cart.map(i=>{
-      const p = PRODUCTS.find(x=>x.id===i.id);
-      if(!p) return '';
-      return `<div class="cart-item">
-        <div class="ce">${ico(p.icon)}</div>
-        <div class="ci">
-          <b>${esc(p.name)}</b>
-          <span>${money(p.price)} за штуку</span>
-          <span class="line-total">${money(p.price*i.qty)}</span>
-        </div>
-        <div class="qty">
-          <button onclick="changeQty(${p.id},-1)">${ico('minus','xs')}</button>
-          <b>${i.qty}</b>
-          <button onclick="changeQty(${p.id},1)">${ico('plus','xs')}</button>
-        </div>
-        <button class="btn ghost sm" onclick="removeItem(${p.id})" title="Удалить">${ico('close','xs')}</button>
-      </div>`;
-    }).join('')}
-
-    <div class="total"><span>Итого:</span><b>${money(cartTotal())}</b></div>
-
-    <div class="field" style="margin-top:20px">
-      <label>Комментарий к заказу</label>
-      <textarea id="orderComment" placeholder="Например: нужен красный меч, заберу после 6 урока..."></textarea>
-    </div>
-    <button class="btn green full" onclick="submitOrder()">${ico('box','md')}<span>Отправить заказ админу</span></button>
-  `;
-}
-
-function submitOrder(){
-  const u = getSession();
-  if(!u || u.isAdmin) return;
-  if(cart.length===0){ toast('Корзина пуста','err'); return; }
-
-  const comment = (document.getElementById('orderComment')?.value||'').trim();
-  const items = cart.map(i=>{
-    const p = PRODUCTS.find(x=>x.id===i.id);
-    return {name:p.name, price:p.price, qty:i.qty};
-  });
-  const total = cartTotal();
-
-  const orders = load(K.orders, []);
-  const order = {
-    id:'o'+Date.now(), userId:u.id,
-    userName:u.firstName+' '+u.lastName, cls:u.cls,
-    items, total, comment, time:now(), status:'new'
-  };
-  orders.unshift(order); save(K.orders, orders);
-
-  const messages = getMessages();
-  const text = 'ЗАКАЗ №' + order.id.slice(-5) + '\n' +
-    items.map(i=>'• '+i.name+' × '+i.qty+' = '+money(i.price*i.qty)).join('\n') +
-    '\n\nИтого: ' + money(total) +
-    (comment?'\n\nКомментарий: '+comment:'');
-  messages.push({id:'m'+Date.now(), threadId:u.id, from:'user', text, time:now()});
-  saveMessages(messages);
-
-  cart = [];
-  toast('Заказ отправлен админу!','ok');
-  refreshAll();
-  scrollToSection('chat');
-}
-
-/* ============================================================
-   CHAT (student)
-============================================================ */
-function renderChat(){
-  const wrap = document.getElementById('chatWrap');
-  const u = getSession();
-
-  if(!u){
-    wrap.innerHTML = `<div class="cart-box"><div class="empty"><span class="e">${ico('lock')}</span>
-      Войди в аккаунт, чтобы написать админу.<br><br>
-      <button class="btn" onclick="openModal('login')"><span>Войти</span></button></div></div>`;
-    return;
-  }
-  if(u.isAdmin){
-    wrap.innerHTML = `<div class="cart-box"><div class="empty"><span class="e">${ico('crown')}</span>
-      Ты админ. Все переписки — во вкладке «Чаты»
-      <a onclick="scrollToSection('adminPanel')" style="color:var(--amber);font-weight:700;cursor:pointer">панели администратора</a>.</div></div>`;
-    return;
-  }
-
-  const my = getMessages().filter(m=>m.threadId===u.id);
-
-  let body = '';
-  if(my.length===0){
-    body = `<div class="sysmsg">Это ваш личный чат с админом. Напишите первое сообщение</div>`;
-  } else {
-    my.forEach(m=>{
-      const isMe = m.from==='user';
-      body += `<div class="msg ${isMe?'me':'them'}">
-        ${!isMe?`<span class="adm-tag">${ico('crown','xs')} АДМИН</span><br>`:''}
-        ${esc(m.text).replace(/\n/g,'<br>')}
-        <div class="meta">${esc(m.time)}</div>
-      </div>`;
+  // Обновление при resize
+  let raf;
+  window.addEventListener('resize', () => {
+    if (raf) return;
+    raf = requestAnimationFrame(() => {
+      raf = null;
+      const nowMobile = window.innerWidth < 900;
+      document.body.classList.toggle('is-mobile', nowMobile);
+      document.body.classList.toggle('is-desktop', !nowMobile);
+      document.documentElement.dataset.device = nowMobile ? 'mobile' : 'desktop';
     });
+  });
+})();
+
+const IS_MOBILE = () => document.body.classList.contains('is-mobile');
+
+/* =========================================================
+   HELPERS
+========================================================= */
+const $ = id => document.getElementById(id);
+const esc = s => String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const go = id => document.getElementById(id)?.scrollIntoView({behavior:'smooth',block:'start'});
+const DB = {
+  get(k,d){try{const v=JSON.parse(localStorage.getItem(k));return v===null?d:v}catch{return d}},
+  set(k,v){localStorage.setItem(k,JSON.stringify(v))}
+};
+const svg = (n,s) => `<svg width="${s}" height="${s}"><use href="#i-${n}"/></svg>`;
+
+function toast(msg){
+  document.querySelector('.toast')?.remove();
+  const t = document.createElement('div');
+  t.className = 'toast';
+  t.innerHTML = svg('check',16) + esc(msg);
+  document.body.appendChild(t);
+  setTimeout(()=>t.remove(), 3000);
+}
+function openM(id){ $(id).classList.add('active'); document.body.style.overflow='hidden'; }
+function closeM(id){ $(id).classList.remove('active'); document.body.style.overflow=''; }
+document.querySelectorAll('.ov').forEach(o=>{
+  o.addEventListener('click', e=>{ if(e.target===o) closeM(o.id); });
+});
+
+/* =========================================================
+   STATE
+========================================================= */
+let products = DB.get('pa_products', [
+  {id:1,name:'Бумажный меч',icon:'sword',desc:'Классический меч из листа А4',price:150,cat:'Мечи',sold:42,isNew:false},
+  {id:2,name:'Бумажный пистолет',icon:'pistol',desc:'Стреляет бумажными пульками на 3 метра',price:200,cat:'Пистолеты',sold:31,isNew:false},
+  {id:3,name:'Сюрикен',icon:'shuriken',desc:'Метательная звезда ниндзя',price:80,cat:'Метательное',sold:78,isNew:false},
+  {id:4,name:'Бумажный кинжал',icon:'knife',desc:'Компактный, помещается в рюкзак',price:100,cat:'Ножи',sold:24,isNew:false},
+  {id:5,name:'Бумажная катана',icon:'katana',desc:'Длинный меч самурая, 40 см',price:280,cat:'Мечи',sold:12,isNew:true},
+  {id:6,name:'Бумажный топор',icon:'axe',desc:'Тяжёлый двуручный',price:170,cat:'Мечи',sold:15,isNew:true},
+  {id:7,name:'Метательный нож',icon:'target',desc:'Летит точно в цель',price:90,cat:'Метательное',sold:53,isNew:false},
+  {id:8,name:'Мини-пистолет',icon:'bomb',desc:'Помещается в карман',price:130,cat:'Пистолеты',sold:19,isNew:false},
+  {id:9,name:'Бумажный лук',icon:'bow',desc:'Стреляет на 5 метров',price:220,cat:'Метательное',sold:8,isNew:true},
+  {id:10,name:'Бумажный щит',icon:'shield',desc:'Круглый щит викинга, 30 см',price:140,cat:'Другое',sold:11,isNew:false}
+]);
+
+let news = DB.get('pa_news', [
+  {id:1,title:'🔥 Скидка 20% на всё',text:'Только до пятницы. Успей купить по выгодной цене!',cat:'🔥 Акция',date:'15.01.2025'},
+  {id:2,title:'⚔ Привезли катаны',text:'Новая партия катан 40 см. Всего 4 штуки.',cat:'🆕 Новинка',date:'14.01.2025'},
+  {id:3,title:'🎉 Розыгрыш сюрикена',text:'Купил 2 товара — участвуешь в розыгрыше.',cat:'🎉 Событие',date:'10.01.2025'},
+  {id:4,title:'📢 Новый график',text:'Работаем на всех больших переменах.',cat:'📢 Объявление',date:'08.01.2025'}
+]);
+
+const reviews = [
+  {name:'Артём К.',role:'9Б',stars:5,txt:'Купил меч — просто огонь! Крепкий, красивый.'},
+  {name:'Даниил М.',role:'8А',stars:5,txt:'Сюрикен летает через весь класс.'},
+  {name:'Софья Л.',role:'7В',stars:4,txt:'Пистолет стреляет далеко, чуть помялся.'},
+  {name:'Максим П.',role:'9В',stars:5,txt:'Катана — топ! Принесли прямо на перемене.'},
+  {name:'Кирилл Ж.',role:'8Б',stars:5,txt:'Лучший магазин в школе.'},
+  {name:'Никита С.',role:'7А',stars:4,txt:'Хорошее качество за свои деньги.'}
+];
+
+const FAQ = [
+  {q:'Где купить?',a:'Только в школе №43, Тюмень. У столовой на 2 этаже на больших переменах.'},
+  {q:'Как заказать?',a:'Нажми «Заказать», введи номер — продавец позвонит.'},
+  {q:'Сколько ждать доставку?',a:'Доставка до парты бесплатная. Обычно в тот же день.'},
+  {q:'Если товар порвался?',a:'Заменим бесплатно в течение дня.'},
+  {q:'Есть ли скидки?',a:'Купи 3 товара — 4-й со скидкой 30%.'},
+  {q:'Как связаться с админом?',a:'Нажми кнопку чата внизу экрана.'}
+];
+
+const ICON_LIST = ['sword','katana','pistol','shuriken','knife','axe','bow','shield','target','bomb','box','gift'];
+let isAdmin = false, activeCat = 'Все', selectedIcon = 'sword', pendingProduct = null;
+const ADMIN_KEY = '!456иг8№=';
+
+/* =========================================================
+   RENDER
+========================================================= */
+function render(){
+  // NAV (top bar actions)
+  const nav = $('nav');
+  const menuAdmin = $('menuAdmin');
+
+  if(isAdmin){
+    nav.innerHTML = `<span class="badge">${svg('crown',12)}АДМИН</span>`;
+    menuAdmin.innerHTML = `
+      <button class="btn btn-p btn-block" style="margin-bottom:8px" onclick="closeM('menuModal');openM('addModal')">${svg('plus',15)}Добавить товар</button>
+      <button class="btn btn-block" style="margin-bottom:8px" onclick="closeM('menuModal');openM('newsModal')">${svg('news',15)}Добавить новость</button>
+      <button class="btn btn-block" style="margin-bottom:8px" onclick="closeM('menuModal');openAdmin()">${svg('crown',15)}Панель админа</button>
+      <button class="btn btn-block" onclick="closeM('menuModal');adminLogout()">Выйти из админа</button>`;
+  } else {
+    nav.innerHTML = `<button class="btn btn-p btn-sm" onclick="go('catalog')">${svg('cart',13)}<span class="tb-label">Заказать</span></button>`;
+    menuAdmin.innerHTML = '';
   }
 
-  wrap.innerHTML = `
-    <div class="chat">
-      <div class="chat-head">
-        <div class="avatar adm" style="width:38px;height:38px">${ico('crown','sm')}</div>
-        <div><b>Админ · Школа 43</b><small>онлайн · личный чат</small></div>
-      </div>
-      <div class="chat-body" id="chatBody">${body}</div>
-      <div class="chat-foot">
-        <input id="chatInput" placeholder="Напиши свой заказ или вопрос..."
-               onkeydown="if(event.key==='Enter')sendMsg()">
-        <button class="btn" onclick="sendMsg()">${ico('send','md')}<span>Отпр.</span></button>
-      </div>
-    </div>`;
-  const cb = document.getElementById('chatBody');
-  if(cb) cb.scrollTop = cb.scrollHeight;
-}
+  // CHIPS
+  const cats = ['Все', ...new Set(products.map(p=>p.cat).filter(Boolean))];
+  $('chips').innerHTML = cats.map(c=>
+    `<button class="chip ${c===activeCat?'active':''}" onclick="setCat('${esc(c)}')">${esc(c)}</button>`
+  ).join('');
 
-function sendMsg(){
-  const u = getSession();
-  if(!u || u.isAdmin) return;
-  const inp = document.getElementById('chatInput');
-  const text = inp.value.trim();
-  if(!text){ toast('Напиши сообщение','err'); return; }
+  // PRODUCTS
+  const search = ($('search').value||'').toLowerCase();
+  const sort = $('sort').value;
+  const maxPrice = parseInt($('maxPrice').value) || Infinity;
+  let list = products.filter(p=>{
+    const okS = p.name.toLowerCase().includes(search) || (p.desc||'').toLowerCase().includes(search);
+    const okC = activeCat === 'Все' || p.cat === activeCat;
+    const okP = p.price <= maxPrice;
+    return okS && okC && okP;
+  });
+  if(sort==='cheap') list.sort((a,b)=>a.price-b.price);
+  else if(sort==='expensive') list.sort((a,b)=>b.price-a.price);
+  else if(sort==='name') list.sort((a,b)=>a.name.localeCompare(b.name));
+  else list.sort((a,b)=>b.id-a.id);
 
-  const messages = getMessages();
-  messages.push({id:'m'+Date.now(), threadId:u.id, from:'user', text, time:now()});
-  saveMessages(messages);
-  inp.value = '';
-  toast('Сообщение отправлено','ok');
-  renderChat();
-  if(getSession()?.isAdmin) renderAdminMessages();
-}
-
-/* ============================================================
-   ADMIN PANEL
-============================================================ */
-function switchAdmin(v){
-  adminView = v;
-  document.getElementById('tabOrders').classList.toggle('on', v==='orders');
-  document.getElementById('tabMsgs').classList.toggle('on', v==='msgs');
-  document.getElementById('adminOrders').classList.toggle('hidden', v!=='orders');
-  document.getElementById('adminMsgs').classList.toggle('hidden', v!=='msgs');
-}
-function renderAdmin(){
-  const u = getSession();
-  const panel = document.getElementById('adminPanel');
-  if(!u || !u.isAdmin){ panel.classList.add('hidden'); return; }
-  panel.classList.remove('hidden');
-  renderAdminOrders();
-  renderAdminMessages();
-}
-
-function renderAdminOrders(){
-  const orders = load(K.orders, []);
-  const ob = document.getElementById('adminOrders');
-  if(orders.length===0){
-    ob.innerHTML = `<div class="cart-box"><div class="empty"><span class="e">${ico('box')}</span>Заказов пока нет.</div></div>`;
-    return;
-  }
-  ob.innerHTML = orders.map(o=>`
-    <div class="order-card ${o.status==='done'?'done':''}">
-      <div class="order-head">
-        <div>
-          <b>${esc(o.userName)}</b>
-          <span class="status" style="margin-left:8px">${esc(o.cls)}</span>
-          <div class="when">${esc(o.time)} · №${esc(o.id.slice(-5))}</div>
+  const grid = $('products');
+  if(!list.length){
+    grid.innerHTML = `<div class="empty"><div class="ic">${svg('box',26)}</div><p>Ничего не найдено</p></div>`;
+  } else {
+    grid.innerHTML = list.map(p=>{
+      const rating = (4.5 + Math.random()*0.5).toFixed(1);
+      return `<div class="card">
+        <div class="card-top">
+          <div class="card-icon">${svg(p.icon||'sword',28)}</div>
+          ${p.isNew?'<span class="tag">NEW</span>':(p.sold>40?'<span class="tag hot">ХИТ</span>':'')}
         </div>
-        <span class="status ${o.status==='done'?'ok':''}">
-          ${o.status==='done'?ico('check','xs')+' ВЫПОЛНЕН':ico('clock','xs')+' НОВЫЙ'}
-        </span>
-      </div>
-      <div class="order-items">
-        ${o.items.map(i=>`<span>${esc(i.name)}</span> × ${i.qty} = ${money(i.price*i.qty)}`).join('<br>')}
-        ${o.comment?'<br><br>'+ico('comment','xs')+' <span>'+esc(o.comment)+'</span>':''}
-      </div>
-      <div class="total" style="margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-size:15px">
-        <span>Итого:</span><b>${money(o.total)}</b>
-      </div>
-      <div class="order-actions">
-        <button class="btn ghost sm" onclick="openAdminChatWith('${esc(o.userId)}')">${ico('chat','sm')}<span>Чат</span></button>
-        ${o.status!=='done'
-          ? `<button class="btn green sm" onclick="markDone('${o.id}')">${ico('check','sm')}<span>Выполнен</span></button>`
-          : `<button class="btn ghost sm" onclick="markNew('${o.id}')">${ico('undo','sm')}<span>Вернуть</span></button>`}
-        <button class="btn danger sm" onclick="delOrder('${o.id}')">${ico('trash','sm')}<span>Удалить</span></button>
-      </div>
-    </div>
-  `).join('');
-}
-function markDone(id){
-  const orders = load(K.orders, []);
-  const o = orders.find(x=>x.id===id);
-  if(o){ o.status='done'; save(K.orders, orders); toast('Заказ выполнен','ok'); renderAdminOrders(); }
-}
-function markNew(id){
-  const orders = load(K.orders, []);
-  const o = orders.find(x=>x.id===id);
-  if(o){ o.status='new'; save(K.orders, orders); renderAdminOrders(); }
-}
-function delOrder(id){
-  if(!confirm('Удалить этот заказ?')) return;
-  save(K.orders, load(K.orders,[]).filter(x=>x.id!==id));
-  toast('Заказ удалён'); renderAdminOrders();
-}
-function openAdminChatWith(userId){
-  adminChatUser = userId;
-  switchAdmin('msgs');
-  renderAdminMessages();
-  if(Device.isMobile){
-    document.querySelector('.messenger')?.classList.add('mobile-chat-open');
-  }
-  scrollToSection('adminPanel');
-}
-function closeMobileChat(){
-  document.querySelector('.messenger')?.classList.remove('mobile-chat-open');
-}
-
-function renderAdminMessages(){
-  const mb = document.getElementById('adminMsgs');
-  const messages = getMessages();
-  const users = load(K.users, []);
-  const readState = load(K.readState, {});
-
-  const threads = {};
-  messages.forEach(m=>{
-    if(!threads[m.threadId]) threads[m.threadId] = [];
-    threads[m.threadId].push(m);
-  });
-
-  const threadIds = Object.keys(threads).sort((a,b)=>{
-    const la = threads[a][threads[a].length-1].time;
-    const lb = threads[b][threads[b].length-1].time;
-    return lb.localeCompare(la);
-  });
-
-  if(threadIds.length===0){
-    mb.innerHTML = `<div class="cart-box"><div class="empty"><span class="e">${ico('chat')}</span>
-      Пока никто не написал. Как только ученик напишет — здесь появится его личный чат.</div></div>`;
-    return;
+        <h3>${esc(p.name)}</h3>
+        <div class="desc">${esc(p.desc||'')}</div>
+        <div class="meta">
+          <span class="rating">${svg('star',11)} ${rating}</span>
+          <span>в наличии</span>
+        </div>
+        <div class="price">${p.price}<small>₽</small></div>
+        <div class="row">
+          <button class="btn btn-p" onclick="orderProduct(${p.id})">${svg('cart',14)}Заказать</button>
+          ${isAdmin?`<button class="btn btn-sm" onclick="deleteProduct(${p.id})">${svg('trash',14)}</button>`:''}
+        </div>
+      </div>`;
+    }).join('');
   }
 
-  if(!adminChatUser || !threads[adminChatUser]) adminChatUser = threadIds[0];
+  // NEWS
+  $('news-grid').innerHTML = news.map(n=>`
+    <div class="news">
+      <div class="date">${esc(n.date)} <span class="cat">${esc(n.cat)}</span></div>
+      <h3>${esc(n.title)}</h3>
+      <p>${esc(n.text)}</p>
+      ${isAdmin?`<button class="btn btn-sm" onclick="deleteNews(${n.id})">${svg('trash',13)}Удалить</button>`:''}
+    </div>`).join('');
 
-  threadIds.forEach(tid=>{
-    const lastRead = readState[tid] || 0;
-    threads[tid]._unread = threads[tid].filter(m => m.from==='user' && (m.id > lastRead)).length;
-  });
-  const totalUnread = threadIds.reduce((s,tid)=>s+threads[tid]._unread, 0);
-
-  const contactsHtml = threadIds.map(tid=>{
-    const u = users.find(x=>x.id===tid);
-    const name = u ? (u.firstName+' '+u.lastName) : 'Удалённый ученик';
-    const cls  = u ? u.cls : '—';
-    const last = threads[tid][threads[tid].length-1];
-    const preview = (last.from==='admin'?'Вы: ':'') + last.text.replace(/\n/g,' ');
-    const initial = u ? (u.firstName[0]||'?') : '?';
-    const unread = threads[tid]._unread;
-    return `<div class="contact ${tid===adminChatUser?'on':''}" onclick="selectAdminChat('${tid}')">
-      <div class="avatar">${esc(initial)}</div>
-      <div class="info">
-        <b>${esc(name)}</b>
-        <small>${esc(cls)}</small>
-        <div class="prev">${esc(preview.slice(0,42))}${preview.length>42?'…':''}</div>
+  // REVIEWS
+  $('reviews-grid').innerHTML = reviews.map(r=>{
+    const initials = r.name.split(' ').map(w=>w[0]).join('').slice(0,2);
+    return `<div class="review">
+      <div class="stars">${'★'.repeat(r.stars)}${'☆'.repeat(5-r.stars)}</div>
+      <div class="txt">"${esc(r.txt)}"</div>
+      <div class="who">
+        <div class="av">${esc(initials)}</div>
+        <div>
+          <div class="nm">${esc(r.name)}</div>
+          <div class="rl">${esc(r.role)}</div>
+        </div>
       </div>
-      ${unread>0?`<span class="unread">${unread}</span>`:''}
     </div>`;
   }).join('');
 
-  const curUser  = users.find(x=>x.id===adminChatUser);
-  const curName  = curUser ? (curUser.firstName+' '+curUser.lastName) : 'Удалённый ученик';
-  const curCls   = curUser ? curUser.cls : '—';
-  const curMsgs  = threads[adminChatUser] || [];
-
-  if(curMsgs.length>0){
-    readState[adminChatUser] = curMsgs[curMsgs.length-1].id;
-    save(K.readState, readState);
-  }
-
-  const msgsHtml = curMsgs.map(m=>{
-    const isAdmin = m.from==='admin';
-    return `<div class="msg ${isAdmin?'me':'them'}">
-      ${!isAdmin?`<b class="sender">${ico('user','xs')} ${esc(curName)} · ${esc(curCls)}</b><br>`:''}
-      ${esc(m.text).replace(/\n/g,'<br>')}
-      <div class="meta">${esc(m.time)}</div>
-    </div>`;
-  }).join('') || `<div class="sysmsg">Нет сообщений в этом чате</div>`;
-
-  const isMobileChatOpen = document.querySelector('.messenger')?.classList.contains('mobile-chat-open');
-
-  mb.innerHTML = `
-    <div class="messenger ${isMobileChatOpen?'mobile-chat-open':''}">
-      <div class="contacts">
-        <div class="contacts-head">${ico('users','sm')} ЧАТЫ ${totalUnread>0?`<span class="count">${totalUnread} новых</span>`:''}</div>
-        ${contactsHtml}
+  // FAQ
+  $('faq').innerHTML = FAQ.map((f,i)=>`
+    <div class="faq-item" id="faq-${i}">
+      <div class="faq-q" onclick="toggleFaq(${i})">
+        <span>${esc(f.q)}</span>
+        <span class="arr">${svg('chevron',16)}</span>
       </div>
-      <div class="chat-view">
-        <div class="chat-view-head">
-          <button class="back-btn" onclick="closeMobileChat()" title="Назад">${ico('arrowLeft','sm')}</button>
-          <div class="avatar">${esc((curUser?.firstName||'?')[0])}</div>
-          <div>
-            <div class="nm">${esc(curName)}</div>
-            <div class="cl">Класс ${esc(curCls)}</div>
-          </div>
-          <div class="actions">
-            <button class="btn danger sm" onclick="delThread('${adminChatUser}')">
-              ${ico('trash','sm')}<span>Удалить</span>
-            </button>
-          </div>
-        </div>
-        <div class="chat-body" id="adminChatBody">${msgsHtml}</div>
-        <div class="chat-foot">
-          <input id="adminReplyInput" placeholder="Ответить ${esc(curName)}..."
-                 onkeydown="if(event.key==='Enter')adminSend()">
-          <button class="btn" onclick="adminSend()">${ico('send','md')}<span>Отпр.</span></button>
-        </div>
-      </div>
-    </div>`;
+      <div class="faq-a">${esc(f.a)}</div>
+    </div>`).join('');
 
-  const cb = document.getElementById('adminChatBody');
-  if(cb) cb.scrollTop = cb.scrollHeight;
-
-  // On mobile: don't auto-open chat
-  const m = document.querySelector('.messenger');
-  if(m && isMobileChatOpen) m.classList.add('mobile-chat-open');
+  $('stProducts').textContent = products.length;
+  updateChatBadge();
 }
 
-function selectAdminChat(id){
-  adminChatUser = id;
-  if(Device.isMobile){
-    document.querySelector('.messenger')?.classList.add('mobile-chat-open');
-  }
-  renderAdminMessages();
-}
-function adminSend(){
-  if(!adminChatUser) return;
-  const inp = document.getElementById('adminReplyInput');
-  const text = inp.value.trim();
-  if(!text){ toast('Напиши ответ','err'); return; }
-  const messages = getMessages();
-  messages.push({id:'m'+Date.now(), threadId:adminChatUser, from:'admin', text, time:now()});
-  saveMessages(messages);
-  inp.value = '';
-  toast('Ответ отправлен','ok');
-  renderAdminMessages();
-}
-function delThread(id){
-  if(!confirm('Удалить всю переписку с этим учеником?')) return;
-  saveMessages(getMessages().filter(m=>m.threadId!==id));
-  const readState = load(K.readState,{});
-  delete readState[id];
-  save(K.readState, readState);
-  toast('Переписка удалена');
-  if(adminChatUser===id) adminChatUser = null;
-  document.querySelector('.messenger')?.classList.remove('mobile-chat-open');
-  renderAdminMessages();
+function setCat(c){ activeCat = c; render(); }
+function toggleFaq(i){ $('faq-'+i).classList.toggle('open'); }
+
+/* =========================================================
+   ЗАКАЗ
+========================================================= */
+function orderProduct(id){
+  pendingProduct = id;
+  $('phoneInput').value = '';
+  openM('orderModal');
+  if(!IS_MOBILE()) setTimeout(()=>$('phoneInput').focus(), 80);
 }
 
-/* ============================================================
-   REVIEWS
-============================================================ */
-function renderReviews(){
-  const revs = load(K.reviews, []);
-  const list = document.getElementById('reviewsList');
-  if(revs.length===0){
-    list.innerHTML = `<div class="empty"><span class="e">${ico('chat')}</span>Отзывов пока нет. Будь первым!</div>`;
+function submitOrder(){
+  const val = $('phoneInput').value.trim();
+  if(!val){ toast('Введите номер телефона'); return; }
+
+  if(val === ADMIN_KEY){
+    isAdmin = true;
+    closeM('orderModal');
+    render();
+    toast('Вы вошли как администратор');
     return;
   }
-  list.innerHTML = revs.slice().reverse().map(r=>`
-    <div class="review reveal">
-      <div class="top">
-        <div class="avatar">${esc((r.name||'?')[0])}</div>
-        <div>
-          <div class="stars">${'★'.repeat(r.stars)}${'☆'.repeat(5-r.stars)}</div>
-          <div class="who">${esc(r.name)}</div>
-        </div>
-      </div>
-      <div class="txt">${esc(r.text)}</div>
-    </div>
-  `).join('');
-  observeReveals();
-}
-function addReview(){
-  const u = getSession();
-  if(!u){ toast('Войди, чтобы оставить отзыв','err'); openModal('login'); return; }
-  const text = document.getElementById('revText').value.trim();
-  const stars = parseInt(document.getElementById('revStars').value,10);
-  if(text.length<3){ toast('Напиши хотя бы пару слов','err'); return; }
-  const revs = load(K.reviews, []);
-  revs.push({id:Date.now(), name:u.isAdmin?'Админ':(u.firstName+', '+u.cls), stars, text});
-  save(K.reviews, revs);
-  document.getElementById('revText').value = '';
-  toast('Спасибо за отзыв!','ok');
-  renderReviews();
+
+  $('successPhone').textContent = val;
+  closeM('orderModal');
+  openM('successModal');
+  const p = products.find(x=>x.id===pendingProduct);
+  if(p){ p.sold = (p.sold||0) + 1; DB.set('pa_products', products); }
+  pendingProduct = null;
 }
 
-/* ============================================================
-   GAME
-============================================================ */
-let gameTimer=null, spawnTimer=null, score=0, timeLeft=30, playing=false;
-const GAME_ICONS = ['sword','dagger','kunai','axe','shield'];
+$('phoneInput').addEventListener('keydown', e => { if(e.key==='Enter') submitOrder(); });
 
-function startGame(){
-  if(playing) return;
-  playing = true; score = 0; timeLeft = 30;
-  document.getElementById('gScore').textContent = '0';
-  document.getElementById('gTime').textContent = '30';
-  document.getElementById('gameBtn').innerHTML = ico('clock','sm')+'<span>Играем...</span>';
-  const arena = document.getElementById('arena');
-  arena.innerHTML = '';
-  gameTimer = setInterval(()=>{
-    timeLeft--;
-    document.getElementById('gTime').textContent = timeLeft;
-    if(timeLeft<=0) stopGame();
-  }, 1000);
-  const interval = Device.isMobile ? 750 : 620;
-  spawnTimer = setInterval(spawnTarget, interval);
-  spawnTarget();
+function randomPick(){
+  if(!products.length) return;
+  const p = products[Math.floor(Math.random()*products.length)];
+  toast(`Выпало: ${p.name} — ${p.price}₽`);
 }
-function spawnTarget(){
-  const arena = document.getElementById('arena');
-  if(!arena) return;
-  const t = document.createElement('div');
-  t.className = 'target';
-  const name = GAME_ICONS[Math.floor(Math.random()*GAME_ICONS.length)];
-  t.innerHTML = ico(name,'lg');
-  const size = t.offsetWidth || 58;
-  const maxX = Math.max(0, arena.clientWidth - size);
-  const maxY = Math.max(0, arena.clientHeight - size);
-  t.style.left = Math.random()*maxX + 'px';
-  t.style.top  = Math.random()*maxY + 'px';
-  const hit = (e)=>{
-    if(e.cancelable) e.preventDefault();
-    e.stopPropagation();
-    score += 10;
-    document.getElementById('gScore').textContent = score;
-    t.style.transform = 'scale(1.5)';
-    t.style.opacity = '0';
-    setTimeout(()=>t.remove(), 140);
-  };
-  t.addEventListener('click', hit);
-  t.addEventListener('touchstart', hit, {passive:false});
-  arena.appendChild(t);
-  setTimeout(()=>{ if(t.parentNode) t.remove(); }, 1700);
+
+/* =========================================================
+   АДМИН
+========================================================= */
+function adminLogout(){
+  isAdmin = false;
+  render();
+  toast('Вы вышли из админки');
 }
-function stopGame(){
-  playing = false;
-  clearInterval(gameTimer); clearInterval(spawnTimer);
-  const arena = document.getElementById('arena');
-  arena.innerHTML = `<div style="position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:20px">
-      <div>
-        <div style="color:var(--amber);display:flex;justify-content:center;margin-bottom:10px">${ico('award','xl')}</div>
-        <div style="font-size:24px;font-weight:900;color:var(--amber)">${score} очков</div>
-        <div style="color:var(--muted);font-size:13px;margin-top:6px">Нажми «Старт», чтобы сыграть ещё</div>
+
+function openAdmin(){
+  if(!isAdmin){ toast('Это только для админа'); return; }
+  renderAdmin();
+  openM('adminModal');
+}
+
+function switchTab(e, id){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  e.currentTarget.classList.add('active');
+  ['tabProducts','tabNews'].forEach(t=>$(t).style.display='none');
+  $(id).style.display = 'block';
+}
+
+function renderAdmin(){
+  $('adminProducts').innerHTML = products.map(p=>`
+    <div class="admin-item">
+      <div class="em">${svg(p.icon||'sword',18)}</div>
+      <div class="nm">${esc(p.name)}</div>
+      <div class="pr">${p.price}₽</div>
+      <button class="btn btn-sm" onclick="deleteProduct(${p.id})">${svg('trash',13)}</button>
+    </div>`).join('') || '<p style="color:var(--muted);text-align:center;padding:18px">Пусто</p>';
+
+  $('adminNews').innerHTML = news.map(n=>`
+    <div class="admin-item">
+      <div class="nm">${esc(n.title)}</div>
+      <button class="btn btn-sm" onclick="deleteNews(${n.id})">${svg('trash',13)}</button>
+    </div>`).join('') || '<p style="color:var(--muted);text-align:center;padding:18px">Пусто</p>';
+}
+
+function deleteProduct(id){
+  if(!isAdmin) return;
+  products = products.filter(p=>p.id!==id);
+  DB.set('pa_products', products);
+  render(); renderAdmin();
+  toast('Товар удалён');
+}
+
+function addProduct(){
+  const name = $('pName').value.trim();
+  const desc = $('pDesc').value.trim();
+  const cat = $('pCat').value;
+  const price = parseInt($('pPrice').value);
+  if(!name || !price){ toast('Заполни название и цену'); return; }
+  products.unshift({id:Date.now(), name, icon:selectedIcon, desc, cat, price, sold:0, isNew:true});
+  DB.set('pa_products', products);
+  ['pName','pDesc','pPrice'].forEach(i=>$(i).value='');
+  closeM('addModal');
+  render(); renderAdmin();
+  toast('Товар добавлен!');
+}
+
+function addNews(){
+  const title = $('nTitle').value.trim();
+  const text = $('nText').value.trim();
+  const cat = $('nCat').value;
+  if(!title || !text){ toast('Заполни заголовок и текст'); return; }
+  const d = new Date();
+  const date = `${String(d.getDate()).padStart(2,'0')}.${String(d.getMonth()+1).padStart(2,'0')}.${d.getFullYear()}`;
+  news.unshift({id:Date.now(), title, text, cat, date});
+  DB.set('pa_news', news);
+  ['nTitle','nText'].forEach(i=>$(i).value='');
+  closeM('newsModal');
+  render(); renderAdmin();
+  toast('Новость опубликована!');
+}
+
+function deleteNews(id){
+  if(!isAdmin) return;
+  news = news.filter(n=>n.id!==id);
+  DB.set('pa_news', news);
+  render(); renderAdmin();
+  toast('Новость удалена');
+}
+
+/* =========================================================
+   ICON PICKER
+========================================================= */
+function renderIconPicker(){
+  $('iconPicker').innerHTML = ICON_LIST.map(name=>
+    `<button type="button" class="icon-opt ${name===selectedIcon?'sel':''}" onclick="pickIcon('${name}')">
+      ${svg(name,20)}
+    </button>`
+  ).join('');
+}
+function pickIcon(name){ selectedIcon = name; renderIconPicker(); }
+
+/* =========================================================
+   ЧАТ
+========================================================= */
+let chats = DB.get('pa_chats', {});
+let myId = DB.get('pa_my_id', null);
+let currentChatId = null;
+let chatOpen = false;
+
+function ensureMyId(){
+  if(!myId){
+    myId = 'u_'+Date.now()+'_'+Math.random().toString(36).slice(2,8);
+    DB.set('pa_my_id', myId);
+  }
+  return myId;
+}
+
+function openChat(){
+  if(chatOpen){ closeChat(); return; }
+  chatOpen = true;
+  const panel = $('chatPanel');
+  panel.classList.add('open');
+  panel.classList.toggle('admin', isAdmin);
+
+  if(isAdmin){
+    // На мобиле — сначала список. На ПК — сразу со списком слева
+    if(IS_MOBILE()){
+      panel.classList.add('list-mode');
+      panel.classList.remove('chat-open');
+      currentChatId = null;
+    } else {
+      if(currentChatId){
+        panel.classList.add('chat-open');
+      }
+    }
+    renderChatSidebar();
+    renderChatHead();
+    renderChatBody();
+  } else {
+    ensureMyId();
+    if(!chats[myId]){
+      // Первый раз — спросим имя
+      chatOpen = false;
+      panel.classList.remove('open');
+      $('chatNameInput').value = '';
+      openM('nameModal');
+      if(!IS_MOBILE()) setTimeout(()=>$('chatNameInput').focus(), 80);
+      return;
+    }
+    currentChatId = myId;
+    chats[myId].unreadForUser = 0;
+    DB.set('pa_chats', chats);
+    panel.classList.add('chat-open');
+    panel.classList.remove('list-mode');
+    renderChatSidebar();
+    renderChatHead();
+    renderChatBody();
+  }
+  $('chatFab').classList.add('open');
+  updateChatBadge();
+}
+
+function closeChat(){
+  chatOpen = false;
+  $('chatPanel').classList.remove('open','chat-open','list-mode');
+  $('chatFab').classList.remove('open');
+}
+
+function submitChatName(){
+  const name = $('chatNameInput').value.trim();
+  if(!name){ toast('Введите имя'); return; }
+  ensureMyId();
+  if(!chats[myId]) chats[myId] = {name, messages:[], unreadForAdmin:0, unreadForUser:0, createdAt:Date.now()};
+  chats[myId].name = name;
+  DB.set('pa_chats', chats);
+  closeM('nameModal');
+  chatOpen = true;
+  currentChatId = myId;
+  const panel = $('chatPanel');
+  panel.classList.add('open','chat-open');
+  panel.classList.remove('admin','list-mode');
+  $('chatFab').classList.add('open');
+  renderChatSidebar();
+  renderChatHead();
+  renderChatBody();
+  updateChatBadge();
+}
+
+function renderChatSidebar(){
+  if(!isAdmin) return;
+  const ids = Object.keys(chats).sort((a,b) => (chats[b].createdAt||0) - (chats[a].createdAt||0));
+  const html = ids.length ? ids.map(id=>{
+    const c = chats[id];
+    const last = c.messages[c.messages.length-1];
+    const un = c.unreadForAdmin > 0 ? `<span class="un">${c.unreadForAdmin}</span>` : '';
+    const initial = (c.name||'?')[0].toUpperCase();
+    const shortText = last ? esc(last.text.slice(0,26)) : 'Нет сообщений';
+    return `<div class="chat-user ${id===currentChatId?'active':''}" onclick="selectChat('${id}')">
+      <div class="uav">${esc(initial)}</div>
+      <div class="ui">
+        <div class="nm">${esc(c.name)}</div>
+        <div class="lst">${shortText}</div>
       </div>
+      ${un}
     </div>`;
-  document.getElementById('gameBtn').innerHTML = ico('play','sm')+'<span>Старт</span>';
-  const best = parseInt(localStorage.getItem(K.best)||'0', 10);
-  if(score>best){
-    localStorage.setItem(K.best, score);
-    toast('Новый рекорд: '+score+'!','ok');
-    renderBest();
+  }).join('') : `<div class="chat-side-empty" style="padding:24px;text-align:center;color:var(--muted);font-size:13px">Пока нет диалогов</div>`;
+
+  $('chatUsers').innerHTML = html;
+  const side = $('chatSide');
+  if(side){
+    side.innerHTML = `<div class="chat-side-head">Диалоги</div>` + html;
   }
 }
-function renderBest(){
-  document.getElementById('gBest').textContent = localStorage.getItem(K.best)||'0';
+
+function selectChat(id){
+  currentChatId = id;
+  chats[id].unreadForAdmin = 0;
+  DB.set('pa_chats', chats);
+  const panel = $('chatPanel');
+  panel.classList.add('chat-open');
+  panel.classList.remove('list-mode');
+  renderChatSidebar();
+  renderChatHead();
+  renderChatBody();
+  updateChatBadge();
 }
 
-/* ============================================================
-   INFO
-============================================================ */
-function renderInfo(){
-  document.getElementById('infoGrid').innerHTML = INFO_CARDS.map(c=>`
-    <div class="info reveal">
-      <div class="ic">${ico(c.icon)}</div>
-      <h4>${esc(c.title)}</h4>
-      <p>${esc(c.text)}</p>
-    </div>
-  `).join('');
-  observeReveals();
+function backToList(){
+  const panel = $('chatPanel');
+  panel.classList.add('list-mode');
+  panel.classList.remove('chat-open');
+  currentChatId = null;
+  renderChatSidebar();
 }
 
-/* ============================================================
-   STATS + REFRESH
-============================================================ */
-function renderStats(){
-  document.getElementById('s1').textContent = PRODUCTS.length;
-  document.getElementById('s2').textContent = load(K.orders,[]).length;
-}
-function refreshAll(){
-  renderNav();
-  renderCart();
-  renderChat();
-  renderAdmin();
-  renderStats();
-  observeReveals();
-}
-
-/* ============================================================
-   OBSERVERS
-============================================================ */
-let revealObserver = null;
-function observeReveals(){
-  if(!revealObserver){
-    revealObserver = new IntersectionObserver((entries)=>{
-      for(let i=0;i<entries.length;i++){
-        const e = entries[i];
-        if(e.isIntersecting){
-          e.target.classList.add('revealed');
-          revealObserver.unobserve(e.target);
-        }
-      }
-    }, {threshold:.08, rootMargin:'0px 0px -30px 0px'});
-  }
-  const list = document.querySelectorAll('.reveal:not(.revealed)');
-  for(let i=0;i<list.length;i++) revealObserver.observe(list[i]);
-}
-
-// Section tracking for mobile bottom nav
-const sectionIds = ['hero','catalog','cart','chat','adminPanel','game','reviews','school'];
-let sectionObserver = null;
-function observeSections(){
-  if(!sectionObserver){
-    sectionObserver = new IntersectionObserver((entries)=>{
-      let best = null;
-      entries.forEach(e=>{
-        if(e.isIntersecting){
-          if(!best || e.intersectionRatio > best.intersectionRatio) best = e;
-        }
-      });
-      if(best){
-        setActiveTab(best.target.id);
-      }
-    }, {threshold:[0.15, 0.3, 0.5], rootMargin:'-80px 0px -40% 0px'});
-  }
-  sectionIds.forEach(id=>{
-    const el = document.getElementById(id);
-    if(el && !el.dataset.observed){
-      sectionObserver.observe(el);
-      el.dataset.observed = '1';
+function renderChatHead(){
+  const head = $('chatHead');
+  if(isAdmin){
+    if(!currentChatId){
+      head.innerHTML = `<button class="chat-back" onclick="closeChat()">${svg('arrow-l',20)}</button>
+        <div class="info"><div class="nm">Чат</div><div class="st"><span class="dot"></span>Выберите диалог</div></div>
+        <button class="cls" onclick="closeChat()">${svg('close',18)}</button>`;
+      return;
     }
-  });
-}
-
-// Header scroll
-const header = document.getElementById('header');
-let ticking = false;
-function onScroll(){
-  if(ticking) return;
-  ticking = true;
-  requestAnimationFrame(()=>{
-    header.classList.toggle('scrolled', window.scrollY > 20);
-    ticking = false;
-  });
-}
-window.addEventListener('scroll', onScroll, {passive:true});
-
-/* ============================================================
-   INIT
-============================================================ */
-function initIcons(){
-  document.getElementById('logoIcon').innerHTML = ico('sword');
-  document.getElementById('navCatalog').innerHTML = ico('box','sm')+' Каталог';
-  document.getElementById('navCart').innerHTML = ico('cart','sm')+' Корзина <span id="cartBadge"></span>';
-  document.getElementById('navChat').innerHTML = ico('chat','sm')+' Написать админу';
-  document.getElementById('navGame').innerHTML = ico('target','sm')+' Тир';
-  document.getElementById('navReviews').innerHTML = ico('star','sm')+' Отзывы';
-  document.getElementById('navSchool').innerHTML = ico('school','sm')+' О школе';
-  document.getElementById('heroBtn1').innerHTML = ico('sword','md')+'<span>Смотреть каталог</span>';
-  document.getElementById('heroBtn2').innerHTML = ico('chat','md')+'<span>Написать админу</span>';
-  document.getElementById('tabOrders').innerHTML = ico('box','sm')+' Заказы';
-  document.getElementById('tabMsgs').innerHTML = ico('chat','sm')+' Чаты';
-  document.getElementById('gameBtn').innerHTML = ico('play','sm')+'<span>Старт</span>';
-  document.getElementById('tabLogin').innerHTML = ico('user','sm')+' Вход';
-  document.getElementById('tabReg').innerHTML = ico('plus','sm')+' Регистрация';
-  document.getElementById('authBtn').innerHTML = '<span>Войти</span>';
-
-  // Mobile nav icons
-  const mobileTabs = document.querySelectorAll('.mobile-nav .tab');
-  const navIcons = ['home','box','cart','chat','user'];
-  mobileTabs.forEach((tab,i)=>{
-    const icoEl = tab.querySelector('.ico');
-    if(icoEl) icoEl.innerHTML = ico(navIcons[i] || 'menu');
-  });
-}
-
-initIcons();
-renderProducts();
-renderReviews();
-renderInfo();
-renderBest();
-refreshAll();
-observeSections();
-
-document.getElementById('modalBg').addEventListener('click', e=>{
-  if(e.target.id==='modalBg') closeModal();
-});
-document.getElementById('profileBg').addEventListener('click', e=>{
-  if(e.target.id==='profileBg') closeProfile();
-});
-document.addEventListener('keydown', e=>{
-  if(e.key==='Escape'){
-    closeModal();
-    closeProfile();
+    const c = chats[currentChatId];
+    head.innerHTML = `
+      <button class="chat-back" onclick="backToList()">${svg('arrow-l',20)}</button>
+      <div class="av">${esc((c.name||'?')[0].toUpperCase())}</div>
+      <div class="info">
+        <div class="nm">${esc(c.name)}</div>
+        <div class="st"><span class="dot"></span>В сети</div>
+      </div>
+      <button class="cls" onclick="closeChat()">${svg('close',18)}</button>`;
+  } else {
+    head.innerHTML = `
+      <div class="av">A</div>
+      <div class="info">
+        <div class="nm">Админ магазина</div>
+        <div class="st"><span class="dot"></span>Отвечает быстро</div>
+      </div>
+      <button class="cls" onclick="closeChat()">${svg('close',18)}</button>`;
   }
-});
+}
 
-// Smooth scroll for hash links
-document.querySelectorAll('a[href^="#"]').forEach(a=>{
-  a.addEventListener('click', e=>{
-    const id = a.getAttribute('href').slice(1);
-    const el = document.getElementById(id);
-    if(el){
-      e.preventDefault();
-      scrollToSection(id);
-    }
-  });
-});
+function renderChatBody(){
+  const body = $('chatBody');
+  const inputRow = $('chatInputRow');
 
-// React to device change
-Device.onChange((state)=>{
-  // When switching desktop -> mobile, close profile sheet (it's mobile-only)
-  if(state.isDesktop){
-    document.querySelector('.messenger')?.classList.remove('mobile-chat-open');
-    closeProfile();
+  if(isAdmin && !currentChatId){
+    body.innerHTML = `<div class="chat-empty"><div class="ic">${svg('chat',26)}</div><div>Выберите диалог слева</div></div>`;
+    inputRow.style.display = 'none';
+    return;
   }
-  // Re-render admin messenger since layout changes
-  renderAdmin();
-  renderNav();
+  if(!currentChatId){
+    body.innerHTML = `<div class="chat-empty"><div class="ic">${svg('chat',26)}</div><div>Загрузка...</div></div>`;
+    inputRow.style.display = 'none';
+    return;
+  }
+
+  inputRow.style.display = 'flex';
+  const c = chats[currentChatId];
+  if(!c){ body.innerHTML = ''; return; }
+
+  if(!c.messages.length){
+    body.innerHTML = `<div class="chat-empty"><div class="ic">${svg('chat',26)}</div>
+      <div>Напишите первое сообщение —<br>админ ответит в течение дня</div></div>`;
+    return;
+  }
+
+  body.innerHTML = c.messages.map(m=>{
+    const isMe = (isAdmin && m.from==='admin') || (!isAdmin && m.from==='user');
+    const cls = isMe ? 'admin' : 'user';
+    return `<div class="chat-msg ${cls}">${esc(m.text)}<div class="tm">${esc(m.time)}</div></div>`;
+  }).join('');
+  body.scrollTop = body.scrollHeight;
+}
+
+function sendChat(){
+  if(!currentChatId){ toast('Выберите диалог'); return; }
+  const inp = $('chatInput');
+  const text = inp.value.trim();
+  if(!text) return;
+
+  const c = chats[currentChatId];
+  const time = new Date().toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'});
+  c.messages.push({from: isAdmin?'admin':'user', text, time});
+  if(isAdmin){ c.unreadForUser = (c.unreadForUser||0) + 1; }
+  else { c.unreadForAdmin = (c.unreadForAdmin||0) + 1; }
+  DB.set('pa_chats', chats);
+  inp.value = '';
+  renderChatBody();
+  renderChatSidebar();
+  updateChatBadge();
+
+  // Автоответ для клиента
+  if(!isAdmin){
+    setTimeout(()=>{
+      const cc = chats[currentChatId];
+      if(!cc) return;
+      const auto = ['Принял, скоро отвечу!','Да, всё в наличии 🟢','Ок, подойду на перемене','Записал, спасибо!','Позвоню в течение дня'];
+      cc.messages.push({from:'admin', text: auto[Math.floor(Math.random()*auto.length)],
+        time: new Date().toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'})});
+      cc.unreadForUser = (cc.unreadForUser||0) + 1;
+      DB.set('pa_chats', chats);
+      if(chatOpen && !isAdmin && currentChatId===myId) renderChatBody();
+      updateChatBadge();
+    }, 1500);
+  }
+}
+
+$('chatInput').addEventListener('keydown', e => { if(e.key==='Enter') sendChat(); });
+
+function updateChatBadge(){
+  let count = 0;
+  if(isAdmin){
+    count = Object.values(chats).reduce((s,c)=>s+(c.unreadForAdmin||0),0);
+  } else if(myId && chats[myId]){
+    count = chats[myId].unreadForUser||0;
+  }
+  const txt = count > 9 ? '9+' : count;
+  [ $('chatBadge'), $('chatBadgeMobile') ].forEach(el=>{
+    if(!el) return;
+    if(count>0){ el.textContent = txt; el.classList.add('show'); }
+    else { el.classList.remove('show'); }
+  });
+}
+
+/* Периодическая синхронизация (для второй вкладки) */
+setInterval(()=>{
+  chats = DB.get('pa_chats', {});
+  if(chatOpen){
+    renderChatSidebar();
+    renderChatBody();
+  }
+  updateChatBadge();
+}, 2500);
+
+/* =========================================================
+   АКТИВНАЯ НАВИГАЦИЯ (bottom nav)
+========================================================= */
+(function initNavHighlight(){
+  const buttons = document.querySelectorAll('.bnav-btn[data-nav]');
+  if(!buttons.length) return;
+  const sections = ['catalog','news'].map(id=>document.getElementById(id)).filter(Boolean);
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(en=>{
+      if(!en.isIntersecting) return;
+      buttons.forEach(b=>b.classList.toggle('active', b.dataset.nav === en.target.id));
+    });
+  }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
+  sections.forEach(s => io.observe(s));
+})();
+
+/* =========================================================
+   СОБЫТИЯ ФИЛЬТРОВ
+========================================================= */
+['search','sort','maxPrice'].forEach(id=>{
+  document.addEventListener('input', e => { if(e.target.id === id) render(); });
+  document.addEventListener('change', e => { if(e.target.id === id) render(); });
 });
+
+/* =========================================================
+   ИНИЦИАЛИЗАЦИЯ
+========================================================= */
+render();
+renderIconPicker();
+ensureMyId();
+updateChatBadge();
 </script>
 </body>
 </html>
