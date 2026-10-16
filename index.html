@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=5">
 <meta name="theme-color" content="#00a860">
-<title>Paper Arms — Школа №43 Тюмень</title>
+<title>Paper Arms — Мини-оружие • Школа №43 Тюмень</title>
 <style>
 :root{--bg:#111413;--bg2:#181c1a;--card:#1c211e;--border:#2a302d;--text:#e9ece9;--muted:#8a928d;--green:#00d47a;--green-d:#00a860;--green-l:#5ce8a4;--red:#ff4d4d;--safe-b:env(safe-area-inset-bottom,0px);--safe-t:env(safe-area-inset-top,0px);--nav-h:64px;--ease:cubic-bezier(.22,1,.36,1);--ease-smooth:cubic-bezier(.4,0,.2,1)}
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -117,6 +117,7 @@ section{padding:26px 0}
 .card-icon svg{width:28px;height:28px}
 .tag{font-size:9.5px;font-weight:800;padding:3px 8px;border-radius:20px;background:#00d47a1e;color:var(--green);border:1px solid var(--green-d);text-transform:uppercase;animation:badgeIn .4s var(--ease)}
 .tag.hot{background:#ff5a5a22;color:#ff8080;border-color:#c94a4a}
+.tag.mini{background:#7a5cff22;color:#b8a8ff;border-color:#7a5cff}
 .card h3{font-size:15.5px;margin-bottom:4px;color:#fff;font-weight:700}
 .card .desc{font-size:12.5px;color:var(--muted);margin-bottom:9px;flex:1;min-height:32px;line-height:1.5}
 .card .meta{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--muted);margin-bottom:9px}
@@ -223,7 +224,7 @@ footer{margin-top:36px;padding:30px 0 calc(30px + var(--nav-h) + var(--safe-b));
 .icon-opt:active{transform:scale(.92)}
 .icon-opt.sel{background:var(--green-d);border-color:var(--green-d);color:#fff;transform:scale(1.05);box-shadow:0 6px 18px #00d47a44}
 
-/* PHONE BOX — без ссылки, просто текст */
+/* PHONE BOX */
 .phone-box{display:flex;flex-direction:column;gap:6px;align-items:center;padding:22px 18px;background:linear-gradient(135deg,#00a86026,#00d47a08);border:2px solid var(--green-d);border-radius:16px;text-align:center;margin-bottom:14px;animation:phonePulse 3s ease-in-out infinite}
 @keyframes phonePulse{0%,100%{box-shadow:0 0 0 0 #00d47a44}50%{box-shadow:0 0 0 8px #00d47a00}}
 .phone-box .ic-big{width:52px;height:52px;border-radius:50%;background:var(--green-d);color:#fff;display:flex;align-items:center;justify-content:center;margin-bottom:6px;animation:phoneBounce 2s ease-in-out infinite}
@@ -395,7 +396,7 @@ footer{margin-top:36px;padding:30px 0 calc(30px + var(--nav-h) + var(--safe-b));
 <div class="wrap tb-row">
 <div class="logo" onclick="scrollTo({top:0,behavior:'smooth'})">
 <div class="logo-mark"><svg width="20" height="20"><use href="#i-pistol"/></svg></div>
-<div class="logo-txt">Paper Arms<small>ШКОЛА №43 • ТЮМЕНЬ</small></div>
+<div class="logo-txt">Paper Arms<small>МИНИ-ОРУЖИЕ • ШКОЛА №43</small></div>
 </div>
 <nav class="topmenu">
 <button onclick="go('catalog')"><svg width="15" height="15"><use href="#i-cart"/></svg>Каталог</button>
@@ -414,8 +415,8 @@ footer{margin-top:36px;padding:30px 0 calc(30px + var(--nav-h) + var(--safe-b));
 
 <section class="hero">
 <div class="hero-badge"><svg width="13" height="13"><use href="#i-pin"/></svg>Только школа №43, Тюмень</div>
-<h1>Бумажные <span class="gr">пистолеты</span><br>и пулемёты</h1>
-<p>Пистолеты, автоматы, винтовки. Всё из бумаги. От 20₽. Доставка до парты.</p>
+<h1>Бумажное <span class="gr">мини-оружие</span><br>для настоящих ценителей</h1>
+<p>Крошечные пистолеты, автоматы и винтовки из бумаги. Помещаются в ладони. От 10₽. Доставка до парты.</p>
 <div class="hero-btns">
 <button class="btn btn-p" onclick="go('catalog')"><svg width="15" height="15"><use href="#i-cart"/></svg>В каталог</button>
 <button class="btn" onclick="openChat()"><svg width="15" height="15"><use href="#i-chat"/></svg>Спросить ИИ</button>
@@ -423,8 +424,8 @@ footer{margin-top:36px;padding:30px 0 calc(30px + var(--nav-h) + var(--safe-b));
 </section>
 
 <div class="stats">
-<div class="stat"><div class="ic"><svg width="20" height="20"><use href="#i-box"/></svg></div><div class="num" id="stProducts">0</div><div class="lbl">Моделей</div></div>
-<div class="stat"><div class="ic"><svg width="20" height="20"><use href="#i-coin"/></svg></div><div class="num">20₽</div><div class="lbl">От цены</div></div>
+<div class="stat"><div class="ic"><svg width="20" height="20"><use href="#i-box"/></svg></div><div class="num" id="stProducts">0</div><div class="lbl">Мини-моделей</div></div>
+<div class="stat"><div class="ic"><svg width="20" height="20"><use href="#i-coin"/></svg></div><div class="num">10₽</div><div class="lbl">От цены</div></div>
 <div class="stat"><div class="ic"><svg width="20" height="20"><use href="#i-star"/></svg></div><div class="num">4.9</div><div class="lbl">Рейтинг</div></div>
 <div class="stat"><div class="ic"><svg width="20" height="20"><use href="#i-shield"/></svg></div><div class="num">43</div><div class="lbl">Школа №</div></div>
 </div>
@@ -432,9 +433,9 @@ footer{margin-top:36px;padding:30px 0 calc(30px + var(--nav-h) + var(--safe-b));
 <div class="featured">
 <div class="ftxt">
 <div class="flabel"><svg width="12" height="12"><use href="#i-flame"/></svg>Хит недели</div>
-<h2>АК-47 за 30₽</h2>
-<p>Классический автомат Калашникова из плотной бумаги. Прочный, узнаваемый силуэт.</p>
-<button class="btn btn-p" onclick="orderProduct(3)"><svg width="15" height="15"><use href="#i-cart"/></svg>Заказать за 30 ₽</button>
+<h2>Мини-АК-47 за 20₽</h2>
+<p>Крошечная версия легендарного автомата. Помещается в ладони, отлично смотрится на брелоке.</p>
+<button class="btn btn-p" onclick="orderProduct(2)"><svg width="15" height="15"><use href="#i-cart"/></svg>Заказать за 20 ₽</button>
 </div>
 <div class="ficon"><svg width="100" height="100"><use href="#i-machinegun"/></svg></div>
 </div>
@@ -442,8 +443,8 @@ footer{margin-top:36px;padding:30px 0 calc(30px + var(--nav-h) + var(--safe-b));
 <section id="catalog">
 <div class="sec-head">
 <div>
-<div class="sec-title"><div class="ic"><svg width="19" height="19"><use href="#i-cart"/></svg></div>Каталог</div>
-<div class="sec-sub">Пистолеты и пулемёты ручной работы</div>
+<div class="sec-title"><div class="ic"><svg width="19" height="19"><use href="#i-cart"/></svg></div>Каталог мини-оружия</div>
+<div class="sec-sub">Только мини-модели ручной работы</div>
 </div>
 <button class="btn btn-sm" onclick="randomPick()"><svg width="13" height="13"><use href="#i-dice"/></svg>Случайное</button>
 </div>
@@ -470,7 +471,7 @@ footer{margin-top:36px;padding:30px 0 calc(30px + var(--nav-h) + var(--safe-b));
 <div class="sec-head"><div><div class="sec-title"><div class="ic"><svg width="19" height="19"><use href="#i-shield"/></svg></div>Правила</div></div></div>
 <div class="rules">
 <div class="rule"><div class="rule-head"><div class="rule-num">1</div><h4>Только школа №43</h4></div><p>Продажа и передача товара только на территории школы №43, г. Тюмень.</p></div>
-<div class="rule"><div class="rule-head"><div class="rule-num">2</div><h4>Безопасность</h4></div><p>Всё оружие бумажное. Не направляй на людей в лицо.</p></div>
+<div class="rule"><div class="rule-head"><div class="rule-num">2</div><h4>Безопасность</h4></div><p>Всё оружие бумажное и миниатюрное. Не направляй на людей в лицо.</p></div>
 <div class="rule"><div class="rule-head"><div class="rule-num">3</div><h4>Оплата</h4></div><p>Наличными на перемене или переводом на карту. Заказ через номер.</p></div>
 <div class="rule"><div class="rule-head"><div class="rule-num">4</div><h4>Возврат</h4></div><p>Если порвался при получении — заменим бесплатно в течение дня.</p></div>
 <div class="rule"><div class="rule-head"><div class="rule-num">5</div><h4>Уважение</h4></div><p>Не оскорбляй других. Нарушителей — в бан.</p></div>
@@ -489,7 +490,7 @@ footer{margin-top:36px;padding:30px 0 calc(30px + var(--nav-h) + var(--safe-b));
 <div class="about-card"><div class="ic"><svg width="22" height="22"><use href="#i-pin"/></svg></div><h4>Где мы</h4><p>Школа №43, Тюмень. Большая перемена, у столовой на 2 этаже.</p></div>
 <div class="about-card"><div class="ic"><svg width="22" height="22"><use href="#i-clock"/></svg></div><h4>Время работы</h4><p>Перемены: 09:40–09:50, 11:30–11:50, 13:20–13:35.</p></div>
 <div class="about-card"><div class="ic"><svg width="22" height="22"><use href="#i-phone"/></svg></div><h4>Связь</h4><p>Заказ по номеру +7 909 737-33-11.</p></div>
-<div class="about-card"><div class="ic"><svg width="22" height="22"><use href="#i-gift"/></svg></div><h4>Бонусы</h4><p>Купил 3 товара — 4-й со скидкой 30%!</p></div>
+<div class="about-card"><div class="ic"><svg width="22" height="22"><use href="#i-gift"/></svg></div><h4>Бонусы</h4><p>Купил 3 мини-модели — 4-я со скидкой 30%!</p></div>
 </div>
 </section>
 
@@ -499,12 +500,12 @@ footer{margin-top:36px;padding:30px 0 calc(30px + var(--nav-h) + var(--safe-b));
 <footer>
 <div class="wrap">
 <div class="foot-grid">
-<div class="foot-col"><h4>Paper Arms</h4><p>Магазин бумажных пистолетов и пулемётов. Только школа №43, Тюмень.</p></div>
+<div class="foot-col"><h4>Paper Arms</h4><p>Магазин бумажного мини-оружия. Только школа №43, Тюмень.</p></div>
 <div class="foot-col"><h4>Разделы</h4><a onclick="go('catalog')">Каталог</a><a onclick="go('news')">Новости</a><a onclick="go('reviews')">Отзывы</a><a onclick="go('rules')">Правила</a></div>
 <div class="foot-col"><h4>Помощь</h4><a onclick="openChat()">ИИ-ассистент</a><a onclick="openOrderModal()">Как заказать</a><a onclick="toast('Доставка до парты — бесплатно')">Доставка</a><a onclick="toast('Возврат в течение дня')">Возврат</a></div>
 <div class="foot-col"><h4>Ещё</h4><a onclick="scrollTo({top:0,behavior:'smooth'})">Наверх</a><a onclick="go('faq')">FAQ</a><a onclick="go('about')">О нас</a></div>
 </div>
-<div class="copy">© 2025 Paper Arms • Школа №43, Тюмень • +7 909 737-33-11</div>
+<div class="copy">© 2025 Paper Arms • Мини-оружие • Школа №43, Тюмень • +7 909 737-33-11</div>
 </div>
 </footer>
 
@@ -525,7 +526,7 @@ footer{margin-top:36px;padding:30px 0 calc(30px + var(--nav-h) + var(--safe-b));
 <div class="av"><svg width="20" height="20"><use href="#i-sparkle"/></svg></div>
 <div class="info">
 <div class="nm">ИИ-ассистент <span class="ai-tag">GPT</span></div>
-<div class="st">● Онлайн • знает весь каталог</div>
+<div class="st">● Онлайн • эксперт по мини-оружию</div>
 </div>
 <button class="chat-clear" onclick="clearChat()" title="Очистить">
 <svg width="18" height="18"><use href="#i-trash"/></svg>
@@ -535,7 +536,7 @@ footer{margin-top:36px;padding:30px 0 calc(30px + var(--nav-h) + var(--safe-b));
 <div class="chat-body" id="chatBody"></div>
 <div class="chat-quick" id="chatQuick"></div>
 <div class="chat-input">
-<input type="text" id="chatInput" placeholder="Спросите что-нибудь..." autocomplete="off">
+<input type="text" id="chatInput" placeholder="Спросите про мини-оружие..." autocomplete="off">
 <button onclick="sendChat()"><svg width="18" height="18"><use href="#i-send"/></svg></button>
 </div>
 </div>
@@ -588,19 +589,19 @@ footer{margin-top:36px;padding:30px 0 calc(30px + var(--nav-h) + var(--safe-b));
 
 <div class="ov" id="addModal"><div class="md wide">
 <button class="md-close" onclick="closeM('addModal')"><svg width="18" height="18"><use href="#i-close"/></svg></button>
-<h2><span class="ic"><svg width="18" height="18"><use href="#i-plus"/></svg></span>Добавить модель</h2>
-<label>Название</label><input type="text" id="pName" placeholder="Глок-18">
+<h2><span class="ic"><svg width="18" height="18"><use href="#i-plus"/></svg></span>Добавить мини-модель</h2>
+<label>Название</label><input type="text" id="pName" placeholder="Мини-Глок">
 <label>Иконка</label><div class="icon-picker" id="iconPicker"></div>
-<label>Описание</label><textarea id="pDesc" rows="2" placeholder="Бумажный пистолет"></textarea>
-<label>Категория</label><select id="pCat"><option>Пистолеты</option><option>Пулемёты</option></select>
-<label>Цена (₽)</label><input type="number" id="pPrice" placeholder="20" min="1" inputmode="numeric">
+<label>Описание</label><textarea id="pDesc" rows="2" placeholder="Крошечный бумажный пистолет"></textarea>
+<label>Категория</label><select id="pCat"><option>Мини-оружие</option></select>
+<label>Цена (₽)</label><input type="number" id="pPrice" placeholder="15" min="1" inputmode="numeric">
 <button class="btn btn-p btn-block" onclick="addProduct()"><svg width="15" height="15"><use href="#i-check"/></svg>Добавить</button>
 </div></div>
 
 <div class="ov" id="newsModal"><div class="md">
 <button class="md-close" onclick="closeM('newsModal')"><svg width="18" height="18"><use href="#i-close"/></svg></button>
 <h2><span class="ic"><svg width="18" height="18"><use href="#i-news"/></svg></span>Добавить новость</h2>
-<label>Заголовок</label><input type="text" id="nTitle" placeholder="Новая партия!">
+<label>Заголовок</label><input type="text" id="nTitle" placeholder="Новая партия мини-оружия!">
 <label>Текст</label><textarea id="nText" rows="3" placeholder="Сегодня привезли..."></textarea>
 <label>Категория</label><select id="nCat"><option>🔥 Акция</option><option>🆕 Новинка</option><option>📢 Объявление</option><option>🎉 Событие</option></select>
 <button class="btn btn-p btn-block" onclick="addNews()"><svg width="15" height="15"><use href="#i-check"/></svg>Опубликовать</button>
@@ -677,65 +678,65 @@ function closeM(id){
 document.querySelectorAll('.ov').forEach(o=>{o.addEventListener('click',e=>{if(e.target===o)closeM(o.id);});});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.querySelectorAll('.ov.active').forEach(o=>closeM(o.id));}});
 
-/* ============ DEFAULT DATA ============ */
+/* ============ DEFAULT DATA — ТОЛЬКО МИНИ-ОРУЖИЕ ============ */
 const DEFAULT_PRODUCTS=[
-  {id:1,name:'Флюгер',icon:'pistol',desc:'Простой бумажный пистолет, быстрый в сборке',price:20,cat:'Пистолеты',sold:56,isNew:false},
-  {id:2,name:'Глок-18',icon:'pistol',desc:'Автоматический пистолет из бумаги',price:20,cat:'Пистолеты',sold:89,isNew:false},
-  {id:3,name:'АК-47',icon:'machinegun',desc:'Классический автомат Калашникова',price:30,cat:'Пулемёты',sold:120,isNew:false},
-  {id:4,name:'Винтовка',icon:'rifle',desc:'Длинная бумажная винтовка с прицелом',price:40,cat:'Пулемёты',sold:34,isNew:false},
-  {id:5,name:'Пистолет Макарова',icon:'pistol',desc:'ПМ — легендарный советский пистолет',price:25,cat:'Пистолеты',sold:45,isNew:false},
-  {id:6,name:'Беретта',icon:'pistol',desc:'Итальянский пистолет, 92FS',price:30,cat:'Пистолеты',sold:28,isNew:true},
-  {id:7,name:'Desert Eagle',icon:'pistol',desc:'Мощный крупнокалиберный пистолет',price:35,cat:'Пистолеты',sold:22,isNew:true},
-  {id:8,name:'Револьвер',icon:'revolver',desc:'Барабанный пистолет, 6 патронов',price:32,cat:'Пистолеты',sold:19,isNew:false},
-  {id:9,name:'ТТ',icon:'pistol',desc:'Тульский Токарева, компактный',price:22,cat:'Пистолеты',sold:37,isNew:false},
-  {id:10,name:'USP',icon:'pistol',desc:'Немецкий пистолет Heckler & Koch',price:28,cat:'Пистолеты',sold:24,isNew:false},
-  {id:11,name:'Кольт',icon:'revolver',desc:'Американский револьвер 1873 года',price:30,cat:'Пистолеты',sold:15,isNew:false},
-  {id:12,name:'АК-74',icon:'machinegun',desc:'Модернизированный Калашников',price:35,cat:'Пулемёты',sold:41,isNew:false},
-  {id:13,name:'М16',icon:'rifle',desc:'Американская штурмовая винтовка',price:38,cat:'Пулемёты',sold:29,isNew:false},
-  {id:14,name:'М4А1',icon:'rifle',desc:'Карабин на базе М16',price:36,cat:'Пулемёты',sold:26,isNew:false},
-  {id:15,name:'ППШ-41',icon:'machinegun',desc:'Советский пистолет-пулемёт',price:30,cat:'Пулемёты',sold:33,isNew:false},
-  {id:16,name:'Узи',icon:'machinegun',desc:'Израильский компактный ПП',price:25,cat:'Пулемёты',sold:44,isNew:false},
-  {id:17,name:'MP5',icon:'machinegun',desc:'Немецкий пистолет-пулемёт',price:33,cat:'Пулемёты',sold:27,isNew:true},
-  {id:18,name:'Пулемёт Максима',icon:'machinegun',desc:'Тяжёлый станковый пулемёт',price:55,cat:'Пулемёты',sold:8,isNew:true},
-  {id:19,name:'Миниган',icon:'machinegun',desc:'Многоствольный пулемёт',price:60,cat:'Пулемёты',sold:5,isNew:true},
-  {id:20,name:'Снайперская винтовка',icon:'rifle',desc:'Длинная с оптическим прицелом',price:45,cat:'Пулемёты',sold:14,isNew:true}
+  {id:1,name:'Мини-пистолет',icon:'pistol',desc:'Крошечный пистолет из бумаги, помещается в ладони',price:12,cat:'Мини-оружие',sold:64,isNew:true},
+  {id:2,name:'Мини-АК-47',icon:'machinegun',desc:'Мини-версия легендарного автомата',price:20,cat:'Мини-оружие',sold:78,isNew:true},
+  {id:3,name:'Мини-револьвер',icon:'revolver',desc:'Маленький барабанный пистолет с 6 патронами',price:15,cat:'Мини-оружие',sold:41,isNew:true},
+  {id:4,name:'Мини-винтовка',icon:'rifle',desc:'Компактная бумажная винтовка',price:22,cat:'Мини-оружие',sold:33,isNew:true},
+  {id:5,name:'Мини-Узи',icon:'machinegun',desc:'Крошечный пистолет-пулемёт',price:18,cat:'Мини-оружие',sold:52,isNew:true},
+  {id:6,name:'Мини-снайперка',icon:'rifle',desc:'Мини-винтовка с оптическим прицелом',price:25,cat:'Мини-оружие',sold:27,isNew:true},
+  {id:7,name:'Мини-пулемёт',icon:'machinegun',desc:'Маленький пулемёт Максима',price:25,cat:'Мини-оружие',sold:31,isNew:true},
+  {id:8,name:'Брелок-пистолет',icon:'pistol',desc:'Совсем крошечный пистолетик-брелок',price:10,cat:'Мини-оружие',sold:95,isNew:true},
+  {id:9,name:'Мини-Глок',icon:'pistol',desc:'Мини-версия Глок-18',price:14,cat:'Мини-оружие',sold:58,isNew:true},
+  {id:10,name:'Мини-дробовик',icon:'rifle',desc:'Короткий бумажный дробовик',price:24,cat:'Мини-оружие',sold:19,isNew:true},
+  {id:11,name:'Мини-Макаров',icon:'pistol',desc:'Крошечный ПМ — легендарный советский пистолет',price:16,cat:'Мини-оружие',sold:47,isNew:true},
+  {id:12,name:'Мини-Беретта',icon:'pistol',desc:'Маленькая итальянская Беретта 92FS',price:18,cat:'Мини-оружие',sold:22,isNew:true},
+  {id:13,name:'Мини-Desert Eagle',icon:'pistol',desc:'Мини-версия крупнокалиберного монстра',price:22,cat:'Мини-оружие',sold:36,isNew:true},
+  {id:14,name:'Мини-ППШ-41',icon:'machinegun',desc:'Крошечный советский пистолет-пулемёт',price:20,cat:'Мини-оружие',sold:29,isNew:true},
+  {id:15,name:'Мини-М16',icon:'rifle',desc:'Мини-версия американской штурмовой винтовки',price:24,cat:'Мини-оружие',sold:18,isNew:true},
+  {id:16,name:'Мини-Кольт',icon:'revolver',desc:'Маленький револьвер 1873 года',price:18,cat:'Мини-оружие',sold:21,isNew:true},
+  {id:17,name:'Мини-МП5',icon:'machinegun',desc:'Крошечный немецкий пистолет-пулемёт',price:20,cat:'Мини-оружие',sold:26,isNew:true},
+  {id:18,name:'Мини-ТТ',icon:'pistol',desc:'Маленький Тульский Токарева',price:14,cat:'Мини-оружие',sold:38,isNew:true}
 ];
 
 /* ============ VERSION ============ */
-const DATA_VERSION=4;
+const DATA_VERSION=6;
 if(DB.get('pa_version',0)<DATA_VERSION){
   DB.set('pa_products',DEFAULT_PRODUCTS);
+  DB.set('pa_news',null);
   DB.set('pa_version',DATA_VERSION);
 }
 
 /* ============ STATE ============ */
 let products=DB.get('pa_products',DEFAULT_PRODUCTS);
-let news=DB.get('pa_news',[
-  {id:1,title:'🔥 Скидка 20% на всё',text:'Только до пятницы! Пистолеты от 16₽, пулемёты от 24₽.',cat:'🔥 Акция',date:'15.01.2025'},
-  {id:2,title:'⚔ Привезли новые модели',text:'Desert Eagle, Миниган и Пулемёт Максима. Ограниченное количество!',cat:'🆕 Новинка',date:'14.01.2025'},
-  {id:3,title:'🎉 Розыгрыш Глок-18',text:'Купил 2 товара — участвуешь в розыгрыше бесплатного Глок-18.',cat:'🎉 Событие',date:'10.01.2025'}
-]);
+let news=DB.get('pa_news',null)||[
+  {id:1,title:'🤏 Завезли новую партию мини-оружия',text:'Мини-АК-47, мини-Узи, мини-Глок и брелок-пистолет. Цены от 10₽!',cat:'🆕 Новинка',date:'16.01.2025'},
+  {id:2,title:'🔥 Скидка 20% на всё мини',text:'Только до пятницы! Всё мини-оружие со скидкой 20%.',cat:'🔥 Акция',date:'15.01.2025'},
+  {id:3,title:'🎉 Розыгрыш мини-АК-47',text:'Купил 2 мини-модели — участвуешь в розыгрыше бесплатного мини-АК-47.',cat:'🎉 Событие',date:'10.01.2025'}
+];
 
 const reviews=[
-  {name:'Артём К.',role:'9Б',stars:5,txt:'Купил АК-47 — просто топ! Крепкий, узнаваемый.'},
-  {name:'Даниил М.',role:'8А',stars:5,txt:'Глок-18 за 20₽ — огонь. Все завидуют.'},
-  {name:'Софья Л.',role:'7В',stars:4,txt:'Винтовка длинная, красивая. Немного помялась.'},
-  {name:'Максим П.',role:'9В',stars:5,txt:'Миниган — просто пушка! Принесли на перемене.'},
-  {name:'Кирилл Ж.',role:'8Б',stars:5,txt:'Лучший магазин в школе. Беру четвёртый раз.'},
-  {name:'Никита С.',role:'7А',stars:4,txt:'Хорошее качество за такие деньги.'}
+  {name:'Артём К.',role:'9Б',stars:5,txt:'Мини-АК-47 — просто топ! Помещается в ладони, все завидуют.'},
+  {name:'Даниил М.',role:'8А',stars:5,txt:'Брелок-пистолет за 10₽ — огонь, ношу на рюкзаке.'},
+  {name:'Софья Л.',role:'7В',stars:4,txt:'Мини-снайперка очень красивая. Немного помялась.'},
+  {name:'Максим П.',role:'9В',stars:5,txt:'Мини-Узи — просто пушка, помещается в кармане!'},
+  {name:'Кирилл Ж.',role:'8Б',stars:5,txt:'Лучший магазин мини-оружия в школе. Беру пятый раз.'},
+  {name:'Никита С.',role:'7А',stars:4,txt:'Мини-Глок топ, дешево и красиво.'}
 ];
 
 const FAQ=[
   {q:'Где купить?',a:'Только в школе №43, Тюмень. У столовой на 2 этаже на больших переменах.'},
+  {q:'Что такое мини-оружие?',a:'Это уменьшенные бумажные модели — от 10₽. Помещаются в ладони, удобны как брелоки.'},
   {q:'Как заказать?',a:'Напиши на номер '+PHONE_FMT+' — продавец ответит и передаст заказ на перемене.'},
   {q:'Сколько ждать доставку?',a:'Доставка до парты бесплатная. Обычно в тот же день.'},
   {q:'Если товар порвался?',a:'Заменим бесплатно в течение дня.'},
-  {q:'Есть ли скидки?',a:'Купи 3 товара — 4-й со скидкой 30%.'},
+  {q:'Есть ли скидки?',a:'Купи 3 мини-модели — 4-я со скидкой 30%.'},
   {q:'Как связаться с продавцом?',a:'Напиши на номер '+PHONE_FMT+' в WhatsApp или Telegram.'}
 ];
 
 const ICON_LIST=['pistol','revolver','machinegun','rifle','target','bomb','box','gift'];
-let isAdmin=false,activeCat='Все',selectedIcon='pistol';
+let isAdmin=false,activeCat='Мини-оружие',selectedIcon='pistol';
 
 /* ============ RENDER ============ */
 function render(){
@@ -750,7 +751,8 @@ function render(){
     menuAdmin.innerHTML='';
   }
 
-  const cats=['Все',...new Set(products.map(p=>p.cat).filter(Boolean))];
+  /* Категория одна — оставляем чип только «Все» и «Мини-оружие» */
+  const cats=['Все','Мини-оружие'];
   $('chips').innerHTML=cats.map(c=>`<button class="chip ${c===activeCat?'active':''}" onclick="setCat('${esc(c)}')">${esc(c)}</button>`).join('');
 
   const search=($('search').value||'').toLowerCase();
@@ -774,10 +776,12 @@ function render(){
     grid.innerHTML=list.map((p,i)=>{
       const rating=(4.5+Math.random()*0.5).toFixed(1);
       const delay=Math.min(i*0.04,0.4);
+      let tag='<span class="tag mini">MINI</span>';
+      if(p.sold>60)tag='<span class="tag hot">ХИТ</span>';
       return `<div class="card" style="animation-delay:${delay}s">
         <div class="card-top">
           <div class="card-icon">${svg(p.icon||'pistol',28)}</div>
-          ${p.isNew?'<span class="tag">NEW</span>':(p.sold>40?'<span class="tag hot">ХИТ</span>':'')}
+          ${tag}
         </div>
         <h3>${esc(p.name)}</h3>
         <div class="desc">${esc(p.desc||'')}</div>
@@ -874,14 +878,14 @@ function renderAdmin(){
 function addProduct(){
   const name=$('pName').value.trim();
   const desc=$('pDesc').value.trim();
-  const cat=$('pCat').value;
+  const cat='Мини-оружие';
   const price=parseInt($('pPrice').value);
   if(!name||!price){toast('Заполни название и цену');return;}
   products.unshift({id:Date.now(),name,icon:selectedIcon,desc,cat,price,sold:0,isNew:true});
   DB.set('pa_products',products);
   ['pName','pDesc','pPrice'].forEach(i=>$(i).value='');
   closeM('addModal');render();renderAdmin();
-  toast('Модель добавлена!');
+  toast('Мини-модель добавлена!');
 }
 function addNews(){
   const title=$('nTitle').value.trim();
@@ -909,13 +913,13 @@ function renderIconPicker(){
 function pickIcon(n){selectedIcon=n;renderIconPicker();}
 
 /* ============ CHAT ============ */
-const WELCOME='Привет! 👋 Я ИИ-ассистент магазина Paper Arms.\n\nМогу рассказать:\n• про товары и цены\n• как заказать\n• где и когда купить\n• про доставку и оплату\n\nСпрашивай!';
+const WELCOME='Привет! 👋 Я ИИ-ассистент магазина Paper Arms.\n\nУ нас только МИНИ-оружие из бумаги 🤏\n\nМогу рассказать:\n• какие есть мини-модели\n• цены\n• как заказать\n• где и когда купить\n\nСпрашивай!';
 
 let chatHistory=DB.get('pa_chat',[{from:'bot',text:WELCOME,time:'сейчас'}]);
 let chatOpen=false;
 let isTyping=false;
 
-const QUICK_QUESTIONS=['Сколько стоит АК-47?','Как заказать?','Где купить?','Какие есть пистолеты?','Про пулемёты','Доставка'];
+const QUICK_QUESTIONS=['Какие есть мини-модели?','Сколько стоит мини-АК-47?','Самый дешёвый','Как заказать?','Где купить?','Доставка'];
 
 function renderQuick(){
   $('chatQuick').innerHTML=QUICK_QUESTIONS.map(q=>
@@ -983,44 +987,49 @@ function sendChat(){
 }
 $('chatInput').addEventListener('keydown',e=>{if(e.key==='Enter')sendChat();});
 
-/* ============ BOT BRAIN ============ */
+/* ============ BOT BRAIN — только мини-оружие ============ */
 function botReply(raw){
   const t=(raw||'').toLowerCase();
   const clean=t.replace(/[^\wа-яё0-9\s-]/gi,' ').replace(/\s+/g,' ').trim();
 
+  /* Найти конкретную модель */
   const found=products.find(p=>{
-    const nm=p.name.toLowerCase();
-    return clean.includes(nm) || nm.split(/[- ]/).some(w=>w.length>2 && clean.includes(w));
+    const nm=p.name.toLowerCase().replace('мини-','').trim();
+    return clean.includes(p.name.toLowerCase()) || (nm.length>2 && clean.includes(nm));
   });
-  if(found)return `${found.name} — ${found.price}₽.\n${found.desc}.\nКатегория: ${found.cat}.\n\nЗаказать: напиши на ${PHONE_FMT}`;
+  if(found)return `${found.name} — ${found.price}₽.\n${found.desc}.\n\nЗаказать: напиши на ${PHONE_FMT}`;
 
   if(/(^|\s)(привет|прив|здравств|хай|ку|добрый|доброе|доброго)(\s|$)/.test(clean))
-    return 'Привет! 👋\nЧем помочь? Могу рассказать про товары, цены, доставку или как заказать.';
+    return 'Привет! 👋\nУ нас только бумажное МИНИ-оружие 🤏\nЧем помочь? Могу рассказать про модели, цены, доставку или как заказать.';
 
   if(/(заказ|заказать|купить|приобрес|оформ|где.*куп)/.test(clean))
-    return `Чтобы сделать заказ — напиши на номер ${PHONE_FMT} в WhatsApp или Telegram.\n\nМожно просто написать название модели, например «АК-47». Продавец ответит и передаст заказ на перемене в школе №43.`;
+    return `Чтобы сделать заказ — напиши на номер ${PHONE_FMT} в WhatsApp или Telegram.\n\nМожно просто написать название мини-модели, например «мини-АК-47». Продавец ответит и передаст заказ на перемене в школе №43.`;
+
+  if(/(самый дешев|дешев|бюджет|недорог|самый маленьк)/.test(clean)){
+    const sorted=[...products].sort((a,b)=>a.price-b.price);
+    return `💰 Самые дешёвые мини-модели:\n${sorted.slice(0,5).map(p=>'• '+p.name+' — '+p.price+'₽').join('\n')}\n\nЗаказать: ${PHONE_FMT}`;
+  }
 
   if(/(цена|цены|сколько|стоит|стоимость|прайс|по чем)/.test(clean)){
-    const cheap=products.filter(p=>p.cat==='Пистолеты');
-    const mgs=products.filter(p=>p.cat==='Пулемёты');
-    return `💰 Цены:\n\nПистолеты — от ${Math.min(...cheap.map(p=>p.price))}₽:\n${cheap.slice(0,5).map(p=>'• '+p.name+' — '+p.price+'₽').join('\n')}\n\nПулемёты — от ${Math.min(...mgs.map(p=>p.price))}₽:\n${mgs.slice(0,5).map(p=>'• '+p.name+' — '+p.price+'₽').join('\n')}\n\nПолный список — в каталоге на сайте.`;
+    const sorted=[...products].sort((a,b)=>a.price-b.price);
+    return `💰 Цены на мини-оружие — от ${sorted[0].price}₽ до ${sorted[sorted.length-1].price}₽.\n\nТоп-5 дешёвых:\n${sorted.slice(0,5).map(p=>'• '+p.name+' — '+p.price+'₽').join('\n')}\n\nПолный список — в каталоге.`;
   }
 
   if(/(пистолет|глок|макаров|беретт|револьвер|кольт|тт|usp|deagle|desert|флюгер)/.test(clean)){
-    const ps=products.filter(p=>p.cat==='Пистолеты');
-    return `🔫 Пистолетов: ${ps.length}.\nЦены от ${Math.min(...ps.map(p=>p.price))}₽ до ${Math.max(...ps.map(p=>p.price))}₽.\n\nПопулярные:\n${ps.slice(0,5).map(p=>'• '+p.name+' — '+p.price+'₽').join('\n')}`;
+    const ps=products.filter(p=>/пистолет|глок|макаров|беретт|револьвер|кольт|тт|desert/i.test(p.name));
+    if(ps.length)return `🔫 Мини-пистолеты (${ps.length} шт.):\n${ps.map(p=>'• '+p.name+' — '+p.price+'₽').join('\n')}\n\nЗаказать: ${PHONE_FMT}`;
   }
 
-  if(/(пулемет|пулемёт|автомат|ак|винтовк|м16|м4|узи|миниган|максим|ппш|mp5)/.test(clean)){
-    const ms=products.filter(p=>p.cat==='Пулемёты');
-    return `💥 Автоматов и пулемётов: ${ms.length}.\nЦены от ${Math.min(...ms.map(p=>p.price))}₽ до ${Math.max(...ms.map(p=>p.price))}₽.\n\nХиты:\n${ms.slice(0,5).map(p=>'• '+p.name+' — '+p.price+'₽').join('\n')}`;
+  if(/(пулемет|пулемёт|автомат|ак|винтовк|м16|м4|узи|снайпер|ппш|мп5|mp5)/.test(clean)){
+    const ms=products.filter(p=>/ак|узи|ппш|мп5|mp5|м16|винтовк|снайпер|пулемёт|дробовик/i.test(p.name));
+    if(ms.length)return `💥 Мини-автоматы и винтовки (${ms.length} шт.):\n${ms.map(p=>'• '+p.name+' — '+p.price+'₽').join('\n')}\n\nЗаказать: ${PHONE_FMT}`;
   }
 
   if(/(доставк|привез|передач|отдать|где.*получ)/.test(clean))
     return `🚚 Доставка бесплатная.\nПередам лично на перемене в школе №43, г. Тюмень.\nБольшая перемена — у столовой на 2 этаже.`;
 
   if(/(оплат|плат|перевод|наличн|карт|скидк|бонус)/.test(clean))
-    return `💳 Оплата:\n• наличными при получении\n• переводом на карту\n\n🎁 Бонус: купил 3 товара — 4-й со скидкой 30%!`;
+    return `💳 Оплата:\n• наличными при получении\n• переводом на карту\n\n🎁 Бонус: купил 3 мини-модели — 4-я со скидкой 30%!`;
 
   if(/(где|адрес|школ|место|найти|этаж)/.test(clean))
     return `📍 Школа №43, г. Тюмень.\nБольшая перемена — у столовой на 2 этаже.`;
@@ -1028,16 +1037,14 @@ function botReply(raw){
   if(/(когда|время|час|перемен|работае|график)/.test(clean))
     return `🕒 Работаю на больших переменах:\n• 09:40–09:50\n• 11:30–11:50\n• 13:20–13:35\n\nВ остальное время — напиши на ${PHONE_FMT}`;
 
-  if(/(каталог|товар|модел|список|ассортимент|что.*есть|какие.*есть)/.test(clean)){
-    const cats=[...new Set(products.map(x=>x.cat))];
-    return `📦 В каталоге ${products.length} моделей.\nКатегории: ${cats.join(', ')}.\nЦены от ${Math.min(...products.map(x=>x.price))}₽ до ${Math.max(...products.map(x=>x.price))}₽.`;
-  }
+  if(/(каталог|товар|модел|список|ассортимент|что.*есть|какие.*есть)/.test(clean))
+    return `🤏 В каталоге ${products.length} мини-моделей.\nЦены от ${Math.min(...products.map(x=>x.price))}₽ до ${Math.max(...products.map(x=>x.price))}₽.\n\nСпроси про конкретную — расскажу подробнее.`;
 
   if(/(качеств|материал|бумаг|крепк|прочн|порвал|сломал)/.test(clean))
     return `✂️ Всё из плотной бумаги А4, крепко склеено.\nЕсли порвалось при получении — заменю бесплатно в течение дня.`;
 
-  if(/(акци|скидк|дешевл|распродаж|промокод)/.test(clean))
-    return `🔥 Акции:\n• Купи 3 товара — 4-й со скидкой 30%\n• Постоянным покупателям — особые условия`;
+  if(/(акци|скидк|распродаж|промокод)/.test(clean))
+    return `🔥 Акции:\n• Купи 3 мини-модели — 4-я со скидкой 30%\n• Постоянным покупателям — особые условия`;
 
   if(/(продавец|админ|хозяин|владелец)/.test(clean))
     return `Продавец — ученик школы №43.\nСвязаться: ${PHONE_FMT}`;
@@ -1049,12 +1056,12 @@ function botReply(raw){
     return 'Пока! 👋\nЗаходи ещё. Заказ — на '+PHONE_FMT;
 
   if(/(кто ты|что ты|ты бот|ты человек)/.test(clean))
-    return `Я ИИ-ассистент магазина Paper Arms 🤖\nЗнаю весь каталог, цены, доставку.\nЗаказы принимает продавец по номеру ${PHONE_FMT}.`;
+    return `Я ИИ-ассистент магазина Paper Arms 🤖\nСпециализируюсь на МИНИ-оружии из бумаги.\nЗаказы принимает продавец по номеру ${PHONE_FMT}.`;
 
   if(/(помощь|help|что.*умеешь)/.test(clean))
-    return `Могу помочь с:\n• выбором модели\n• ценами\n• оформлением заказа\n• доставкой и оплатой\n• часами работы`;
+    return `Могу помочь с:\n• выбором мини-модели\n• ценами\n• оформлением заказа\n• доставкой и оплатой\n• часами работы`;
 
-  return `Хм, не понял 🤔\n\nПопробуй спросить:\n• «Сколько стоит АК-47?»\n• «Как заказать?»\n• «Какие есть пистолеты?»\n\nИли напиши: ${PHONE_FMT}`;
+  return `Хм, не понял 🤔\n\nПопробуй спросить:\n• «Какие есть мини-модели?»\n• «Сколько стоит мини-АК-47?»\n• «Самый дешёвый»\n\nИли напиши: ${PHONE_FMT}`;
 }
 
 /* ============ NAV HIGHLIGHT ============ */
@@ -1077,7 +1084,7 @@ function botReply(raw){
 render();
 renderIconPicker();
 renderQuick();
-console.log('✅ Paper Arms v8 загружен. Товаров:',products.length);
+console.log('✅ Paper Arms v10 (только мини-оружие) загружен. Товаров:',products.length);
 </script>
 </body>
 </html>
